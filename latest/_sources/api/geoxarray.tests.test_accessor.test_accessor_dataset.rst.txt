@@ -1,0 +1,5 @@
+geoxarray.tests.test\_accessor.test\_accessor\_dataset module
+=============================================================
+
+.. automodule:: geoxarray.tests.test_accessor.test_accessor_dataset
+   :inherited-members:

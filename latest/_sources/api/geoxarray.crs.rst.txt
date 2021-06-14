@@ -1,0 +1,8 @@
+geoxarray.crs package
+=====================
+
+Module contents
+---------------
+
+.. automodule:: geoxarray.crs
+   :inherited-members:

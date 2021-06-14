@@ -1,0 +1,25 @@
+geoxarray package
+=================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   geoxarray.crs
+   geoxarray.tests
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   geoxarray.accessor
+
+Module contents
+---------------
+
+.. automodule:: geoxarray
+   :inherited-members:

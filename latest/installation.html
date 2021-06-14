@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Installation &mdash; GeoXarray 0.1.dev39+g53f7b27 documentation</title>
+  <title>Installation &mdash; Geoxarray 0.1.dev57+g95af8a5 documentation</title>
   
 
   
@@ -45,8 +45,8 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Usage" href="usage.html" />
-    <link rel="prev" title="GeoXArray Documentation" href="index.html" /> 
+    <link rel="next" title="Dimensions" href="topics/dimensions.html" />
+    <link rel="prev" title="Geoxarray" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -60,7 +60,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> GeoXarray
+            <a href="index.html" class="icon icon-home"> Geoxarray
           
 
           
@@ -95,10 +95,35 @@
               
             
             
-              <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="release-history.html">Release History</a></li>
+              <p class="caption"><span class="caption-text">Topics and Guides</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#with-conda">With conda</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#create-a-separate-environment-optional">Create a separate environment (Optional)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#with-pip">With pip</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Create a separate environment (Optional)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#from-source">From source</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="topics/dimensions.html">Dimensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Code Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howtos/index.html">How-Tos</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/modules.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/geoxarray/geoxarray/blob/main/CHANGELOG.md">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/geoxarray/geoxarray">GitHub Project</a></li>
 </ul>
 
             
@@ -114,7 +139,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">GeoXarray</a>
+          <a href="index.html">Geoxarray</a>
         
       </nav>
 
@@ -168,13 +193,66 @@
             
   <div class="section" id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
-<p>At the command line:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install geoxarray
+<p>Geoxarray is available from either PyPI or conda-forge.</p>
+<div class="section" id="with-conda">
+<h2>With conda<a class="headerlink" href="#with-conda" title="Permalink to this headline">¶</a></h2>
+<p>To install the conda-forge package into an existing conda environment that
+is also already activated (with <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">&lt;env&gt;</span></code>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install -c conda-forge geoxarray
 </pre></div>
 </div>
-<p>Or with conda via conda-forge:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ conda install -c conda-forge geoxarray
+<div class="section" id="create-a-separate-environment-optional">
+<h3>Create a separate environment (Optional)<a class="headerlink" href="#create-a-separate-environment-optional" title="Permalink to this headline">¶</a></h3>
+<p>We recommend when you are first learning how to use Geoxarray that you create
+a separate sub-environment specifically for geoxarray. To do this with conda
+run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create -c conda-forge -n geoxarray_env python geoxarray
+conda activate geoxarray_env
 </pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="with-pip">
+<h2>With pip<a class="headerlink" href="#with-pip" title="Permalink to this headline">¶</a></h2>
+<p>For <code class="docutils literal notranslate"><span class="pre">pip</span></code> based environments you can install Geoxarray by running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install geoxarray
+</pre></div>
+</div>
+<div class="section" id="id1">
+<h3>Create a separate environment (Optional)<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>We recommend when you are first learning how to use Geoxarray that you create
+a virtualenv specifically for geoxarray. This isn’t strictly necessary, but
+it may save you from accidentally breaking your Python environments for other
+projects. Assuming you have <code class="docutils literal notranslate"><span class="pre">virtualenvwrapper</span></code> installed, you can create a
+new environment and install geoxarray in it by doing:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkvirtualenv geoxarray
+pip install geoxarray
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="from-source">
+<h2>From source<a class="headerlink" href="#from-source" title="Permalink to this headline">¶</a></h2>
+<p>Geoxarray can be installed from source into a pip-based or conda-based
+installation. In a conda environment it can be nice to install geoxarray’s
+dependencies from conda without installing geoxarray.
+To do this run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install -c conda-forge --only-deps geoxarray
+</pre></div>
+</div>
+<p>To install Geoxarray from the source directory (the one with <cite>setup.py</cite> in it)
+in either a pip-based or conda-based environment run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install -e .
+</pre></div>
+</div>
+<p>Alternatively, if you don’t wish to modify any of the Geoxarray code you can
+install a “read-only” version directly from GitHub in either a conda or pip
+environment:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install git+https://github.com/geoxarray/geoxarray.git@main
+</pre></div>
+</div>
+<p>See the <a class="reference internal" href="contributing.html#dev-install"><span class="std std-ref">Contributor’s Guide</span></a> for more information on
+installing Geoxarray from source and contributing changes to the project.</p>
 </div>
 </div>
 
@@ -184,8 +262,8 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="usage.html" class="btn btn-neutral float-right" title="Usage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="index.html" class="btn btn-neutral float-left" title="GeoXArray Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="topics/dimensions.html" class="btn btn-neutral float-right" title="Dimensions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Geoxarray" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

@@ -1,0 +1,5 @@
+geoxarray.tests.conftest module
+===============================
+
+.. automodule:: geoxarray.tests.conftest
+   :inherited-members:

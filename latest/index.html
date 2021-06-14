@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>GeoXArray Documentation &mdash; GeoXarray 0.1.dev39+g53f7b27 documentation</title>
+  <title>Geoxarray &mdash; Geoxarray 0.1.dev57+g95af8a5 documentation</title>
   
 
   
@@ -59,7 +59,7 @@
           
 
           
-            <a href="#" class="icon icon-home"> GeoXarray
+            <a href="#" class="icon icon-home"> Geoxarray
           
 
           
@@ -94,10 +94,24 @@
               
             
             
-              <ul>
+              <p class="caption"><span class="caption-text">Topics and Guides</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="release-history.html">Release History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topics/dimensions.html">Dimensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Code Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howtos/index.html">How-Tos</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/modules.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/geoxarray/geoxarray/blob/main/CHANGELOG.md">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/geoxarray/geoxarray">GitHub Project</a></li>
 </ul>
 
             
@@ -113,7 +127,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">GeoXarray</a>
+          <a href="#">Geoxarray</a>
         
       </nav>
 
@@ -146,7 +160,7 @@
     
       <li><a href="#" class="icon icon-home"></a> &raquo;</li>
         
-      <li>GeoXArray Documentation</li>
+      <li>Geoxarray</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -165,18 +179,85 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="geoxarray-documentation">
-<h1>GeoXArray Documentation<a class="headerlink" href="#geoxarray-documentation" title="Permalink to this headline">¶</a></h1>
-<p>Documentation coming soon…</p>
+  <div class="section" id="geoxarray">
+<h1>Geoxarray<a class="headerlink" href="#geoxarray" title="Permalink to this headline">¶</a></h1>
+<p>Geoxarray is an open source Python library providing simple utilities and
+wrappers around common geospatial data workflows. These tools are
+primarily accessed through an “xarray accessor” available on
+xarray Dataset and DataArray objects from the <code class="docutils literal notranslate"><span class="pre">.geo</span></code> property.
+Geoxarray provides tools for standardizing dimension names, storage of
+coordinate reference system information, and operations like resampling
+and plotting.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Geoxarray is currently in a pre-alpha state and may not do most of what
+you’d expect a library with the above description to do.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Geoxarray has not had a release yet. Instructions referencing installing
+from PyPI or conda-forge are there as placeholders and will not run
+properly until there is a release.</p>
+</div>
+<p>Geoxarray directly uses, borrows from, or is based on the ideas of other open
+source projects including:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://corteva.github.io/rioxarray/stable/">rioxarray</a></p></li>
+<li><p><a class="reference external" href="https://rasterio.readthedocs.io/en/latest/">rasterio</a></p></li>
+<li><p><a class="reference external" href="https://satpy.readthedocs.io/en/stable/">satpy</a></p></li>
+<li><p><a class="reference external" href="https://pyresample.readthedocs.io/en/latest/">pyresample</a></p></li>
+<li><p><a class="reference external" href="https://xgcm.readthedocs.io/en/latest/">xgcm</a></p></li>
+<li><p><a class="reference external" href="https://xesmf.readthedocs.io/en/latest/">xesmf</a></p></li>
+<li><p><a class="reference external" href="https://pangeo.io/">The Pangeo Community</a></p></li>
+</ul>
+<div class="section" id="geoxarray-documentation">
+<h2>Geoxarray Documentation<a class="headerlink" href="#geoxarray-documentation" title="Permalink to this headline">¶</a></h2>
+<p>This documentation is separated into four primary groups: Topics, Tutorials,
+How-Tos, and Reference material.</p>
+<ul class="simple">
+<li><p><strong>Topics</strong> contain higher-level information about the concepts involved in
+geoxarray; why things work the way they do and how geoxarray approaches
+problems.</p></li>
+<li><p><a class="reference internal" href="tutorials/index.html"><span class="doc">Tutorials</span></a> will provide you a start to finish example of using
+geoxarray to accomplish something without assuming you know anything about
+geoxarray.</p></li>
+<li><p><a class="reference internal" href="howtos/index.html"><span class="doc">How-Tos</span></a> are used to walk through specific use cases, but also
+provide enough details so that the example can be used in other cases.</p></li>
+<li><p><strong>Reference material</strong> provides the lowest level details of how specific
+pieces of geoxarray work. What classes and functions exist and every option
+they provide. References will also point you to other parts of the project
+like release and git information.</p></li>
+</ul>
+<p>For more on how this documentation is structured, see
+<a class="reference internal" href="faq.html#doc-organization"><span class="std std-ref">this FAQ question</span></a>.</p>
 <div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Topics and Guides</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="release-history.html">Release History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="release-history.html#initial-release-yyyy-mm-dd">Initial Release (YYYY-MM-DD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topics/dimensions.html">Dimensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Code Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howtos/index.html">How-Tos</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="howtos/set_dims.html">Specify your spatial and temporal dimensions</a></li>
 </ul>
 </li>
 </ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/modules.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/geoxarray/geoxarray/blob/main/CHANGELOG.md">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/geoxarray/geoxarray">GitHub Project</a></li>
+</ul>
+</div>
 </div>
 </div>
 
