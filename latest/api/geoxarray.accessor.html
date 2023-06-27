@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>geoxarray.accessor module &mdash; Geoxarray 0.1.dev66+ge6810a3 documentation</title>
+  <title>geoxarray.accessor module &mdash; Geoxarray 0.1.dev67+ge6e3287 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
@@ -111,14 +111,14 @@
 any xarray DataArray or Dataset object.</p>
 <p>Geolocation cases that these accessors are supposed to be able to handle:</p>
 <ol class="arabic">
-<li><p>CF compliant Dataset: A <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2023.5.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a> object with one or
+<li><p>CF compliant Dataset: A <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2023.6.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a> object with one or
 more data variables and one CRS specification variable. By default
 a ‘grid_mapping’ attribute is used to specify the name of the variable.</p>
 <p><a class="reference external" href="https://cfconventions.org/Data/cf-conventions/cf-conventions-1.7/build/ch05s06.html">https://cfconventions.org/Data/cf-conventions/cf-conventions-1.7/build/ch05s06.html</a></p>
 </li>
-<li><p>Geotiff DataArrays: A <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2023.5.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataArray</span></code></a> object returned by either
+<li><p>Geotiff DataArrays: A <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2023.6.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataArray</span></code></a> object returned by either
 the <code class="docutils literal notranslate"><span class="pre">rioxarray</span></code> library or by <code class="xref py py-func docutils literal notranslate"><span class="pre">xarray.open_rasterio`()</span></code>.</p></li>
-<li><p>Raw lon/lat coordinate arrays: A <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2023.5.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataArray</span></code></a> or <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2023.5.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a>
+<li><p>Raw lon/lat coordinate arrays: A <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2023.6.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataArray</span></code></a> or <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2023.6.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a>
 object that contains 1D or 2D longitude and latitude arrays defining the
 coordinates of the data.</p></li>
 </ol>
