@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>geoxarray.accessor &mdash; Geoxarray 0.1.dev93+gf8538e3 documentation</title>
+  <title>geoxarray.accessor &mdash; Geoxarray 0.1.dev95+g3d2d7a7 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
@@ -303,15 +303,10 @@
             <span class="k">return</span> <span class="kc">None</span>
 
     <span class="k">def</span> <span class="nf">_get_crs_from_pyresample</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">has_pyresample</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">None</span>
         <span class="n">area</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;area&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">area</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">area</span><span class="p">,</span> <span class="n">AreaDefinition</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">area</span><span class="o">.</span><span class="n">crs</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">area</span><span class="p">,</span> <span class="n">SwathDefinition</span><span class="p">):</span>
-            <span class="c1"># TODO: Set whether or not things are gridded?</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">area</span><span class="p">,</span> <span class="s2">&quot;crs&quot;</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">area</span><span class="o">.</span><span class="n">crs</span>
         <span class="k">return</span> <span class="kc">None</span>
 
