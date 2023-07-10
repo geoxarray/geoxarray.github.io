@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>geoxarray.accessor module &mdash; Geoxarray 0.1.dev70+g97e3f4f documentation</title>
+  <title>geoxarray.accessor module &mdash; Geoxarray 0.1.dev90+g321612f documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
@@ -133,7 +133,7 @@ typically used with geospatial data (resampling, plotting, etc) or converting
 to other formats (CF compatible NetCDF file).</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="geoxarray.accessor.GeoDataArrayAccessor">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">geoxarray.accessor.</span></span><span class="sig-name descname"><span class="pre">GeoDataArrayAccessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_arr_obj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/geoxarray/accessor.html#GeoDataArrayAccessor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geoxarray.accessor.GeoDataArrayAccessor" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">geoxarray.accessor.</span></span><span class="sig-name descname"><span class="pre">GeoDataArrayAccessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_arr_obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2023.6.1.dev0)"><span class="pre">DataArray</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/geoxarray/accessor.html#GeoDataArrayAccessor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geoxarray.accessor.GeoDataArrayAccessor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Provide DataArray geolocation helper functions from a <cite>.geo</cite> accessor.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="geoxarray.accessor.GeoDataArrayAccessor.dim_map">
@@ -165,6 +165,26 @@ to other formats (CF compatible NetCDF file).</p>
 </dl>
 </dd></dl>
 
+<dl class="py property">
+<dt class="sig sig-object py" id="geoxarray.accessor.GeoDataArrayAccessor.grid_mapping">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">grid_mapping</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></em><a class="headerlink" href="#geoxarray.accessor.GeoDataArrayAccessor.grid_mapping" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of a grid mapping variable associated with this DataArray.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Much of this code is copied from the rioxarray project and is under the Apache 2.0 license.
+A copy of this license is available in the source file <code class="docutils literal notranslate"><span class="pre">LICENSE_rioxarray</span></code>.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><em>Grid mapping variable name defined in the xarray object. If not found,</em></p></li>
+<li><p><em>None is returned.</em></p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="geoxarray.accessor.GeoDataArrayAccessor.plot">
 <span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/geoxarray/accessor.html#GeoDataArrayAccessor.plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geoxarray.accessor.GeoDataArrayAccessor.plot" title="Permalink to this definition">¶</a></dt>
@@ -172,17 +192,8 @@ to other formats (CF compatible NetCDF file).</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="geoxarray.accessor.GeoDataArrayAccessor.set_cf_grid_mapping">
-<span class="sig-name descname"><span class="pre">set_cf_grid_mapping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grid_mapping_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errcheck</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/geoxarray/accessor.html#GeoDataArrayAccessor.set_cf_grid_mapping"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geoxarray.accessor.GeoDataArrayAccessor.set_cf_grid_mapping" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set CRS information based on CF standard ‘grid_mapping’ variable.</p>
-<p>See <a class="reference external" href="https://pyproj4.github.io/pyproj/stable/api/crs/crs.html#pyproj.crs.CRS.from_cf" title="(in pyproj v3.6.0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pyproj.crs.CRS.from_cf()</span></code></a> for details. Argument can be
-DataArray or Variable object for the grid mapping variable or a
-dictionary of CF standard grid mapping attributes.</p>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="geoxarray.accessor.GeoDataArrayAccessor.set_dims">
-<span class="sig-name descname"><span class="pre">set_dims</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vertical</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inplace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/geoxarray/accessor.html#GeoDataArrayAccessor.set_dims"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geoxarray.accessor.GeoDataArrayAccessor.set_dims" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">set_dims</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vertical</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inplace</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2023.6.1.dev0)"><span class="pre">DataArray</span></a></span></span><a class="reference internal" href="../_modules/geoxarray/accessor.html#GeoDataArrayAccessor.set_dims"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geoxarray.accessor.GeoDataArrayAccessor.set_dims" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set preferred dimension names inside the Geoxarray accessor.</p>
 <p>Geoxarray will use this information for future operations.
 If any of the dimensions are not provided they will be found
@@ -192,16 +203,18 @@ object itself.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>x</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em> or </em><em>None</em>) – Name of the X dimension. This dimension usually exists with
+<li><p><strong>x</strong> – Name of the X dimension. This dimension usually exists with
 a corresponding coordinate variable in meters for
 gridded/projected data.</p></li>
-<li><p><strong>y</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em> or </em><em>None</em>) – Name of the Y dimension. Similar to the X dimension but on the Y
+<li><p><strong>y</strong> – Name of the Y dimension. Similar to the X dimension but on the Y
 axis.</p></li>
-<li><p><strong>vertical</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em> or </em><em>None</em>) – Name of the vertical or Z dimension. This dimension usually exists
+<li><p><strong>vertical</strong> – Name of the vertical or Z dimension. This dimension usually exists
 with a corresponding coordinate variable in meters for altitude
 or pressure level (ex. hPa, millibar, etc).</p></li>
-<li><p><strong>time</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em> or </em><em>None</em>) – Name of the time dimension. This dimension usually exists with a
+<li><p><strong>time</strong> – Name of the time dimension. This dimension usually exists with a
 corresponding coordinate variable with time objects.</p></li>
+<li><p><strong>inplace</strong> – If True, changes are made to the current xarray object. Otherwise,
+a copy of the object is made first. Default is False.</p></li>
 </ul>
 </dd>
 </dl>
@@ -223,6 +236,32 @@ corresponding coordinate variable with time objects.</p></li>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="geoxarray.accessor.GeoDataArrayAccessor.write_crs">
+<span class="sig-name descname"><span class="pre">write_crs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_crs_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.11)"><span class="pre">Any</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_mapping_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inplace</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">XarrayObject</span></span></span><a class="headerlink" href="#geoxarray.accessor.GeoDataArrayAccessor.write_crs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write the CRS to the xarray object in a CF compliant manner.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Much of this code is copied from the rioxarray project and is under the Apache 2.0 license.
+A copy of this license is available in the source file <code class="docutils literal notranslate"><span class="pre">LICENSE_rioxarray</span></code>.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>new_crs_info</strong> – Coordinate Reference System (CRS) information to write to the
+Xarray object. Can be a <code class="xref py py-class docutils literal notranslate"><span class="pre">pyproj.CRS</span></code> object or anything
+understood by the <code class="xref py py-meth docutils literal notranslate"><span class="pre">pyproj.CRS.from_user_input()</span></code> method.</p></li>
+<li><p><strong>grid_mapping_name</strong> – Name to use for the coordinate variable created and written by this
+method. The coordinate variable, also known as the grid mapping
+variable, will have this name when written to a NetCDF file.
+Defaults to “spatial_ref”.</p></li>
+<li><p><strong>inplace</strong> – Whether to modify the current Xarray object inplace or to create
+a copy first. Default (<code class="docutils literal notranslate"><span class="pre">False</span></code>) is to make a copy.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="geoxarray.accessor.GeoDataArrayAccessor.write_dims">
 <span class="sig-name descname"><span class="pre">write_dims</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inplace</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geoxarray.accessor.GeoDataArrayAccessor.write_dims" title="Permalink to this definition">¶</a></dt>
 <dd><p>Rename object’s dimensions to match geoxarray’s preferred dimension names.</p>
@@ -232,14 +271,8 @@ corresponding coordinate variable with time objects.</p></li>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="geoxarray.accessor.GeoDatasetAccessor">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">geoxarray.accessor.</span></span><span class="sig-name descname"><span class="pre">GeoDatasetAccessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xarray_obj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/geoxarray/accessor.html#GeoDatasetAccessor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geoxarray.accessor.GeoDatasetAccessor" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">geoxarray.accessor.</span></span><span class="sig-name descname"><span class="pre">GeoDatasetAccessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xarray_obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">XarrayObject</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/geoxarray/accessor.html#GeoDatasetAccessor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geoxarray.accessor.GeoDatasetAccessor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Provide Dataset geolocation helper functions from a <cite>.geo</cite> accessor.</p>
-<dl class="py property">
-<dt class="sig sig-object py" id="geoxarray.accessor.GeoDatasetAccessor.crs">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">crs</span></span><a class="headerlink" href="#geoxarray.accessor.GeoDatasetAccessor.crs" title="Permalink to this definition">¶</a></dt>
-<dd><p>Shared CRS object between all geolocated variables.</p>
-</dd></dl>
-
 <dl class="py property">
 <dt class="sig sig-object py" id="geoxarray.accessor.GeoDatasetAccessor.dim_map">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dim_map</span></span><a class="headerlink" href="#geoxarray.accessor.GeoDatasetAccessor.dim_map" title="Permalink to this definition">¶</a></dt>
@@ -252,6 +285,26 @@ corresponding coordinate variable with time objects.</p></li>
 <dd><p>Get preferred dimension names in order.</p>
 </dd></dl>
 
+<dl class="py property">
+<dt class="sig sig-object py" id="geoxarray.accessor.GeoDatasetAccessor.grid_mapping">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">grid_mapping</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></em><a class="headerlink" href="#geoxarray.accessor.GeoDatasetAccessor.grid_mapping" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of a grid mapping variable associated with this DataArray.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Much of this code is copied from the rioxarray project and is under the Apache 2.0 license.
+A copy of this license is available in the source file <code class="docutils literal notranslate"><span class="pre">LICENSE_rioxarray</span></code>.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><em>Grid mapping variable name defined in the xarray object. If not found,</em></p></li>
+<li><p><em>None is returned.</em></p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="geoxarray.accessor.GeoDatasetAccessor.set_dims">
 <span class="sig-name descname"><span class="pre">set_dims</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vertical</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inplace</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/geoxarray/accessor.html#GeoDatasetAccessor.set_dims"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geoxarray.accessor.GeoDatasetAccessor.set_dims" title="Permalink to this definition">¶</a></dt>
@@ -259,16 +312,18 @@ corresponding coordinate variable with time objects.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>x</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em> or </em><em>None</em>) – Name of the X dimension. This dimension usually exists with
+<li><p><strong>x</strong> – Name of the X dimension. This dimension usually exists with
 a corresponding coordinate variable in meters for
 gridded/projected data.</p></li>
-<li><p><strong>y</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em> or </em><em>None</em>) – Name of the Y dimension. Similar to the X dimension but on the Y
+<li><p><strong>y</strong> – Name of the Y dimension. Similar to the X dimension but on the Y
 axis.</p></li>
-<li><p><strong>vertical</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em> or </em><em>None</em>) – Name of the vertical or Z dimension. This dimension usually exists
+<li><p><strong>vertical</strong> – Name of the vertical or Z dimension. This dimension usually exists
 with a corresponding coordinate variable in meters for altitude
 or pressure level (ex. hPa, millibar, etc).</p></li>
-<li><p><strong>time</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em> or </em><em>None</em>) – Name of the time dimension. This dimension usually exists with a
+<li><p><strong>time</strong> – Name of the time dimension. This dimension usually exists with a
 corresponding coordinate variable with time objects.</p></li>
+<li><p><strong>inplace</strong> – If True, changes are made to the current xarray object. Otherwise,
+a copy of the object is made first. Default is False.</p></li>
 </ul>
 </dd>
 </dl>
@@ -278,6 +333,32 @@ corresponding coordinate variable with time objects.</p></li>
 <dt class="sig sig-object py" id="geoxarray.accessor.GeoDatasetAccessor.sizes">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sizes</span></span><a class="headerlink" href="#geoxarray.accessor.GeoDatasetAccessor.sizes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get size map with preferred dimension names.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="geoxarray.accessor.GeoDatasetAccessor.write_crs">
+<span class="sig-name descname"><span class="pre">write_crs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_crs_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.11)"><span class="pre">Any</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_mapping_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inplace</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">XarrayObject</span></span></span><a class="headerlink" href="#geoxarray.accessor.GeoDatasetAccessor.write_crs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write the CRS to the xarray object in a CF compliant manner.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Much of this code is copied from the rioxarray project and is under the Apache 2.0 license.
+A copy of this license is available in the source file <code class="docutils literal notranslate"><span class="pre">LICENSE_rioxarray</span></code>.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>new_crs_info</strong> – Coordinate Reference System (CRS) information to write to the
+Xarray object. Can be a <code class="xref py py-class docutils literal notranslate"><span class="pre">pyproj.CRS</span></code> object or anything
+understood by the <code class="xref py py-meth docutils literal notranslate"><span class="pre">pyproj.CRS.from_user_input()</span></code> method.</p></li>
+<li><p><strong>grid_mapping_name</strong> – Name to use for the coordinate variable created and written by this
+method. The coordinate variable, also known as the grid mapping
+variable, will have this name when written to a NetCDF file.
+Defaults to “spatial_ref”.</p></li>
+<li><p><strong>inplace</strong> – Whether to modify the current Xarray object inplace or to create
+a copy first. Default (<code class="docutils literal notranslate"><span class="pre">False</span></code>) is to make a copy.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
