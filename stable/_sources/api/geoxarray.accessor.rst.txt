@@ -1,0 +1,5 @@
+geoxarray.accessor module
+=========================
+
+.. automodule:: geoxarray.accessor
+   :inherited-members:

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dimensions &mdash; Geoxarray 0.1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Projections" href="projections.html" />
+    <link rel="prev" title="Xarray Accessors" href="xarray_accessors.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Geoxarray
+          </a>
+              <div class="version">
+                0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Topics and Guides</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xarray_accessors.html">Xarray Accessors</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Dimensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projections.html">Projections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howtos/index.html">How-Tos</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/modules.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/geoxarray/geoxarray/blob/main/CHANGELOG.md">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/geoxarray/geoxarray">GitHub Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../related.html">Related Projects</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Geoxarray</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Dimensions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/topics/dimensions.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="dimensions">
+<h1>Dimensions<a class="headerlink" href="#dimensions" title="Permalink to this heading">¶</a></h1>
+<p>To do some of the things that Geoxarray needs to do, it needs to know what
+certain dimensions mean. These dimensions are the temporal <code class="docutils literal notranslate"><span class="pre">time</span></code>
+dimension and these spatial dimensions:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: The dimension along the x-axis. For data on a geographic coordinate
+reference system (CRS) this will be in the units of the projection space;
+typically meters or degrees. As an example, in a longitude/latitude CRS this
+would likely be the longitude dimension in degrees east.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">y</span></code>: The other 2D dimension to the <code class="docutils literal notranslate"><span class="pre">x</span></code> dimension in a geographic
+projection space. In a longitude/latitude CRS this would likely be the
+latitude dimension in degrees north.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vertical</span></code>: The elevation, altitude, or vertical dimension. This is
+typically perpendicular to the surface of the Earth in some sense. This may
+be a distance in units like meters or a pressure like atmospheric pressure in
+hPa.</p></li>
+</ul>
+<p>In well structured or common data schemes, Geoxarray can probably guess what
+these dimensions are by their name or the shape of the array being looked at
+(ex. a 2D array probably has (y, x) dimensions). Geoxarray will internally
+rename these dimensions and this can be verified by accessing the dimensions
+through the Geoxarray accessor.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">my_data_arr</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">dims</span>
+</pre></div>
+</div>
+<p>If the dimensions haven’t been renamed then Geoxarray needs to be explicitly
+told. Geoxarray makes it possible to <a class="reference internal" href="../howtos/set_dims.html"><span class="doc">Specify spatial and temporal dimensions</span></a> with the
+<a class="reference internal" href="../api/geoxarray.accessor.html#geoxarray.accessor.GeoDataArrayAccessor.set_dims" title="geoxarray.accessor.GeoDataArrayAccessor.set_dims"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_dims()</span></code></a> accessor method.</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="xarray_accessors.html" class="btn btn-neutral float-left" title="Xarray Accessors" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="projections.html" class="btn btn-neutral float-right" title="Projections" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, geoxarray.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

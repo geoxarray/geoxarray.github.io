@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>geoxarray.accessor &mdash; Geoxarray 0.1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/clipboard.min.js"></script>
+        <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Geoxarray
+          </a>
+              <div class="version">
+                0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Topics and Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../topics/xarray_accessors.html">Xarray Accessors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../topics/dimensions.html">Dimensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../topics/projections.html">Projections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../howtos/index.html">How-Tos</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/modules.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/geoxarray/geoxarray/blob/main/CHANGELOG.md">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/geoxarray/geoxarray">GitHub Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../related.html">Related Projects</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Geoxarray</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">geoxarray.accessor</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for geoxarray.accessor</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># Copyright geoxarray Developers</span>
+<span class="c1">#</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="c1"># you may not use this file except in compliance with the License.</span>
+<span class="c1"># You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1"># http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1"># distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1"># See the License for the specific language governing permissions and</span>
+<span class="c1"># limitations under the License.</span>
+<span class="sd">&quot;&quot;&quot;XArray extensions via accessor objects.</span>
+
+<span class="sd">The functionality in this module can be accessed via the `.geo` accessor on</span>
+<span class="sd">any xarray DataArray or Dataset object.</span>
+
+<span class="sd">Geolocation cases that these accessors are supposed to be able to handle:</span>
+
+<span class="sd">1. CF compliant Dataset: A :class:`~xarray.Dataset` object with one or</span>
+<span class="sd">   more data variables and one CRS specification variable. By default</span>
+<span class="sd">   a &#39;grid_mapping&#39; attribute is used to specify the name of the variable.</span>
+
+<span class="sd">   https://cfconventions.org/Data/cf-conventions/cf-conventions-1.7/build/ch05s06.html</span>
+<span class="sd">2. Geotiff DataArrays: A :class:`~xarray.DataArray` object returned by either</span>
+<span class="sd">   the ``rioxarray`` library or by :func:`xarray.open_rasterio``.</span>
+<span class="sd">3. Raw lon/lat coordinate arrays: A :class:`~xarray.DataArray` or :class:`~xarray.Dataset`</span>
+<span class="sd">   object that contains 1D or 2D longitude and latitude arrays defining the</span>
+<span class="sd">   coordinates of the data.</span>
+
+<span class="sd">These accessors attempt to provide standard interfaces to the following information</span>
+<span class="sd">from these different data cases:</span>
+
+<span class="sd">1. Standard dimensions: X (columns), Y (rows), Vertical, and Time.</span>
+<span class="sd">2. Coordinate Reference System (CRS)</span>
+
+<span class="sd">Lastly, these accessor provide basic wrappers around other tools that are</span>
+<span class="sd">typically used with geospatial data (resampling, plotting, etc) or converting</span>
+<span class="sd">to other formats (CF compatible NetCDF file).</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">TypeVar</span>
+
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">from</span> <span class="nn">pyproj</span> <span class="kn">import</span> <span class="n">CRS</span>
+<span class="kn">from</span> <span class="nn">pyproj.exceptions</span> <span class="kn">import</span> <span class="n">CRSError</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">pyresample.geometry</span> <span class="kn">import</span> <span class="n">AreaDefinition</span><span class="p">,</span> <span class="n">SwathDefinition</span>
+
+    <span class="n">has_pyresample</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="n">AreaDefinition</span> <span class="o">=</span> <span class="n">SwathDefinition</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">has_pyresample</span> <span class="o">=</span> <span class="kc">False</span>
+
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">rasterio.crs</span> <span class="kn">import</span> <span class="n">CRS</span> <span class="k">as</span> <span class="n">RioCRS</span>
+
+    <span class="n">has_rasterio</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="n">RioCRS</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">has_rasterio</span> <span class="o">=</span> <span class="kc">False</span>
+
+
+<span class="n">DEFAULT_GRID_MAPPING_VARIABLE_NAME</span> <span class="o">=</span> <span class="s2">&quot;spatial_ref&quot;</span>
+<span class="n">XarrayObject</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;XarrayObject&quot;</span><span class="p">,</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">,</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">_SharedGeoAccessor</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Accessor functionality shared between Dataset and DataArray objects.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xarray_obj</span><span class="p">:</span> <span class="n">XarrayObject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set handle for xarray object.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span> <span class="o">=</span> <span class="n">xarray_obj</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_crs</span><span class="p">:</span> <span class="n">CRS</span> <span class="o">|</span> <span class="n">Literal</span><span class="p">[</span><span class="kc">False</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_x_dim</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_y_dim</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_vertical_dim</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_time_dim</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dim_map</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">_get_obj</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inplace</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">XarrayObject</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the object to modify.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        inplace</span>
+<span class="sd">            If True, returns self.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :obj:`xarray.Dataset` | :obj:`xarray.DataArray`</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">inplace</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span>
+        <span class="n">obj_copy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="c1"># preserve attribute information</span>
+        <span class="n">obj_copy</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">_crs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_crs</span>
+        <span class="n">obj_copy</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">_x_dim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x_dim</span>
+        <span class="n">obj_copy</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">_y_dim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_y_dim</span>
+        <span class="n">obj_copy</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">_vertical_dim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_vertical_dim</span>
+        <span class="n">obj_copy</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">_time_dim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_time_dim</span>
+        <span class="k">return</span> <span class="n">obj_copy</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">dim_map</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Map current data dimension to geoxarray preferred dim name.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dim_map</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+            <span class="c1"># we haven&#39;t determined dimensions yet</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_dims</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dim_map</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_dim_map</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x_dim</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_dim_map</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_x_dim</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;x&quot;</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_y_dim</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_dim_map</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_y_dim</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;y&quot;</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_vertical_dim</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_dim_map</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_vertical_dim</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;vertical&quot;</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_time_dim</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_dim_map</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_time_dim</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;time&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dim_map</span>
+
+    <span class="k">def</span> <span class="nf">set_dims</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Tell geoxarray the names of the provided dimensions in this Xarray object.&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">dims</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get preferred dimension names in order.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dim_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">dname</span><span class="p">,</span> <span class="n">dname</span><span class="p">)</span> <span class="k">for</span> <span class="n">dname</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">dims</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">sizes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get size map with preferred dimension names.&quot;&quot;&quot;</span>
+        <span class="c1"># return the same type of object as xarray</span>
+        <span class="n">sizes_dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">dname</span><span class="p">,</span> <span class="n">size</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">sizes</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">sizes_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">dim_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">dname</span><span class="p">,</span> <span class="n">dname</span><span class="p">)]</span> <span class="o">=</span> <span class="n">size</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">sizes</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">sizes_dict</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">write_dims</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">XarrayObject</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Rename object&#39;s dimensions to match geoxarray&#39;s preferred dimension names.</span>
+
+<span class="sd">        This is a simple wrapper around Xarray&#39;s :meth:`xarray.DataArray.rename`</span>
+<span class="sd">        or :meth:`xarray.Dataset.rename` methods along with ``.geo.dim_map`` to</span>
+<span class="sd">        rename the dimension names. These methods always produce copies of the</span>
+<span class="sd">        original object. It is not possible to do this operation &quot;inplace&quot;.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">obj_copy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_obj</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">obj_copy</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dim_map</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">crs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">CRS</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_crs</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+            <span class="c1"># we&#39;ve tried to find the CRS, there isn&#39;t one</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_crs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># we&#39;ve already determined what the CRS is, return it</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_crs</span>
+
+        <span class="n">crs_methods</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_get_crs_from_grid_mapping</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_get_crs_from_pyresample</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">crs_method</span> <span class="ow">in</span> <span class="n">crs_methods</span><span class="p">:</span>
+            <span class="n">crs</span> <span class="o">=</span> <span class="n">crs_method</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">crs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_crs</span> <span class="o">=</span> <span class="n">crs</span>
+                <span class="k">break</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_crs</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_crs</span>
+
+    <span class="k">def</span> <span class="nf">_get_crs_from_grid_mapping</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">gm_var</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_gm_var</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">gm_var</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">for</span> <span class="n">crs_attr</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;spatial_ref&quot;</span><span class="p">,</span> <span class="s2">&quot;crs_wkt&quot;</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">crs_info</span> <span class="o">=</span> <span class="n">gm_var</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="n">crs_attr</span><span class="p">]</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">crs</span> <span class="o">=</span> <span class="n">CRS</span><span class="o">.</span><span class="n">from_wkt</span><span class="p">(</span><span class="n">crs_info</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">crs</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_crs_from_cf</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_get_gm_var</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">gm_var_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid_mapping</span>
+        <span class="k">if</span> <span class="n">gm_var_name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">gm_var_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">coords</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="s2">&quot;&#39;grid_mapping&#39; attribute found, but the variable it refers to &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">gm_var_name</span><span class="si">}</span><span class="s2"> is not a coordinate variable. &quot;</span>
+                <span class="s2">&quot;Use &#39;data_arr.geo.set_cf_grid_mapping&#39; to &quot;</span>
+                <span class="s2">&quot;provide one. Will search other metadata for CRS information.&quot;</span><span class="p">,</span>
+                <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="n">gm_var_name</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">_get_crs_from_cf</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">CRS</span><span class="o">.</span><span class="n">from_cf</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">grid_mapping</span> <span class="ow">or</span> <span class="n">DEFAULT_GRID_MAPPING_VARIABLE_NAME</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">)</span>
+        <span class="k">except</span> <span class="p">(</span><span class="ne">KeyError</span><span class="p">,</span> <span class="n">CRSError</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">_get_crs_from_pyresample</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">area</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;area&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">area</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">area</span><span class="p">,</span> <span class="s2">&quot;crs&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">area</span><span class="o">.</span><span class="n">crs</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">write_crs</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">new_crs_info</span><span class="p">:</span> <span class="n">Any</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">grid_mapping_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">inplace</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">XarrayObject</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Write the CRS to the xarray object in a CF compliant manner.</span>
+
+<span class="sd">        .. note::</span>
+
+<span class="sd">            Much of this code is copied from the rioxarray project and is under the Apache 2.0 license.</span>
+<span class="sd">            A copy of this license is available in the source file ``LICENSE_rioxarray``.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        new_crs_info:</span>
+<span class="sd">            Coordinate Reference System (CRS) information to write to the</span>
+<span class="sd">            Xarray object. Can be a :class:`pyproj.CRS` object or anything</span>
+<span class="sd">            understood by the :meth:`pyproj.CRS.from_user_input` method.</span>
+<span class="sd">            If not provided, the ``.crs`` property will be used.</span>
+<span class="sd">            If ``.crs`` returns ``None`` a ``RuntimeError`` is raised.</span>
+<span class="sd">        grid_mapping_name:</span>
+<span class="sd">            Name to use for the coordinate variable created and written by this</span>
+<span class="sd">            method. The coordinate variable, also known as the grid mapping</span>
+<span class="sd">            variable, will have this name when written to a NetCDF file.</span>
+<span class="sd">            Defaults to &quot;spatial_ref&quot;.</span>
+<span class="sd">        inplace:</span>
+<span class="sd">            Whether to modify the current Xarray object inplace or to create</span>
+<span class="sd">            a copy first. Default (``False``) is to make a copy.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_obj</span><span class="p">(</span><span class="n">inplace</span><span class="p">)</span>
+        <span class="n">crs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_optional_crs_from_input</span><span class="p">(</span><span class="n">new_crs_info</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span>
+        <span class="n">grid_mapping_var_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid_mapping</span> <span class="k">if</span> <span class="n">grid_mapping_name</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">grid_mapping_name</span>
+        <span class="k">if</span> <span class="n">grid_mapping_var_name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">grid_mapping_var_name</span> <span class="o">=</span> <span class="n">DEFAULT_GRID_MAPPING_VARIABLE_NAME</span>
+
+        <span class="n">gm_attrs</span> <span class="o">=</span> <span class="n">crs</span><span class="o">.</span><span class="n">to_cf</span><span class="p">()</span>
+        <span class="n">crs_wkt</span> <span class="o">=</span> <span class="n">crs</span><span class="o">.</span><span class="n">to_wkt</span><span class="p">()</span>
+        <span class="n">gm_attrs</span><span class="p">[</span><span class="s2">&quot;crs_wkt&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">crs_wkt</span>  <span class="c1"># CF compatibility</span>
+        <span class="n">gm_attrs</span><span class="p">[</span><span class="s2">&quot;spatial_ref&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">crs_wkt</span>  <span class="c1"># GDAL support</span>
+
+        <span class="n">obj</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="n">grid_mapping_var_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">Variable</span><span class="p">((),</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">obj</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="n">grid_mapping_var_name</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">gm_attrs</span><span class="p">)</span>
+        <span class="n">_assign_grid_mapping</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">grid_mapping_var_name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">obj</span>
+
+    <span class="k">def</span> <span class="nf">_optional_crs_from_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_crs_info</span><span class="p">:</span> <span class="n">Any</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">obj</span><span class="p">:</span> <span class="n">XarrayObject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CRS</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">new_crs_info</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">crs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">crs</span>
+            <span class="k">if</span> <span class="n">crs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;No CRS information provided or found.&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">crs</span> <span class="o">=</span> <span class="n">CRS</span><span class="o">.</span><span class="n">from_user_input</span><span class="p">(</span><span class="n">new_crs_info</span><span class="p">)</span>
+            <span class="n">obj</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">_crs</span> <span class="o">=</span> <span class="n">crs</span>
+        <span class="k">return</span> <span class="n">crs</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">grid_mapping</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Name of a grid mapping variable associated with this DataArray.</span>
+
+<span class="sd">        .. note::</span>
+
+<span class="sd">            Much of this code is copied from the rioxarray project and is under the Apache 2.0 license.</span>
+<span class="sd">            A copy of this license is available in the source file ``LICENSE_rioxarray``.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Grid mapping variable name defined in the xarray object. If not found,</span>
+<span class="sd">        None is returned.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">gm_var_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">encoding</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;grid_mapping&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;grid_mapping&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">gm_var_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">gm_var_name</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="p">,</span> <span class="s2">&quot;data_vars&quot;</span><span class="p">):</span>
+            <span class="n">var_grid_mappings</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_all_grid_mapping_names</span><span class="p">())</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">var_grid_mappings</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Multiple grid mapping variables exist.&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">var_grid_mappings</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">var_grid_mappings</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">_all_grid_mapping_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">var_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">data_vars</span><span class="p">:</span>
+            <span class="n">var_grid_mapping</span> <span class="o">=</span> <span class="n">_get_encoding_or_attr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="p">[</span><span class="n">var_name</span><span class="p">],</span> <span class="s2">&quot;grid_mapping&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">var_grid_mapping</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">yield</span> <span class="n">var_grid_mapping</span>
+
+
+<span class="k">def</span> <span class="nf">_get_encoding_or_attr</span><span class="p">(</span><span class="n">xr_obj</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span> <span class="o">|</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">xr_obj</span><span class="o">.</span><span class="n">encoding</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">attr_name</span><span class="p">,</span> <span class="n">xr_obj</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">attr_name</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">_assign_grid_mapping</span><span class="p">(</span><span class="n">xr_obj</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span> <span class="o">|</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span> <span class="n">grid_mapping_var_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">xr_obj</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;grid_mapping&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">xr_obj</span><span class="o">.</span><span class="n">encoding</span><span class="p">[</span><span class="s2">&quot;grid_mapping&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">grid_mapping_var_name</span>
+
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">xr_obj</span><span class="p">,</span> <span class="s2">&quot;data_vars&quot;</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">var_name</span> <span class="ow">in</span> <span class="n">xr_obj</span><span class="o">.</span><span class="n">data_vars</span><span class="p">:</span>
+            <span class="n">data_arr</span> <span class="o">=</span> <span class="n">xr_obj</span><span class="p">[</span><span class="n">var_name</span><span class="p">]</span>
+            <span class="n">dims</span> <span class="o">=</span> <span class="n">data_arr</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">dims</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">dims</span> <span class="ow">or</span> <span class="nb">all</span><span class="p">(</span><span class="n">dim_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">dims</span> <span class="k">for</span> <span class="n">dim_name</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;z&quot;</span><span class="p">)):</span>
+                <span class="c1"># no spatial dimensions</span>
+                <span class="k">continue</span>
+            <span class="n">_assign_grid_mapping</span><span class="p">(</span><span class="n">data_arr</span><span class="p">,</span> <span class="n">grid_mapping_var_name</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="GeoDatasetAccessor"><a class="viewcode-back" href="../../api/geoxarray.accessor.html#geoxarray.accessor.GeoDatasetAccessor">[docs]</a><span class="nd">@xr</span><span class="o">.</span><span class="n">register_dataset_accessor</span><span class="p">(</span><span class="s2">&quot;geo&quot;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">GeoDatasetAccessor</span><span class="p">(</span><span class="n">_SharedGeoAccessor</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Provide Dataset geolocation helper functions from a `.geo` accessor.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="GeoDatasetAccessor.set_dims"><a class="viewcode-back" href="../../api/geoxarray.accessor.html#geoxarray.accessor.GeoDatasetAccessor.set_dims">[docs]</a>    <span class="k">def</span> <span class="nf">set_dims</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">x</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">y</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">vertical</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">time</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">inplace</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Tell geoxarray the names of the provided dimensions in this Dataset.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        x:</span>
+<span class="sd">            Name of the X dimension. This dimension usually exists with</span>
+<span class="sd">            a corresponding coordinate variable in meters for</span>
+<span class="sd">            gridded/projected data.</span>
+<span class="sd">        y:</span>
+<span class="sd">            Name of the Y dimension. Similar to the X dimension but on the Y</span>
+<span class="sd">            axis.</span>
+<span class="sd">        vertical:</span>
+<span class="sd">            Name of the vertical or Z dimension. This dimension usually exists</span>
+<span class="sd">            with a corresponding coordinate variable in meters for altitude</span>
+<span class="sd">            or pressure level (ex. hPa, millibar, etc).</span>
+<span class="sd">        time:</span>
+<span class="sd">            Name of the time dimension. This dimension usually exists with a</span>
+<span class="sd">            corresponding coordinate variable with time objects.</span>
+<span class="sd">        inplace:</span>
+<span class="sd">            If True, changes are made to the current xarray object. Otherwise,</span>
+<span class="sd">            a copy of the object is made first. Default is False.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">all_dims</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span>
+            <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">y</span><span class="p">,</span>
+            <span class="s2">&quot;vertical&quot;</span><span class="p">:</span> <span class="n">vertical</span><span class="p">,</span>
+            <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="n">time</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="n">obj_copy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_obj</span><span class="p">(</span><span class="n">inplace</span><span class="p">)</span>
+        <span class="c1"># tell the dim_map property to produce the &quot;as-is&quot; dim map</span>
+        <span class="n">obj_copy</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">_dim_map</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">dim_map</span> <span class="o">=</span> <span class="n">obj_copy</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">dim_map</span>
+        <span class="k">for</span> <span class="n">data_arr</span> <span class="ow">in</span> <span class="n">obj_copy</span><span class="o">.</span><span class="n">data_vars</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="n">dims</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">all_dims</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">data_arr</span><span class="o">.</span><span class="n">dims</span><span class="p">}</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">dims</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">var_dim_map</span> <span class="o">=</span> <span class="n">data_arr</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">set_dims</span><span class="p">(</span><span class="o">**</span><span class="n">dims</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">dim_map</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_update_gx_dim_dict</span><span class="p">(</span><span class="n">dim_map</span><span class="p">,</span> <span class="n">var_dim_map</span><span class="p">)</span>
+
+        <span class="c1"># update our attributes</span>
+        <span class="k">for</span> <span class="n">dim_name</span><span class="p">,</span> <span class="n">gx_dim_name</span> <span class="ow">in</span> <span class="n">dim_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">gx_dim_name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="n">obj_copy</span><span class="o">.</span><span class="n">geo</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;_</span><span class="si">{</span><span class="n">gx_dim_name</span><span class="si">}</span><span class="s2">_dim&quot;</span><span class="p">,</span> <span class="n">dim_name</span><span class="p">)</span>
+        <span class="c1"># tell the dim_map to get regenerated</span>
+        <span class="n">obj_copy</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">_dim_map</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">obj_copy</span></div>
+
+    <span class="k">def</span> <span class="nf">_update_gx_dim_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">old</span><span class="p">,</span> <span class="n">new</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">new</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">v</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="s2">&quot;vertical&quot;</span><span class="p">):</span>
+                <span class="n">old</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+        <span class="k">return</span> <span class="n">old</span></div>
+
+
+<div class="viewcode-block" id="GeoDataArrayAccessor"><a class="viewcode-back" href="../../api/geoxarray.accessor.html#geoxarray.accessor.GeoDataArrayAccessor">[docs]</a><span class="nd">@xr</span><span class="o">.</span><span class="n">register_dataarray_accessor</span><span class="p">(</span><span class="s2">&quot;geo&quot;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">GeoDataArrayAccessor</span><span class="p">(</span><span class="n">_SharedGeoAccessor</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Provide DataArray geolocation helper functions from a `.geo` accessor.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_arr_obj</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize a &#39;best guess&#39; dimension mapping to preferred dimension names.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_is_gridded</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data_arr_obj</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_obj</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inplace</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the object to modify.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        inplace: bool</span>
+<span class="sd">            If True, returns self.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :obj:`xarray.Dataset` | :obj:`xarray.DataArray`</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">obj_copy</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_get_obj</span><span class="p">(</span><span class="n">inplace</span><span class="p">)</span>
+        <span class="c1"># preserve attribute information</span>
+        <span class="n">obj_copy</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">_is_gridded</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_gridded</span>
+        <span class="k">return</span> <span class="n">obj_copy</span>
+
+<div class="viewcode-block" id="GeoDataArrayAccessor.set_dims"><a class="viewcode-back" href="../../api/geoxarray.accessor.html#geoxarray.accessor.GeoDataArrayAccessor.set_dims">[docs]</a>    <span class="k">def</span> <span class="nf">set_dims</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">x</span><span class="p">:</span> <span class="kc">None</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">y</span><span class="p">:</span> <span class="kc">None</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">vertical</span><span class="p">:</span> <span class="kc">None</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">time</span><span class="p">:</span> <span class="kc">None</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">inplace</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set preferred dimension names inside the Geoxarray accessor.</span>
+
+<span class="sd">        Geoxarray will use this information for future operations.</span>
+<span class="sd">        If any of the dimensions are not provided they will be found</span>
+<span class="sd">        by best guess.</span>
+
+<span class="sd">        This information does not rename or modify the data of the Xarray</span>
+<span class="sd">        object itself. To easily rename the dimensions in a Geoxarray-friendly</span>
+<span class="sd">        manner, follow a call of this method with :meth:`write_dims`.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        x:</span>
+<span class="sd">            Name of the X dimension. This dimension usually exists with</span>
+<span class="sd">            a corresponding coordinate variable in meters for</span>
+<span class="sd">            gridded/projected data.</span>
+<span class="sd">        y:</span>
+<span class="sd">            Name of the Y dimension. Similar to the X dimension but on the Y</span>
+<span class="sd">            axis.</span>
+<span class="sd">        vertical:</span>
+<span class="sd">            Name of the vertical or Z dimension. This dimension usually exists</span>
+<span class="sd">            with a corresponding coordinate variable in meters for altitude</span>
+<span class="sd">            or pressure level (ex. hPa, millibar, etc).</span>
+<span class="sd">        time:</span>
+<span class="sd">            Name of the time dimension. This dimension usually exists with a</span>
+<span class="sd">            corresponding coordinate variable with time objects.</span>
+<span class="sd">        inplace:</span>
+<span class="sd">            If True, changes are made to the current xarray object. Otherwise,</span>
+<span class="sd">            a copy of the object is made first. Default is False.</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        GeoDataArrayAccessor.dims : Show the current dimensions as Geoxarray knows them</span>
+<span class="sd">        GeoDataArrayAccessor.write_dims : Rename dimensions to match Geoxarray preferred dimension names</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_obj</span><span class="p">(</span><span class="n">inplace</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_x_dim</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_y_dim</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_2d_dims</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_vertical_dims</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">vertical</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_temporal_dims</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span>
+        <span class="n">obj</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">_dim_map</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">obj</span></div>
+
+    <span class="k">def</span> <span class="nf">_set_x_dim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">dims</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">dims</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x_dim</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;x&quot;</span> <span class="ow">in</span> <span class="n">dims</span><span class="p">:</span>
+                <span class="n">obj</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">_x_dim</span> <span class="o">=</span> <span class="s2">&quot;x&quot;</span>
+        <span class="k">elif</span> <span class="n">x</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">dims</span>
+            <span class="n">obj</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">_x_dim</span> <span class="o">=</span> <span class="n">x</span>
+
+    <span class="k">def</span> <span class="nf">_set_y_dim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="n">dims</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">dims</span>
+        <span class="k">if</span> <span class="n">y</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_y_dim</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;y&quot;</span> <span class="ow">in</span> <span class="n">dims</span><span class="p">:</span>
+                <span class="n">obj</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">_y_dim</span> <span class="o">=</span> <span class="s2">&quot;y&quot;</span>
+        <span class="k">elif</span> <span class="n">y</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">dims</span>
+            <span class="n">obj</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">_y_dim</span> <span class="o">=</span> <span class="n">y</span>
+
+    <span class="k">def</span> <span class="nf">_set_2d_dims</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+        <span class="n">dims</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">dims</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dims</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x_dim</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_y_dim</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">obj</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">_y_dim</span> <span class="o">=</span> <span class="n">dims</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">obj</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">_x_dim</span> <span class="o">=</span> <span class="n">dims</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">_set_vertical_dims</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">vertical</span><span class="p">):</span>
+        <span class="n">dims</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">dims</span>
+        <span class="k">if</span> <span class="n">vertical</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_vertical_dim</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">z_dim</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="s2">&quot;vertical&quot;</span><span class="p">,</span> <span class="s2">&quot;pressure_level&quot;</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">z_dim</span> <span class="ow">in</span> <span class="n">dims</span><span class="p">:</span>
+                    <span class="n">obj</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">_vertical_dim</span> <span class="o">=</span> <span class="n">z_dim</span>
+                    <span class="k">break</span>
+        <span class="k">elif</span> <span class="n">vertical</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="n">vertical</span> <span class="ow">in</span> <span class="n">dims</span>
+            <span class="n">obj</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">_vertical_dim</span> <span class="o">=</span> <span class="n">vertical</span>
+
+    <span class="k">def</span> <span class="nf">_set_temporal_dims</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+        <span class="n">dims</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">dims</span>
+        <span class="k">if</span> <span class="n">time</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_time_dim</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">t_dim</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="s2">&quot;t&quot;</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">t_dim</span> <span class="ow">in</span> <span class="n">dims</span><span class="p">:</span>
+                    <span class="n">obj</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">_time_dim</span> <span class="o">=</span> <span class="n">t_dim</span>
+                    <span class="k">break</span>
+        <span class="k">elif</span> <span class="n">time</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="n">time</span> <span class="ow">in</span> <span class="n">dims</span>
+            <span class="n">obj</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">_time_dim</span> <span class="o">=</span> <span class="n">time</span>
+
+<div class="viewcode-block" id="GeoDataArrayAccessor.get_lonlats"><a class="viewcode-back" href="../../api/geoxarray.accessor.html#geoxarray.accessor.GeoDataArrayAccessor.get_lonlats">[docs]</a>    <span class="k">def</span> <span class="nf">get_lonlats</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chunks</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return longitude and latitude arrays.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        chunks : None or int</span>
+<span class="sd">            Specify chunk size for dask arrays.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Longitude and latitude dask arrays. If `chunks` is None then a</span>
+<span class="sd">        numpy array is returned.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="GeoDataArrayAccessor.plot"><a class="viewcode-back" href="../../api/geoxarray.accessor.html#geoxarray.accessor.GeoDataArrayAccessor.plot">[docs]</a>    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Plot data on a map.&quot;&quot;&quot;</span>
+        <span class="c1"># TODO: Support multiple backends (cartopy, geoviews, etc)?</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, geoxarray.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Specify spatial and temporal dimensions &mdash; Geoxarray 0.1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Access CRS information" href="access_crs.html" />
+    <link rel="prev" title="How-Tos" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Geoxarray
+          </a>
+              <div class="version">
+                0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Topics and Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topics/xarray_accessors.html">Xarray Accessors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topics/dimensions.html">Dimensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topics/projections.html">Projections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code Examples</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">How-Tos</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Specify spatial and temporal dimensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="access_crs.html">Access CRS information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="write_crs.html">Write CRS information</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/modules.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/geoxarray/geoxarray/blob/main/CHANGELOG.md">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/geoxarray/geoxarray">GitHub Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../related.html">Related Projects</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Geoxarray</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">How-Tos</a></li>
+      <li class="breadcrumb-item active">Specify spatial and temporal dimensions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/howtos/set_dims.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="specify-spatial-and-temporal-dimensions">
+<h1>Specify spatial and temporal dimensions<a class="headerlink" href="#specify-spatial-and-temporal-dimensions" title="Permalink to this heading">¶</a></h1>
+<p>Assuming you have an Xarray object that has some atypical or unusual names
+for its dimensions, we can tell geoxarray what these dimensions represent.
+For more information on what dimensions geoxarray understands see the
+<a class="reference internal" href="../topics/dimensions.html"><span class="doc">Dimensions</span></a> documentation.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">data_arr</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We can see from this output that there are three dimensions in this DataArray:
+<code class="docutils literal notranslate"><span class="pre">(dim_0,</span> <span class="pre">dim_1,</span> <span class="pre">dim_2)</span></code>.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;xarray.DataArray (dim_0: 5, dim_1: 20, dim_2: 10)&gt;
+...
+Coordinates:
+  * dim_1    (dim_1) float64 0.0 1.0 2.0 3.0 4.0 ... 15.0 16.0 17.0 18.0 19.0
+  * dim_2    (dim_2) float64 0.0 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0
+Dimensions without coordinates: dim_0
+</pre></div>
+</div>
+<p>These don’t fit geoxarray’s usual preferred names for
+<a class="reference internal" href="../topics/dimensions.html"><span class="doc">Dimensions</span></a>, but we can see if geoxarray can guess their
+purpose by using
+<a class="reference internal" href="../api/geoxarray.accessor.html#geoxarray.accessor.GeoDataArrayAccessor.dims" title="geoxarray.accessor.GeoDataArrayAccessor.dims"><code class="xref py py-attr docutils literal notranslate"><span class="pre">.geo.dims</span></code></a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geoxarray</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">data_arr</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">dims</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>And note that the names of the dimensions haven’t changed:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(&#39;dim_0&#39;, &#39;dim_1&#39;, &#39;dim_2&#39;)
+</pre></div>
+</div>
+<p>We can tell geoxarray what these mean by using
+<a class="reference internal" href="../api/geoxarray.accessor.html#geoxarray.accessor.GeoDataArrayAccessor.set_dims" title="geoxarray.accessor.GeoDataArrayAccessor.set_dims"><code class="xref py py-meth docutils literal notranslate"><span class="pre">.geo.set_dims()</span></code></a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data_arr</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">set_dims</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s2">&quot;dim_1&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;dim_2&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data_arr</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">dims</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>And notice that geoxarray now knows that the second and third dimension
+correspond to the <code class="docutils literal notranslate"><span class="pre">y</span></code> and <code class="docutils literal notranslate"><span class="pre">x</span></code> spatial dimensions.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(&#39;dim_0&#39;, &#39;y&#39;, &#39;x&#39;)
+</pre></div>
+</div>
+<p>From now on geoxarray should be able to make decisions based on these known
+dimensions. Note that geoxarray hasn’t changed anything about the DataArray
+itself. We can rename the dimensions with geoxarray’s preferred names by
+doing:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">new_data_arr</span> <span class="o">=</span> <span class="n">data_arr</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">write_dims</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">new_data_arr</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;xarray.DataArray (dim_0: 5, y: 20, x: 10)&gt;
+...
+Coordinates:
+  * y        (y) float64 0.0 1.0 2.0 3.0 4.0 ... 15.0 16.0 17.0 18.0 19.0
+  * x        (x) float64 0.0 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0
+Dimensions without coordinates: dim_0
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="How-Tos" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="access_crs.html" class="btn btn-neutral float-right" title="Access CRS information" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, geoxarray.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

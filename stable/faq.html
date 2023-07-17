@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ &mdash; Geoxarray 0.1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tutorials" href="tutorials/index.html" />
+    <link rel="prev" title="Projections" href="topics/projections.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Geoxarray
+          </a>
+              <div class="version">
+                0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Topics and Guides</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topics/xarray_accessors.html">Xarray Accessors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topics/dimensions.html">Dimensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topics/projections.html">Projections</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">FAQ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-s-the-status-of-this-project">What’s the status of this project?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-is-this-documentation-structured">How is this documentation structured?</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howtos/index.html">How-Tos</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/modules.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/geoxarray/geoxarray/blob/main/CHANGELOG.md">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/geoxarray/geoxarray">GitHub Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="related.html">Related Projects</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Geoxarray</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">FAQ</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/faq.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="faq">
+<h1>FAQ<a class="headerlink" href="#faq" title="Permalink to this heading">¶</a></h1>
+<section id="what-s-the-status-of-this-project">
+<h2>What’s the status of this project?<a class="headerlink" href="#what-s-the-status-of-this-project" title="Permalink to this heading">¶</a></h2>
+<p>As of mid-2021 Geoxarray is being actively developed, but slowly. Geoxarray
+is still in its early stages and will heavily depend on other projects like
+xarray, rasterio, pyresample, and pyproj. Some of the intended features for
+Geoxarray are still wishful thinking and will depend on changes
+in other scientific Python libraries and decisions by the larger community
+that Geoxarray will get the most of Geoxarray.</p>
+<p>Want to help move development along? See the <a class="reference internal" href="contributing.html"><span class="doc">Contributing</span></a> page for
+information on how to contribute including submitting feedback and viewing
+existing bug reports and feature requests.</p>
+</section>
+<section id="how-is-this-documentation-structured">
+<span id="doc-organization"></span><h2>How is this documentation structured?<a class="headerlink" href="#how-is-this-documentation-structured" title="Permalink to this heading">¶</a></h2>
+<p>The Geoxarray project is trying hard to stick to the documentation structure
+described in <a class="reference external" href="https://youtu.be/t4vKPhjcMZg">this presentation</a>
+by Daniele Procida. This is partly as an experiment to see how a new project
+can fit into this “rigid” structure. It is also an experiment as there aren’t
+many projects in the geospatial scientific python ecosystem that makes these
+hard boundaries between sections of their documentation. Is it working?</p>
+<ul class="simple">
+<li><p>Tutorials (Learning Oriented):
+Teach the user what they might want to do and walk them through it.
+Longer form instructions on how to go from nothing to something useful.
+Tutorials avoid a lot of detail to stay focused on finished a task. This
+means they also won’t list all the available options/choices either.
+A tutorial will decide what the user does and accomplishes.</p></li>
+<li><p>How-To (Problem Oriented):
+Recipes to solve a specific problem. Less hand-holding and more
+straight to the point. In general these will be shorter than tutorials as
+they assume the user already knows a little bit about what they’re doing.
+Explanation of how Geoxarray works is limited in how-tos and will generally
+go in “Topics”. Similar to Tutorials, we limit explanation so that we can
+act and accomplish things as quickly as possible. A user finds a how-to
+because they know they have a specific problem they want to solve.</p></li>
+<li><p>Reference (Information Oriented):
+Low-level details about the interfaces (ex. API docs).</p></li>
+<li><p>Topics/Discussion (Understanding Oriented):
+Human-friendly explanation of what exists in Geoxarray and why things are
+the way they are in Geoxarray. These will generally not include actual code
+except for simple examples or to make a point. These should leverage the
+other sections of documentation to provide more low-level and hands-on
+information.</p></li>
+</ul>
+<p>The FAQ document is left for anything that doesn’t quite fit into any of the
+above sections.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="topics/projections.html" class="btn btn-neutral float-left" title="Projections" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tutorials/index.html" class="btn btn-neutral float-right" title="Tutorials" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, geoxarray.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

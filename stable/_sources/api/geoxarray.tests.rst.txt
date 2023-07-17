@@ -1,0 +1,24 @@
+geoxarray.tests package
+=======================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   geoxarray.tests.test_accessor
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   geoxarray.tests.conftest
+
+Module contents
+---------------
+
+.. automodule:: geoxarray.tests
+   :inherited-members:
