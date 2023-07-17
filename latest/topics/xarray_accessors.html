@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Overview: module code &mdash; Geoxarray 0.1.dev110+gef43e04 documentation</title>
+  <title>Xarray Accessors &mdash; Geoxarray 0.1.dev110+gef43e04 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
@@ -19,7 +20,9 @@
         <script src="../_static/copybutton.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Dimensions" href="dimensions.html" />
+    <link rel="prev" title="Installation" href="../installation.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,11 +48,11 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Topics and Guides</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../topics/xarray_accessors.html">Xarray Accessors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../topics/dimensions.html">Dimensions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../topics/projections.html">Projections</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Xarray Accessors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dimensions.html">Dimensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projections.html">Projections</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Code Examples</span></p>
@@ -81,8 +84,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Overview: module code</li>
+      <li class="breadcrumb-item active">Xarray Accessors</li>
       <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/topics/xarray_accessors.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -90,13 +94,27 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>All modules for which code is available</h1>
-<ul><li><a href="geoxarray/accessor.html">geoxarray.accessor</a></li>
-</ul>
+  <section id="xarray-accessors">
+<h1>Xarray Accessors<a class="headerlink" href="#xarray-accessors" title="Permalink to this heading">¶</a></h1>
+<p>Geoxarray’s primary interface is through an xarray accessor with the name
+<code class="docutils literal notranslate"><span class="pre">.geo</span></code>. The
+<a class="reference external" href="https://docs.xarray.dev/en/stable/internals/extending-xarray.html">xarray accessor design</a>
+is the suggested way to extend xarray functionality. This accessor gives you
+access to geoxarray’s functionality on any xarray object
+(<code class="docutils literal notranslate"><span class="pre">DataArray</span></code> or <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>) by calling methods or properties of it. For
+example, <code class="docutils literal notranslate"><span class="pre">my_data_array.geo.crs</span></code> to get the Coordinate Reference System
+information for <code class="docutils literal notranslate"><span class="pre">my_data_array</span></code>. Due to this, geoxarray differs from a more
+traditional software library where you would call functions or create objects
+directly from the library.</p>
+</section>
+
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dimensions.html" class="btn btn-neutral float-right" title="Dimensions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

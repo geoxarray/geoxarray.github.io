@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Access CRS information &mdash; Geoxarray 0.1.dev110+gef43e04 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Write CRS information" href="write_crs.html" />
+    <link rel="prev" title="Specify spatial and temporal dimensions" href="set_dims.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Geoxarray
+          </a>
+              <div class="version">
+                0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Topics and Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topics/xarray_accessors.html">Xarray Accessors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topics/dimensions.html">Dimensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topics/projections.html">Projections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code Examples</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">How-Tos</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="set_dims.html">Specify spatial and temporal dimensions</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Access CRS information</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cf-grid-mapping">CF Grid Mapping</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#single-grid-mapping">Single Grid Mapping</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#satpy-and-pyresample">Satpy and Pyresample</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="write_crs.html">Write CRS information</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/modules.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/geoxarray/geoxarray/blob/main/CHANGELOG.md">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/geoxarray/geoxarray">GitHub Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../related.html">Related Projects</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Geoxarray</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">How-Tos</a></li>
+      <li class="breadcrumb-item active">Access CRS information</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/howtos/access_crs.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="access-crs-information">
+<h1>Access CRS information<a class="headerlink" href="#access-crs-information" title="Permalink to this heading">¶</a></h1>
+<p>Geoxarray can understand a couple different standard ways of storing
+Coordinate Reference System (CRS) information in an Xarray object.
+To learn more about what a CRS is see the <a class="reference internal" href="../topics/projections.html"><span class="doc">Projections</span></a>
+documentation.</p>
+<p>Below you’ll find examples of the common CRS storage cases that geoxarray
+supports. In all cases, the basic access geoxarray usage is the same. Please
+follow the specific storage format section closest to your use case for
+details on what geoxarray expects. The basic usage, assuming you have an
+xarray DataArray or Dataset object, is to do:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geoxarray</span>
+
+<span class="n">the_crs</span> <span class="o">=</span> <span class="n">my_data_arr</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">crs</span>
+</pre></div>
+</div>
+<p>To access geoxarray’s <code class="docutils literal notranslate"><span class="pre">.geo</span></code> accessor (the property) we must first import
+geoxarray to register it. Then accessing
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">.geo.crs</span></code> gives us a pyproj
+<a class="reference external" href="https://pyproj4.github.io/pyproj/stable/api/crs/crs.html#pyproj.crs.CRS" title="(in pyproj v3.6.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">CRS</span></code></a> object or <code class="docutils literal notranslate"><span class="pre">None</span></code> if geoxarray is unable to determine
+the CRS.</p>
+<nav class="contents local" id="supported-crs-formats">
+<p class="topic-title">Supported CRS Formats</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#cf-grid-mapping" id="id1">CF Grid Mapping</a></p></li>
+<li><p><a class="reference internal" href="#satpy-and-pyresample" id="id2">Satpy and Pyresample</a></p></li>
+</ul>
+</nav>
+<section id="cf-grid-mapping">
+<h2>CF Grid Mapping<a class="headerlink" href="#cf-grid-mapping" title="Permalink to this heading">¶</a></h2>
+<p>If loading a NetCDF file that has a CF-compatible “grid mapping” variable,
+you can load the file in a geoxarray-friendly way by doing:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="s2">&quot;/path/to/file.nc&quot;</span><span class="p">,</span> <span class="n">decode_coords</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">decode_coords=&quot;all&quot;</span></code> is required for the grid mapping coordinates to
+be loaded in a way that geoxarray can understand and access.</p>
+<section id="single-grid-mapping">
+<h3>Single Grid Mapping<a class="headerlink" href="#single-grid-mapping" title="Permalink to this heading">¶</a></h3>
+<p>Let’s say the file we loaded above looks something like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;xarray.Dataset&gt;
+Dimensions:                 (y: 20, x: 10)
+Coordinates:
+  * y                       (y) float64 0.0 1.0 2.0 3.0 ... 16.0 17.0 18.0 19.0
+  * x                       (x) float64 0.0 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0
+    goes_imager_projection  float64 0.0
+Data variables:
+    Rad                     (y, x) float64 0.0 0.0 0.0 0.0 ... 0.0 0.0 0.0 0.0
+</pre></div>
+</div>
+<p>This Dataset has <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> dimensions and coordinate variables and a
+single <code class="docutils literal notranslate"><span class="pre">Rad</span></code> data variable. There is one grid mapping variable with the
+following metadata:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s2">&quot;goes_imager_projection&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;long_name&#39;: &#39;GOES-R ABI fixed grid projection&#39;, &#39;grid_mapping_name&#39;: &#39;geostationary&#39;, &#39;perspective_point_height&#39;: 35786023.0, &#39;semi_major_axis&#39;: 6378137.0, &#39;semi_minor_axis&#39;: 6356752.31414, &#39;inverse_flattening&#39;: 298.2572221, &#39;latitude_of_projection_origin&#39;: 0.0, &#39;longitude_of_projection_origin&#39;: -75.0, &#39;sweep_angle_axis&#39;: &#39;x&#39;}
+</pre></div>
+</div>
+<p>To get the CRS information for this <code class="docutils literal notranslate"><span class="pre">Rad</span></code> variable we can do:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geoxarray</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">ds</span><span class="p">[</span><span class="s2">&quot;Rad&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">crs</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;Projected CRS: {&quot;$schema&quot;: &quot;https://proj.org/schemas/v0.2/projjso ...&gt;
+Name: undefined
+Axis Info [cartesian]:
+- E[east]: Easting (metre)
+- N[north]: Northing (metre)
+Area of Use:
+- undefined
+Coordinate Operation:
+- name: unknown
+- method: Geostationary Satellite (Sweep X)
+Datum: undefined
+- Ellipsoid: undefined
+- Prime Meridian: Greenwich
+</pre></div>
+</div>
+<p>Due to some differences between CF’s standard grid mapping definitions and the
+amount of details made available via pyproj/PROJ and the amount of missing
+information in this example (but real-world) CRS, many of the fields in this
+CRS are listed as “undefined” or “unknown”. This CRS is still perfectly
+valid and usable by geoxarray and pyproj.</p>
+<p><strong>Details</strong></p>
+<p>In the CF NetCDF case, geoxarray looks for a <code class="docutils literal notranslate"><span class="pre">grid_mapping</span></code> name in
+<code class="docutils literal notranslate"><span class="pre">.encoding</span></code> or <code class="docutils literal notranslate"><span class="pre">.attrs</span></code> and then looks for that variable in <code class="docutils literal notranslate"><span class="pre">.coords</span></code>.
+The CRS is then constructed from the metadata in that grid mapping variable’s
+<code class="docutils literal notranslate"><span class="pre">.attrs</span></code>. If the grid mapping variable’s metadata (<code class="docutils literal notranslate"><span class="pre">.attrs</span></code>) includes a
+Well-Known Text (WKT) version of the CRS (a <code class="docutils literal notranslate"><span class="pre">crs_wkt</span></code> or <code class="docutils literal notranslate"><span class="pre">spatial_ref</span></code>
+attribute) then the CRS will be derived from that.</p>
+</section>
+</section>
+<section id="satpy-and-pyresample">
+<h2>Satpy and Pyresample<a class="headerlink" href="#satpy-and-pyresample" title="Permalink to this heading">¶</a></h2>
+<p>The <a class="reference external" href="https://satpy.readthedocs.io/en/stable/index.html" title="(in Satpy v0.43)"><span class="xref std std-doc">Satpy</span></a> library uses
+<a class="reference external" href="https://pyresample.readthedocs.io/en/stable/index.html" title="(in pyresample v1.27.1)"><span class="xref std std-doc">Pyresample</span></a> geometry objects to define the geographic
+region of a dataset. The most common objects are
+<a class="reference external" href="https://pyresample.readthedocs.io/en/stable/api/pyresample.html#pyresample.geometry.AreaDefinition" title="(in pyresample v1.27.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyresample.geometry.AreaDefinition</span></code></a> and
+<a class="reference external" href="https://pyresample.readthedocs.io/en/stable/api/pyresample.html#pyresample.geometry.SwathDefinition" title="(in pyresample v1.27.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyresample.geometry.SwathDefinition</span></code></a> objects and are typically found in
+a DataArray in <code class="docutils literal notranslate"><span class="pre">.attrs[&quot;area&quot;]</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">satpy_data_arr</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;xarray.DataArray (y: 20, x: 10)&gt;
+...
+Dimensions without coordinates: y, x
+Attributes:
+    area:     Area ID: \nDescription: \nProjection: {&#39;datum&#39;: &#39;NAD83&#39;, &#39;k&#39;: &#39;...
+</pre></div>
+</div>
+<p>These objects have a <code class="docutils literal notranslate"><span class="pre">.crs</span></code> property and
+is directly returned by geoxarray if the other formats of CRS information
+(see above) are not found.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">satpy_data_arr</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">crs</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;Projected CRS: EPSG:3070&gt;
+Name: NAD83 / Wisconsin Transverse Mercator
+Axis Info [cartesian]:
+- X[east]: Easting (metre)
+- Y[north]: Northing (metre)
+Area of Use:
+- name: United States (USA) - Wisconsin.
+- bounds: (-92.89, 42.48, -86.25, 47.31)
+Coordinate Operation:
+- name: Wisconsin Transverse Mercator 83
+- method: Transverse Mercator
+Datum: North American Datum 1983
+- Ellipsoid: GRS 1980
+- Prime Meridian: Greenwich
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="set_dims.html" class="btn btn-neutral float-left" title="Specify spatial and temporal dimensions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="write_crs.html" class="btn btn-neutral float-right" title="Write CRS information" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, geoxarray.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

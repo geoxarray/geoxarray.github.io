@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Specify your spatial and temporal dimensions &mdash; Geoxarray 0.1.dev97+g7a21467 documentation</title>
+  <title>Specify spatial and temporal dimensions &mdash; Geoxarray 0.1.dev110+gef43e04 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
@@ -21,7 +21,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="geoxarray" href="../api/modules.html" />
+    <link rel="next" title="Access CRS information" href="access_crs.html" />
     <link rel="prev" title="How-Tos" href="index.html" /> 
 </head>
 
@@ -50,14 +50,18 @@
               <p class="caption" role="heading"><span class="caption-text">Topics and Guides</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topics/xarray_accessors.html">Xarray Accessors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../topics/dimensions.html">Dimensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topics/projections.html">Projections</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Code Examples</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">How-Tos</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Specify your spatial and temporal dimensions</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Specify spatial and temporal dimensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="access_crs.html">Access CRS information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="write_crs.html">Write CRS information</a></li>
 </ul>
 </li>
 </ul>
@@ -68,6 +72,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../roadmap.html">Roadmap</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/geoxarray/geoxarray/blob/main/CHANGELOG.md">Release Notes</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/geoxarray/geoxarray">GitHub Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../related.html">Related Projects</a></li>
 </ul>
 
         </div>
@@ -85,7 +90,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="index.html">How-Tos</a></li>
-      <li class="breadcrumb-item active">Specify your spatial and temporal dimensions</li>
+      <li class="breadcrumb-item active">Specify spatial and temporal dimensions</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/howtos/set_dims.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -95,10 +100,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="specify-your-spatial-and-temporal-dimensions">
-<h1>Specify your spatial and temporal dimensions<a class="headerlink" href="#specify-your-spatial-and-temporal-dimensions" title="Permalink to this heading">¶</a></h1>
+  <section id="specify-spatial-and-temporal-dimensions">
+<h1>Specify spatial and temporal dimensions<a class="headerlink" href="#specify-spatial-and-temporal-dimensions" title="Permalink to this heading">¶</a></h1>
 <p>Assuming you have an Xarray object that has some atypical or unusual names
-for its dimensions, we can tell geoxarray what these dimensions represent.</p>
+for its dimensions, we can tell geoxarray what these dimensions represent.
+For more information on what dimensions geoxarray understands see the
+<a class="reference internal" href="../topics/dimensions.html"><span class="doc">Dimensions</span></a> documentation.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">data_arr</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -116,7 +123,9 @@ Dimensions without coordinates: dim_0
 <a class="reference internal" href="../topics/dimensions.html"><span class="doc">Dimensions</span></a>, but we can see if geoxarray can guess their
 purpose by using
 <a class="reference internal" href="../api/geoxarray.accessor.html#geoxarray.accessor.GeoDataArrayAccessor.dims" title="geoxarray.accessor.GeoDataArrayAccessor.dims"><code class="xref py py-attr docutils literal notranslate"><span class="pre">.geo.dims</span></code></a>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">data_arr</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">dims</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geoxarray</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">data_arr</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">dims</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>And note that the names of the dimensions haven’t changed:</p>
@@ -157,7 +166,7 @@ Dimensions without coordinates: dim_0
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="index.html" class="btn btn-neutral float-left" title="How-Tos" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../api/modules.html" class="btn btn-neutral float-right" title="geoxarray" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="access_crs.html" class="btn btn-neutral float-right" title="Access CRS information" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

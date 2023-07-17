@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>geoxarray.accessor module &mdash; Geoxarray 0.1.dev97+g7a21467 documentation</title>
+  <title>geoxarray.accessor module &mdash; Geoxarray 0.1.dev110+gef43e04 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
@@ -50,7 +50,9 @@
               <p class="caption" role="heading"><span class="caption-text">Topics and Guides</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topics/xarray_accessors.html">Xarray Accessors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../topics/dimensions.html">Dimensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topics/projections.html">Projections</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Code Examples</span></p>
@@ -76,6 +78,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../roadmap.html">Roadmap</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/geoxarray/geoxarray/blob/main/CHANGELOG.md">Release Notes</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/geoxarray/geoxarray">GitHub Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../related.html">Related Projects</a></li>
 </ul>
 
         </div>
@@ -199,7 +202,8 @@ A copy of this license is available in the source file <code class="docutils lit
 If any of the dimensions are not provided they will be found
 by best guess.</p>
 <p>This information does not rename or modify the data of the Xarray
-object itself.</p>
+object itself. To easily rename the dimensions in a Geoxarray-friendly
+manner, follow a call of this method with <a class="reference internal" href="#geoxarray.accessor.GeoDataArrayAccessor.write_dims" title="geoxarray.accessor.GeoDataArrayAccessor.write_dims"><code class="xref py py-meth docutils literal notranslate"><span class="pre">write_dims()</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -237,7 +241,7 @@ a copy of the object is made first. Default is False.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="geoxarray.accessor.GeoDataArrayAccessor.write_crs">
-<span class="sig-name descname"><span class="pre">write_crs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_crs_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.11)"><span class="pre">Any</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_mapping_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inplace</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">XarrayObject</span></span></span><a class="headerlink" href="#geoxarray.accessor.GeoDataArrayAccessor.write_crs" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">write_crs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_crs_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.11)"><span class="pre">Any</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_mapping_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inplace</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">XarrayObject</span></span></span><a class="headerlink" href="#geoxarray.accessor.GeoDataArrayAccessor.write_crs" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write the CRS to the xarray object in a CF compliant manner.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -249,7 +253,9 @@ A copy of this license is available in the source file <code class="docutils lit
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>new_crs_info</strong> – Coordinate Reference System (CRS) information to write to the
 Xarray object. Can be a <code class="xref py py-class docutils literal notranslate"><span class="pre">pyproj.CRS</span></code> object or anything
-understood by the <code class="xref py py-meth docutils literal notranslate"><span class="pre">pyproj.CRS.from_user_input()</span></code> method.</p></li>
+understood by the <code class="xref py py-meth docutils literal notranslate"><span class="pre">pyproj.CRS.from_user_input()</span></code> method.
+If not provided, the <code class="docutils literal notranslate"><span class="pre">.crs</span></code> property will be used.
+If <code class="docutils literal notranslate"><span class="pre">.crs</span></code> returns <code class="docutils literal notranslate"><span class="pre">None</span></code> a <code class="docutils literal notranslate"><span class="pre">RuntimeError</span></code> is raised.</p></li>
 <li><p><strong>grid_mapping_name</strong> – Name to use for the coordinate variable created and written by this
 method. The coordinate variable, also known as the grid mapping
 variable, will have this name when written to a NetCDF file.
@@ -263,8 +269,12 @@ a copy first. Default (<code class="docutils literal notranslate"><span class="p
 
 <dl class="py method">
 <dt class="sig sig-object py" id="geoxarray.accessor.GeoDataArrayAccessor.write_dims">
-<span class="sig-name descname"><span class="pre">write_dims</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inplace</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geoxarray.accessor.GeoDataArrayAccessor.write_dims" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">write_dims</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">XarrayObject</span></span></span><a class="headerlink" href="#geoxarray.accessor.GeoDataArrayAccessor.write_dims" title="Permalink to this definition">¶</a></dt>
 <dd><p>Rename object’s dimensions to match geoxarray’s preferred dimension names.</p>
+<p>This is a simple wrapper around Xarray’s <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.rename.html#xarray.DataArray.rename" title="(in xarray v2023.6.1.dev0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">xarray.DataArray.rename()</span></code></a>
+or <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.rename.html#xarray.Dataset.rename" title="(in xarray v2023.6.1.dev0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">xarray.Dataset.rename()</span></code></a> methods along with <code class="docutils literal notranslate"><span class="pre">.geo.dim_map</span></code> to
+rename the dimension names. These methods always produce copies of the
+original object. It is not possible to do this operation “inplace”.</p>
 </dd></dl>
 
 </dd></dl>
@@ -337,7 +347,7 @@ a copy of the object is made first. Default is False.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="geoxarray.accessor.GeoDatasetAccessor.write_crs">
-<span class="sig-name descname"><span class="pre">write_crs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_crs_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.11)"><span class="pre">Any</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_mapping_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inplace</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">XarrayObject</span></span></span><a class="headerlink" href="#geoxarray.accessor.GeoDatasetAccessor.write_crs" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">write_crs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_crs_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.11)"><span class="pre">Any</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_mapping_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inplace</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">XarrayObject</span></span></span><a class="headerlink" href="#geoxarray.accessor.GeoDatasetAccessor.write_crs" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write the CRS to the xarray object in a CF compliant manner.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -349,7 +359,9 @@ A copy of this license is available in the source file <code class="docutils lit
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>new_crs_info</strong> – Coordinate Reference System (CRS) information to write to the
 Xarray object. Can be a <code class="xref py py-class docutils literal notranslate"><span class="pre">pyproj.CRS</span></code> object or anything
-understood by the <code class="xref py py-meth docutils literal notranslate"><span class="pre">pyproj.CRS.from_user_input()</span></code> method.</p></li>
+understood by the <code class="xref py py-meth docutils literal notranslate"><span class="pre">pyproj.CRS.from_user_input()</span></code> method.
+If not provided, the <code class="docutils literal notranslate"><span class="pre">.crs</span></code> property will be used.
+If <code class="docutils literal notranslate"><span class="pre">.crs</span></code> returns <code class="docutils literal notranslate"><span class="pre">None</span></code> a <code class="docutils literal notranslate"><span class="pre">RuntimeError</span></code> is raised.</p></li>
 <li><p><strong>grid_mapping_name</strong> – Name to use for the coordinate variable created and written by this
 method. The coordinate variable, also known as the grid mapping
 variable, will have this name when written to a NetCDF file.
@@ -363,8 +375,12 @@ a copy first. Default (<code class="docutils literal notranslate"><span class="p
 
 <dl class="py method">
 <dt class="sig sig-object py" id="geoxarray.accessor.GeoDatasetAccessor.write_dims">
-<span class="sig-name descname"><span class="pre">write_dims</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inplace</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geoxarray.accessor.GeoDatasetAccessor.write_dims" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">write_dims</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">XarrayObject</span></span></span><a class="headerlink" href="#geoxarray.accessor.GeoDatasetAccessor.write_dims" title="Permalink to this definition">¶</a></dt>
 <dd><p>Rename object’s dimensions to match geoxarray’s preferred dimension names.</p>
+<p>This is a simple wrapper around Xarray’s <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.rename.html#xarray.DataArray.rename" title="(in xarray v2023.6.1.dev0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">xarray.DataArray.rename()</span></code></a>
+or <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.rename.html#xarray.Dataset.rename" title="(in xarray v2023.6.1.dev0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">xarray.Dataset.rename()</span></code></a> methods along with <code class="docutils literal notranslate"><span class="pre">.geo.dim_map</span></code> to
+rename the dimension names. These methods always produce copies of the
+original object. It is not possible to do this operation “inplace”.</p>
 </dd></dl>
 
 </dd></dl>

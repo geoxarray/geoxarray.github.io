@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projections &mdash; Geoxarray 0.1.dev110+gef43e04 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="FAQ" href="../faq.html" />
+    <link rel="prev" title="Dimensions" href="dimensions.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Geoxarray
+          </a>
+              <div class="version">
+                0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Topics and Guides</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xarray_accessors.html">Xarray Accessors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dimensions.html">Dimensions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Projections</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#projection-definitions">Projection definitions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howtos/index.html">How-Tos</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/modules.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/geoxarray/geoxarray/blob/main/CHANGELOG.md">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/geoxarray/geoxarray">GitHub Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../related.html">Related Projects</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Geoxarray</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Projections</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/topics/projections.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="projections">
+<h1>Projections<a class="headerlink" href="#projections" title="Permalink to this heading">¶</a></h1>
+<p>One of the more complex topics when working with geolocated data is geographic
+projections and the conversion or resampling of data between projections.
+You may also see the term projection referred to as a Projected Coordinate
+Reference System (CRS) or just CRS. The below documentation can be seen as
+a primer, but it is still quite limited for this complex topic.</p>
+<p>The book “Map Projections” by Battersby <a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> describes map projections:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Map projection is the process of transforming angular
+(spherical / elliptical) coordinates into planar coordinates. All map
+projections introduce distortion (e.g., to areas, angles, distances) in the
+resulting planar coordinates. Understanding what, where, and how much
+distortion is introduced is an important consideration for spatial
+computations and visual interpretation of spatial patterns, as well as for
+general aesthetics of any map.
+</pre></div>
+</div>
+<p>Spatial projections describe how to create a flat 2D version of our round 3D
+Earth that may be easier to work with or describe than the original
+representation used by our data.</p>
+<a class="reference external image-reference" href="http://gistbok.ucgis.org/bok-topics/map-projections"><img alt="http://gistbok.ucgis.org/sites/default/files/figure2-projections.png" src="http://gistbok.ucgis.org/sites/default/files/figure2-projections.png" style="width: 450px;" /></a>
+<p>These projections or coordinate reference systems will consist of things like
+a model of the Earth (datum/ellipsoid), a reference or center longitude, a
+reference or center latitude, and the type of shape or algorithm used to
+transform points to and from the projection. For example, a geostationary
+projection might “see” the Earth like:</p>
+<a class="reference external image-reference" href="https://proj.org/operations/projections/geos.html"><img alt="https://proj.org/_images/geos.png" src="https://proj.org/_images/geos.png" style="width: 300px;" /></a>
+<p>Or a lambert conformal conic (LCC) projection might “see” it like:</p>
+<a class="reference external image-reference" href="https://proj.org/operations/projections/lcc.html"><img alt="https://proj.org/_images/lcc.png" src="https://proj.org/_images/lcc.png" style="width: 300px;" /></a>
+<p>Changing the parameters for a particular CRS will change what region of the
+Earth is covered and what level of distortion is seen compared to the real
+Earth.</p>
+<p>Properly defining the projection of your data is important in order to properly
+compare data from multiple sources. Two pixels at longitude 0 and latitude 0
+aren’t actually representing the same location if those coordinates are defined
+for different CRSes. Typically to make comparison the easiest it can be
+coordinates are transformed or data resampled to one single CRS.
+For example, data from a forecast model may be defined
+on a longitude/latitude projection with coordinates specified in degrees. Data
+from a geostationary satellite might be on a geostationary projection with
+coordinates in meters. If you wanted to combine these data you’d need to
+transform the coordinates from one projection to the other.</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id2" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Battersby, S. (2017). Map Projections. The Geographic Information Science &amp;
+Technology Body of Knowledge (2nd Quarter 2017 Edition), John P. Wilson (ed.). DOI: 10.22224/gistbok/2017.2.7</p>
+</aside>
+</aside>
+<section id="projection-definitions">
+<h2>Projection definitions<a class="headerlink" href="#projection-definitions" title="Permalink to this heading">¶</a></h2>
+<p>There are many different types of projections.
+Geoxarray uses the <a class="reference external" href="https://pyproj4.github.io/pyproj/stable/index.html" title="(in pyproj v3.6.0)"><span class="xref std std-doc">pyproj</span></a> library’s <code class="docutils literal notranslate"><span class="pre">CRS</span></code> object to define
+all of its Coordinate Reference Systems and the transformation of coordinates
+between them. Pyproj depends on the lower-level <a class="reference external" href="https://proj.org/en/latest/index.html" title="(in PROJ v9.3)"><span class="xref std std-doc">PROJ</span></a> C++
+library which defines the actual coordinate transformation algorithms and
+maintains definitions for predefined CRSes (ex. EPSG codes). You can find a
+list of the supported PROJ definitions <a class="reference external" href="https://proj.org/en/latest/operations/projections/index.html" title="(in PROJ v9.3)"><span class="xref std std-doc">here</span></a>.</p>
+<p>Anywhere in Geoxarray that a CRS is needed a <a class="reference external" href="https://pyproj4.github.io/pyproj/stable/api/crs/crs.html#pyproj.crs.CRS" title="(in pyproj v3.6.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">CRS</span></code></a> object
+from <code class="docutils literal notranslate"><span class="pre">pyproj</span></code> will be used. However, these objects aren’t always compatible
+with other libraries that geoxarray uses or they may not serialize well to
+on-disk formats (ex. NetCDF CF). In these cases geoxarray also uses a
+<a class="reference external" href="https://cfconventions.org/Data/cf-conventions/cf-conventions-1.7/build/apf.html">CF-standard “grid_mapping”</a>
+definition to persist CRS information to an xarray object and that may include
+a <cite>Well-known Text (WKT) &lt;https://proj.org/en/latest/development/reference/cpp/cpp_general.html#general_doc_1WKT2&gt;</cite>
+version of the CRS in a <code class="docutils literal notranslate"><span class="pre">crs_wkt</span></code> attribute. See the pyproj
+<a class="reference external" href="https://pyproj4.github.io/pyproj/stable/examples.html" title="(in pyproj v3.6.0)"><span class="xref std std-doc">Getting Started</span></a> documentation for some examples of
+different CRS options.</p>
+<p>Lastly, a projection is not the only thing that is needed to describe where
+your data is on the Earth. Typically there are also x, or y, or other coordinate
+variables defining the positions of each “pixel” of your data. At the time of
+writing Geoxarray does not do anything with these coordinates.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="dimensions.html" class="btn btn-neutral float-left" title="Dimensions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../faq.html" class="btn btn-neutral float-right" title="FAQ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, geoxarray.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

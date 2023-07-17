@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dimensions &mdash; Geoxarray 0.1.dev97+g7a21467 documentation</title>
+  <title>Dimensions &mdash; Geoxarray 0.1.dev110+gef43e04 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
@@ -21,8 +21,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="FAQ" href="../faq.html" />
-    <link rel="prev" title="Installation" href="../installation.html" /> 
+    <link rel="next" title="Projections" href="projections.html" />
+    <link rel="prev" title="Xarray Accessors" href="xarray_accessors.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -50,7 +50,9 @@
               <p class="caption" role="heading"><span class="caption-text">Topics and Guides</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xarray_accessors.html">Xarray Accessors</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Dimensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projections.html">Projections</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Code Examples</span></p>
@@ -65,6 +67,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../roadmap.html">Roadmap</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/geoxarray/geoxarray/blob/main/CHANGELOG.md">Release Notes</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/geoxarray/geoxarray">GitHub Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../related.html">Related Projects</a></li>
 </ul>
 
         </div>
@@ -101,7 +104,7 @@ dimension and these spatial dimensions:</p>
 reference system (CRS) this will be in the units of the projection space;
 typically meters or degrees. As an example, in a longitude/latitude CRS this
 would likely be the longitude dimension in degrees east.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">y</span></code>: The opposite 2D dimension to the <code class="docutils literal notranslate"><span class="pre">x</span></code> dimension in a geographic
+<li><p><code class="docutils literal notranslate"><span class="pre">y</span></code>: The other 2D dimension to the <code class="docutils literal notranslate"><span class="pre">x</span></code> dimension in a geographic
 projection space. In a longitude/latitude CRS this would likely be the
 latitude dimension in degrees north.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">vertical</span></code>: The elevation, altitude, or vertical dimension. This is
@@ -112,12 +115,13 @@ hPa.</p></li>
 <p>In well structured or common data schemes, Geoxarray can probably guess what
 these dimensions are by their name or the shape of the array being looked at
 (ex. a 2D array probably has (y, x) dimensions). Geoxarray will internally
-rename these dimensions and this can be verified by doing:</p>
+rename these dimensions and this can be verified by accessing the dimensions
+through the Geoxarray accessor.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">my_data_arr</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">dims</span>
 </pre></div>
 </div>
 <p>If the dimensions haven’t been renamed then Geoxarray needs to be explicitly
-told. Geoxarray makes it possible to <a class="reference internal" href="../howtos/set_dims.html"><span class="doc">Specify your spatial and temporal dimensions</span></a> with the
+told. Geoxarray makes it possible to <a class="reference internal" href="../howtos/set_dims.html"><span class="doc">Specify spatial and temporal dimensions</span></a> with the
 <a class="reference internal" href="../api/geoxarray.accessor.html#geoxarray.accessor.GeoDataArrayAccessor.set_dims" title="geoxarray.accessor.GeoDataArrayAccessor.set_dims"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_dims()</span></code></a> accessor method.</p>
 </section>
 
@@ -125,8 +129,8 @@ told. Geoxarray makes it possible to <a class="reference internal" href="../howt
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../faq.html" class="btn btn-neutral float-right" title="FAQ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="xarray_accessors.html" class="btn btn-neutral float-left" title="Xarray Accessors" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="projections.html" class="btn btn-neutral float-right" title="Projections" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
