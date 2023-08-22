@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Access CRS information &mdash; Geoxarray 0.1.0.post1.dev14+g2584fd8 documentation</title>
+  <title>Access CRS information &mdash; Geoxarray 0.1.0.post1.dev16+ge724b62 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
@@ -13,11 +13,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
-        <script src="../_static/clipboard.min.js"></script>
-        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/documentation_options.js?v=30e25317"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -108,7 +108,7 @@
            <div itemprop="articleBody">
              
   <section id="access-crs-information">
-<h1>Access CRS information<a class="headerlink" href="#access-crs-information" title="Permalink to this heading">¶</a></h1>
+<h1>Access CRS information<a class="headerlink" href="#access-crs-information" title="Link to this heading">¶</a></h1>
 <p>Geoxarray can understand a couple different standard ways of storing
 Coordinate Reference System (CRS) information in an Xarray object.
 To learn more about what a CRS is see the <a class="reference internal" href="../topics/projections.html"><span class="doc">Projections</span></a>
@@ -136,7 +136,7 @@ the CRS.</p>
 </ul>
 </nav>
 <section id="cf-grid-mapping">
-<h2>CF Grid Mapping<a class="headerlink" href="#cf-grid-mapping" title="Permalink to this heading">¶</a></h2>
+<h2>CF Grid Mapping<a class="headerlink" href="#cf-grid-mapping" title="Link to this heading">¶</a></h2>
 <p>If loading a NetCDF file that has a CF-compatible “grid mapping” variable,
 you can load the file in a geoxarray-friendly way by doing:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
@@ -146,7 +146,7 @@ you can load the file in a geoxarray-friendly way by doing:</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">decode_coords=&quot;all&quot;</span></code> is required for the grid mapping coordinates to
 be loaded in a way that geoxarray can understand and access.</p>
 <section id="single-grid-mapping">
-<h3>Single Grid Mapping<a class="headerlink" href="#single-grid-mapping" title="Permalink to this heading">¶</a></h3>
+<h3>Single Grid Mapping<a class="headerlink" href="#single-grid-mapping" title="Link to this heading">¶</a></h3>
 <p>Let’s say the file we loaded above looks something like this:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
 </pre></div>
@@ -206,7 +206,7 @@ attribute) then the CRS will be derived from that.</p>
 </section>
 </section>
 <section id="satpy-and-pyresample">
-<h2>Satpy and Pyresample<a class="headerlink" href="#satpy-and-pyresample" title="Permalink to this heading">¶</a></h2>
+<h2>Satpy and Pyresample<a class="headerlink" href="#satpy-and-pyresample" title="Link to this heading">¶</a></h2>
 <p>The <a class="reference external" href="https://satpy.readthedocs.io/en/stable/index.html" title="(in Satpy v0.1)"><span class="xref std std-doc">Satpy</span></a> library uses
 <a class="reference external" href="https://pyresample.readthedocs.io/en/stable/index.html" title="(in pyresample v1.27.1)"><span class="xref std std-doc">Pyresample</span></a> geometry objects to define the geographic
 region of a dataset. The most common objects are
