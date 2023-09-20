@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>geoxarray.accessor &mdash; Geoxarray 0.1.0.post0 documentation</title>
+  <title>geoxarray.accessor &mdash; Geoxarray 0.1.0.post1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
@@ -12,11 +12,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
-        <script src="../../_static/clipboard.min.js"></script>
-        <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/documentation_options.js?v=a41148a8"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -426,11 +426,15 @@
             <span class="n">_assign_grid_mapping</span><span class="p">(</span><span class="n">data_arr</span><span class="p">,</span> <span class="n">grid_mapping_var_name</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="GeoDatasetAccessor"><a class="viewcode-back" href="../../api/geoxarray.accessor.html#geoxarray.accessor.GeoDatasetAccessor">[docs]</a><span class="nd">@xr</span><span class="o">.</span><span class="n">register_dataset_accessor</span><span class="p">(</span><span class="s2">&quot;geo&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="GeoDatasetAccessor">
+<a class="viewcode-back" href="../../api/geoxarray.accessor.html#geoxarray.accessor.GeoDatasetAccessor">[docs]</a>
+<span class="nd">@xr</span><span class="o">.</span><span class="n">register_dataset_accessor</span><span class="p">(</span><span class="s2">&quot;geo&quot;</span><span class="p">)</span>
 <span class="k">class</span> <span class="nc">GeoDatasetAccessor</span><span class="p">(</span><span class="n">_SharedGeoAccessor</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Provide Dataset geolocation helper functions from a `.geo` accessor.&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="GeoDatasetAccessor.set_dims"><a class="viewcode-back" href="../../api/geoxarray.accessor.html#geoxarray.accessor.GeoDatasetAccessor.set_dims">[docs]</a>    <span class="k">def</span> <span class="nf">set_dims</span><span class="p">(</span>
+<div class="viewcode-block" id="GeoDatasetAccessor.set_dims">
+<a class="viewcode-back" href="../../api/geoxarray.accessor.html#geoxarray.accessor.GeoDatasetAccessor.set_dims">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_dims</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">x</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">y</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -488,6 +492,7 @@
         <span class="n">obj_copy</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">_dim_map</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">return</span> <span class="n">obj_copy</span></div>
 
+
     <span class="k">def</span> <span class="nf">_update_gx_dim_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">old</span><span class="p">,</span> <span class="n">new</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">new</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">v</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="s2">&quot;vertical&quot;</span><span class="p">):</span>
@@ -495,7 +500,10 @@
         <span class="k">return</span> <span class="n">old</span></div>
 
 
-<div class="viewcode-block" id="GeoDataArrayAccessor"><a class="viewcode-back" href="../../api/geoxarray.accessor.html#geoxarray.accessor.GeoDataArrayAccessor">[docs]</a><span class="nd">@xr</span><span class="o">.</span><span class="n">register_dataarray_accessor</span><span class="p">(</span><span class="s2">&quot;geo&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="GeoDataArrayAccessor">
+<a class="viewcode-back" href="../../api/geoxarray.accessor.html#geoxarray.accessor.GeoDataArrayAccessor">[docs]</a>
+<span class="nd">@xr</span><span class="o">.</span><span class="n">register_dataarray_accessor</span><span class="p">(</span><span class="s2">&quot;geo&quot;</span><span class="p">)</span>
 <span class="k">class</span> <span class="nc">GeoDataArrayAccessor</span><span class="p">(</span><span class="n">_SharedGeoAccessor</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Provide DataArray geolocation helper functions from a `.geo` accessor.&quot;&quot;&quot;</span>
 
@@ -522,7 +530,9 @@
         <span class="n">obj_copy</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">_is_gridded</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_gridded</span>
         <span class="k">return</span> <span class="n">obj_copy</span>
 
-<div class="viewcode-block" id="GeoDataArrayAccessor.set_dims"><a class="viewcode-back" href="../../api/geoxarray.accessor.html#geoxarray.accessor.GeoDataArrayAccessor.set_dims">[docs]</a>    <span class="k">def</span> <span class="nf">set_dims</span><span class="p">(</span>
+<div class="viewcode-block" id="GeoDataArrayAccessor.set_dims">
+<a class="viewcode-back" href="../../api/geoxarray.accessor.html#geoxarray.accessor.GeoDataArrayAccessor.set_dims">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_dims</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">x</span><span class="p">:</span> <span class="kc">None</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">y</span><span class="p">:</span> <span class="kc">None</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -575,6 +585,7 @@
         <span class="n">obj</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">_dim_map</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">return</span> <span class="n">obj</span></div>
 
+
     <span class="k">def</span> <span class="nf">_set_x_dim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
         <span class="n">dims</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">dims</span>
         <span class="k">if</span> <span class="n">x</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x_dim</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -621,7 +632,9 @@
             <span class="k">assert</span> <span class="n">time</span> <span class="ow">in</span> <span class="n">dims</span>
             <span class="n">obj</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">_time_dim</span> <span class="o">=</span> <span class="n">time</span>
 
-<div class="viewcode-block" id="GeoDataArrayAccessor.get_lonlats"><a class="viewcode-back" href="../../api/geoxarray.accessor.html#geoxarray.accessor.GeoDataArrayAccessor.get_lonlats">[docs]</a>    <span class="k">def</span> <span class="nf">get_lonlats</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chunks</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="GeoDataArrayAccessor.get_lonlats">
+<a class="viewcode-back" href="../../api/geoxarray.accessor.html#geoxarray.accessor.GeoDataArrayAccessor.get_lonlats">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_lonlats</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chunks</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return longitude and latitude arrays.</span>
 
 <span class="sd">        Parameters</span>
@@ -637,10 +650,15 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="GeoDataArrayAccessor.plot"><a class="viewcode-back" href="../../api/geoxarray.accessor.html#geoxarray.accessor.GeoDataArrayAccessor.plot">[docs]</a>    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="GeoDataArrayAccessor.plot">
+<a class="viewcode-back" href="../../api/geoxarray.accessor.html#geoxarray.accessor.GeoDataArrayAccessor.plot">[docs]</a>
+    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Plot data on a map.&quot;&quot;&quot;</span>
         <span class="c1"># TODO: Support multiple backends (cartopy, geoviews, etc)?</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div></div>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+</div>
+
 </pre></div>
 
            </div>
