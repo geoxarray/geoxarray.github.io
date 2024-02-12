@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>How-Tos &mdash; Geoxarray 0.1.0.post2.dev57+g99daa4a documentation</title>
+  <title>Add spatial coordinates &mdash; Geoxarray 0.1.0.post2.dev57+g99daa4a documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
@@ -23,8 +23,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Specify spatial and temporal dimensions" href="set_dims.html" />
-    <link rel="prev" title="Tutorials" href="../tutorials/index.html" /> 
+    <link rel="next" title="geoxarray" href="../api/modules.html" />
+    <link rel="prev" title="Write CRS information" href="write_crs.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -61,11 +61,11 @@
 <p class="caption" role="heading"><span class="caption-text">Code Examples</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">How-Tos</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">How-Tos</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="set_dims.html">Specify spatial and temporal dimensions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="access_crs.html">Access CRS information</a></li>
 <li class="toctree-l2"><a class="reference internal" href="write_crs.html">Write CRS information</a></li>
-<li class="toctree-l2"><a class="reference internal" href="coordinates.html">Add spatial coordinates</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Add spatial coordinates</a></li>
 </ul>
 </li>
 </ul>
@@ -93,9 +93,10 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">How-Tos</li>
+          <li class="breadcrumb-item"><a href="index.html">How-Tos</a></li>
+      <li class="breadcrumb-item active">Add spatial coordinates</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/howtos/index.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/howtos/coordinates.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -103,34 +104,54 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="how-tos">
-<h1>How-Tos<a class="headerlink" href="#how-tos" title="Link to this heading">¶</a></h1>
-<div class="toctree-wrapper compound">
+  <section id="add-spatial-coordinates">
+<h1>Add spatial coordinates<a class="headerlink" href="#add-spatial-coordinates" title="Link to this heading">¶</a></h1>
+<p>Geoxarray can extract the information from a <code class="docutils literal notranslate"><span class="pre">DataArray</span></code> to generate
+<a class="reference internal" href="../topics/coordinates.html"><span class="doc">spatial coordinates</span></a>. These spatial
+coordinates will be stored in <code class="docutils literal notranslate"><span class="pre">.coords</span></code> of the <code class="docutils literal notranslate"><span class="pre">DataArray</span></code> and can
+be used for labeled indexing. Spatial coordinates are only ever added
+for <a class="reference internal" href="../topics/dimensions.html"><span class="doc">dimensions</span></a> that geoxarray understands.
+See <a class="reference internal" href="set_dims.html"><span class="doc">Specify spatial and temporal dimensions</span></a> for ways to work with non-standard dimension names.</p>
+<p>To get a copy of your <code class="docutils literal notranslate"><span class="pre">DataArray</span></code> with spatial coordinates assigned
+call the <code class="docutils literal notranslate"><span class="pre">.geo.write_spatial_coords()</span></code> method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">geoxarray</span>
+
+<span class="n">my_data_arr</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">)),</span>
+    <span class="n">dims</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">),</span>
+    <span class="n">attrs</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;ModelPixelScale&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1002.008644</span><span class="p">,</span> <span class="mf">1002.008644</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+        <span class="s2">&quot;ModelTiepoint&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">5434894.885056</span><span class="p">,</span> <span class="mf">5434894.885056</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+    <span class="p">},</span>
+<span class="p">)</span>
+<span class="n">new_data_arr</span> <span class="o">=</span> <span class="n">my_data_arr</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">write_spatial_coords</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">new_data_arr</span><span class="p">)</span>
+</pre></div>
 </div>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Accessing Metadata</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="set_dims.html">Specify spatial and temporal dimensions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="access_crs.html">Access CRS information</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="access_crs.html#cf-grid-mapping">CF Grid Mapping</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="access_crs.html#single-grid-mapping">Single Grid Mapping</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="access_crs.html#satpy-and-pyresample">Satpy and Pyresample</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="write_crs.html">Write CRS information</a></li>
-<li class="toctree-l1"><a class="reference internal" href="coordinates.html">Add spatial coordinates</a></li>
-</ul>
+<p>Which will make the DataArray look like:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;xarray.DataArray (y: 20, x: 10)&gt;
+...
+Coordinates:
+  * y        (y) float64 5.434e+06 5.433e+06 5.432e+06 ... 5.416e+06 5.415e+06
+  * x        (x) float64 -5.434e+06 -5.433e+06 ... -5.426e+06 -5.425e+06
+Attributes:
+    ModelPixelScale:  [1002.008644, 1002.008644, 0.0]
+    ModelTiepoint:    [0.0, 0.0, 0.0, -5434894.885056, 5434894.885056, 0.0]
+</pre></div>
 </div>
+<p>See the <a class="reference internal" href="../api/geoxarray.accessor.html#geoxarray.accessor.GeoDataArrayAccessor.write_spatial_coords" title="geoxarray.accessor.GeoDataArrayAccessor.write_spatial_coords"><code class="xref py py-meth docutils literal notranslate"><span class="pre">write_spatial_coords()</span></code></a>
+API documentation for more information on supported and expected metadata
+structure for this operation.</p>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../tutorials/index.html" class="btn btn-neutral float-left" title="Tutorials" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="set_dims.html" class="btn btn-neutral float-right" title="Specify spatial and temporal dimensions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="write_crs.html" class="btn btn-neutral float-left" title="Write CRS information" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../api/modules.html" class="btn btn-neutral float-right" title="geoxarray" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

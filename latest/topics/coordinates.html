@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Overview: module code &mdash; Geoxarray 0.1.0.post2.dev57+g99daa4a documentation</title>
+  <title>Coordinates &mdash; Geoxarray 0.1.0.post2.dev57+g99daa4a documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
@@ -21,7 +22,9 @@
         <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="FAQ" href="../faq.html" />
+    <link rel="prev" title="Projections" href="projections.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -47,12 +50,15 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Topics and Guides</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../topics/xarray_accessors.html">Xarray Accessors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../topics/dimensions.html">Dimensions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../topics/projections.html">Projections</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../topics/coordinates.html">Coordinates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xarray_accessors.html">Xarray Accessors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dimensions.html">Dimensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="projections.html">Projections</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Coordinates</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#spatial-coordinates">Spatial Coordinates</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Code Examples</span></p>
@@ -84,8 +90,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Overview: module code</li>
+      <li class="breadcrumb-item active">Coordinates</li>
       <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/topics/coordinates.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -93,14 +100,47 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>All modules for which code is available</h1>
-<ul><li><a href="geoxarray/accessor.html">geoxarray.accessor</a></li>
-<li><a href="geoxarray/coords.html">geoxarray.coords</a></li>
+  <section id="coordinates">
+<h1>Coordinates<a class="headerlink" href="#coordinates" title="Link to this heading">¶</a></h1>
+<p>One of the core functionalities made available through Xarray is the ability
+to add <a class="reference external" href="https://docs.xarray.dev/en/stable/user-guide/terminology.html#term-Coordinate" title="(in xarray v2024.1.2.dev0)"><span class="xref std std-term">coordinate arrays</span></a> to a DataArray or
+Dataset. By defining coordinate arrays our DataArrays we essentially label
+the dimensions like ticks on a plot axis. For more information on coordinate
+functionality see the <a class="reference external" href="https://docs.xarray.dev/en/stable/user-guide/terminology.html#term-Coordinate" title="(in xarray v2024.1.2.dev0)"><span class="xref std std-term">Xarray documentation</span></a>.</p>
+<p>The below sections go into the details of how geoxarray uses and defines
+certain types of coordinate arrays.</p>
+<section id="spatial-coordinates">
+<h2>Spatial Coordinates<a class="headerlink" href="#spatial-coordinates" title="Link to this heading">¶</a></h2>
+<p>Geoxarray is able to create and use spatial coordinates for the
+spatial <a class="reference internal" href="dimensions.html"><span class="doc">Dimensions</span></a> of a <code class="docutils literal notranslate"><span class="pre">DataArray</span></code>. This typically falls
+into one of two different cases:</p>
+<ul class="simple">
+<li><p>1-dimensional <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> coordinate arrays</p></li>
+<li><p>2-dimensional coordinate arrays with the <code class="docutils literal notranslate"><span class="pre">y</span></code> dimension on the row/vertical
+axis and <code class="docutils literal notranslate"><span class="pre">x</span></code> on the column/horizontal dimension.</p></li>
 </ul>
+<p>The 1-dimensional coordinates are reserved for uniformly-spaced “grids” of
+data. Due to these arrays being uniformly spaced and 1-dimensional, it is
+usually easy and efficient to index or slice along using these labels.</p>
+<p>The 2-dimensional coordinate arrays case is typically for
+non-uniformly-spaced data that requires a 2D longitude and 2D latitude array
+to accurately define the location of every element of the data. This may also
+arise if geolocation information was computed from a series of Ground Control
+Points (GCPs).</p>
+<p>At the time of writing it is not currently efficient to index based on
+2-dimensional coordinate arrays. Due to their size it may also be helpful
+to define 2D coordinate arrays as a dask array or other Xarray-compatible lazy
+array.</p>
+</section>
+</section>
+
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="projections.html" class="btn btn-neutral float-left" title="Projections" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../faq.html" class="btn btn-neutral float-right" title="FAQ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

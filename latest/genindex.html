@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Index &mdash; Geoxarray 0.1.0.post2.dev36+g55e7fd6 documentation</title>
+  <title>Index &mdash; Geoxarray 0.1.0.post2.dev57+g99daa4a documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
@@ -14,7 +14,7 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="_static/documentation_options.js?v=d69854e7"></script>
+        <script src="_static/documentation_options.js?v=2936bf30"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -52,6 +52,7 @@
 <li class="toctree-l1"><a class="reference internal" href="topics/xarray_accessors.html">Xarray Accessors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="topics/dimensions.html">Dimensions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="topics/projections.html">Projections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topics/coordinates.html">Coordinates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Code Examples</span></p>
@@ -146,12 +147,21 @@
 </li>
       </ul></li>
       <li>
+    geoxarray.coords
+
+      <ul>
+        <li><a href="api/geoxarray.coords.html#module-geoxarray.coords">module</a>
+</li>
+      </ul></li>
+      <li>
     geoxarray.tests
 
       <ul>
         <li><a href="api/geoxarray.tests.html#module-geoxarray.tests">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     geoxarray.tests.conftest
 
@@ -159,8 +169,6 @@
         <li><a href="api/geoxarray.tests.conftest.html#module-geoxarray.tests.conftest">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     geoxarray.tests.test_accessor
 
@@ -204,6 +212,8 @@
 </li>
         <li><a href="api/geoxarray.accessor.html#module-geoxarray.accessor">geoxarray.accessor</a>
 </li>
+        <li><a href="api/geoxarray.coords.html#module-geoxarray.coords">geoxarray.coords</a>
+</li>
         <li><a href="api/geoxarray.tests.html#module-geoxarray.tests">geoxarray.tests</a>
 </li>
         <li><a href="api/geoxarray.tests.conftest.html#module-geoxarray.tests.conftest">geoxarray.tests.conftest</a>
@@ -243,6 +253,8 @@
         <li><a href="api/geoxarray.accessor.html#geoxarray.accessor.GeoDatasetAccessor.sizes">(geoxarray.accessor.GeoDatasetAccessor property)</a>
 </li>
       </ul></li>
+      <li><a href="api/geoxarray.coords.html#geoxarray.coords.spatial_coords">spatial_coords() (in module geoxarray.coords)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -255,12 +267,18 @@
         <li><a href="api/geoxarray.accessor.html#geoxarray.accessor.GeoDatasetAccessor.write_crs">(geoxarray.accessor.GeoDatasetAccessor method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/geoxarray.accessor.html#geoxarray.accessor.GeoDataArrayAccessor.write_dims">write_dims() (geoxarray.accessor.GeoDataArrayAccessor method)</a>
 
       <ul>
         <li><a href="api/geoxarray.accessor.html#geoxarray.accessor.GeoDatasetAccessor.write_dims">(geoxarray.accessor.GeoDatasetAccessor method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/geoxarray.accessor.html#geoxarray.accessor.GeoDataArrayAccessor.write_spatial_coords">write_spatial_coords() (geoxarray.accessor.GeoDataArrayAccessor method)</a>
+
+      <ul>
+        <li><a href="api/geoxarray.accessor.html#geoxarray.accessor.GeoDatasetAccessor.write_spatial_coords">(geoxarray.accessor.GeoDatasetAccessor method)</a>
 </li>
       </ul></li>
   </ul></td>
