@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>geoxarray.accessor &mdash; Geoxarray 0.1.0.post2.dev57+g99daa4a documentation</title>
+  <title>geoxarray.accessor &mdash; Geoxarray 0.1.0.post2.dev62+gfa8c1b8 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
@@ -14,7 +14,7 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/documentation_options.js?v=2936bf30"></script>
+        <script src="../../_static/documentation_options.js?v=51e5e523"></script>
         <script src="../../_static/doctools.js?v=888ff710"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -144,6 +144,7 @@
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Generic</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">TypeVar</span>
 
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">xarray</span>
 <span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
 <span class="kn">from</span> <span class="nn">pyproj</span> <span class="kn">import</span> <span class="n">CRS</span>
@@ -371,7 +372,7 @@
         <span class="n">gm_attrs</span><span class="p">[</span><span class="s2">&quot;crs_wkt&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">crs_wkt</span>  <span class="c1"># CF compatibility</span>
         <span class="n">gm_attrs</span><span class="p">[</span><span class="s2">&quot;spatial_ref&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">crs_wkt</span>  <span class="c1"># GDAL support</span>
 
-        <span class="n">obj</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="n">grid_mapping_var_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">Variable</span><span class="p">((),</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">obj</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="n">grid_mapping_var_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">Variable</span><span class="p">((),</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
         <span class="n">obj</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="n">grid_mapping_var_name</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">gm_attrs</span><span class="p">)</span>
         <span class="n">_assign_grid_mapping</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">grid_mapping_var_name</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">obj</span>
