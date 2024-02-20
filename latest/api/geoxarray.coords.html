@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>geoxarray.coords module &mdash; Geoxarray 0.1.0.post2.dev62+gfa8c1b8 documentation</title>
+  <title>geoxarray.coords module &mdash; Geoxarray 0.1.0.post2.dev67+g97bab4a documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
@@ -15,7 +15,7 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=51e5e523"></script>
+        <script src="../_static/documentation_options.js?v=7951a44f"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -124,10 +124,11 @@ methods of the geoxarray Xarray accessor (<code class="docutils literal notransl
 <p>Currently supported cases are:</p>
 <ul class="simple">
 <li><p>geotiff read with kerchunk via tifffile</p></li>
+<li><p>pyresample <code class="docutils literal notranslate"><span class="pre">AreaDefinition</span></code> in <code class="docutils literal notranslate"><span class="pre">.attrs[&quot;area&quot;]</span></code></p></li>
 </ul>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>data_arr</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2024.1.2.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataArray</span></code></a></span>) – DataArray object to extract geolocation information from and
+<dd class="field-odd"><p><strong>data_arr</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2024.2.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataArray</span></code></a></span>) – DataArray object to extract geolocation information from and
 generate the corresponding coordinate arrays.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>

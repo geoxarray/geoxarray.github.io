@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Access CRS information &mdash; Geoxarray 0.1.0.post2.dev62+gfa8c1b8 documentation</title>
+  <title>Access CRS information &mdash; Geoxarray 0.1.0.post2.dev67+g97bab4a documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
@@ -15,7 +15,7 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=51e5e523"></script>
+        <script src="../_static/documentation_options.js?v=7951a44f"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -155,14 +155,14 @@ be loaded in a way that geoxarray can understand and access.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;xarray.Dataset&gt;
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;xarray.Dataset&gt; Size: 2kB
 Dimensions:                 (y: 20, x: 10)
 Coordinates:
-  * y                       (y) float64 0.0 1.0 2.0 3.0 ... 16.0 17.0 18.0 19.0
-  * x                       (x) float64 0.0 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0
-    goes_imager_projection  float64 0.0
+  * y                       (y) float64 160B 0.0 1.0 2.0 3.0 ... 17.0 18.0 19.0
+  * x                       (x) float64 80B 0.0 1.0 2.0 3.0 ... 6.0 7.0 8.0 9.0
+    goes_imager_projection  float64 8B 0.0
 Data variables:
-    Rad                     (y, x) float64 0.0 0.0 0.0 0.0 ... 0.0 0.0 0.0 0.0
+    Rad                     (y, x) float64 2kB 0.0 0.0 0.0 0.0 ... 0.0 0.0 0.0
 </pre></div>
 </div>
 <p>This Dataset has <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> dimensions and coordinate variables and a
@@ -212,15 +212,15 @@ attribute) then the CRS will be derived from that.</p>
 <section id="satpy-and-pyresample">
 <h2>Satpy and Pyresample<a class="headerlink" href="#satpy-and-pyresample" title="Link to this heading">¶</a></h2>
 <p>The <a class="reference external" href="https://satpy.readthedocs.io/en/stable/index.html" title="(in Satpy v0.45)"><span class="xref std std-doc">Satpy</span></a> library uses
-<a class="reference external" href="https://pyresample.readthedocs.io/en/stable/index.html" title="(in pyresample v1.27.1)"><span class="xref std std-doc">Pyresample</span></a> geometry objects to define the geographic
+<a class="reference external" href="https://pyresample.readthedocs.io/en/stable/index.html" title="(in pyresample v1.28.1)"><span class="xref std std-doc">Pyresample</span></a> geometry objects to define the geographic
 region of a dataset. The most common objects are
-<a class="reference external" href="https://pyresample.readthedocs.io/en/stable/api/pyresample.html#pyresample.geometry.AreaDefinition" title="(in pyresample v1.27.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyresample.geometry.AreaDefinition</span></code></a> and
-<a class="reference external" href="https://pyresample.readthedocs.io/en/stable/api/pyresample.html#pyresample.geometry.SwathDefinition" title="(in pyresample v1.27.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyresample.geometry.SwathDefinition</span></code></a> objects and are typically found in
+<a class="reference external" href="https://pyresample.readthedocs.io/en/stable/api/pyresample.html#pyresample.geometry.AreaDefinition" title="(in pyresample v1.28.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyresample.geometry.AreaDefinition</span></code></a> and
+<a class="reference external" href="https://pyresample.readthedocs.io/en/stable/api/pyresample.html#pyresample.geometry.SwathDefinition" title="(in pyresample v1.28.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyresample.geometry.SwathDefinition</span></code></a> objects and are typically found in
 a DataArray in <code class="docutils literal notranslate"><span class="pre">.attrs[&quot;area&quot;]</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">satpy_data_arr</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;xarray.DataArray (y: 20, x: 10)&gt;
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;xarray.DataArray (y: 20, x: 10)&gt; Size: 2kB
 ...
 Dimensions without coordinates: y, x
 Attributes:

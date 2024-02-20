@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>geoxarray.coords &mdash; Geoxarray 0.1.0.post2.dev62+gfa8c1b8 documentation</title>
+  <title>geoxarray.coords &mdash; Geoxarray 0.1.0.post2.dev67+g97bab4a documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
@@ -14,7 +14,7 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/documentation_options.js?v=51e5e523"></script>
+        <script src="../../_static/documentation_options.js?v=7951a44f"></script>
         <script src="../../_static/doctools.js?v=888ff710"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -131,6 +131,7 @@
 <span class="sd">    Currently supported cases are:</span>
 
 <span class="sd">    * geotiff read with kerchunk via tifffile</span>
+<span class="sd">    * pyresample ``AreaDefinition`` in ``.attrs[&quot;area&quot;]``</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -162,6 +163,9 @@
         <span class="n">x_coord</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_left</span> <span class="o">+</span> <span class="n">x_pixel_res</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">width</span><span class="p">)</span> <span class="o">*</span> <span class="n">x_pixel_res</span>
         <span class="n">y_coord</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_top</span> <span class="o">-</span> <span class="n">y_pixel_res</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">height</span><span class="p">)</span> <span class="o">*</span> <span class="n">y_pixel_res</span>
         <span class="c1"># XXX: What to do with  &#39;GTRasterTypeGeoKey&#39;: &lt;RasterPixel.IsArea: 1&gt;?</span>
+    <span class="k">elif</span> <span class="s2">&quot;area&quot;</span> <span class="ow">in</span> <span class="n">data_arr</span><span class="o">.</span><span class="n">attrs</span><span class="p">:</span>
+        <span class="n">area_def</span> <span class="o">=</span> <span class="n">data_arr</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;area&quot;</span><span class="p">]</span>
+        <span class="n">x_coord</span><span class="p">,</span> <span class="n">y_coord</span> <span class="o">=</span> <span class="n">area_def</span><span class="o">.</span><span class="n">get_proj_vectors</span><span class="p">()</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Unknown data structure. Can&#39;t compute spatial coordinates.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">y_coord</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">x_coord</span><span class="p">}</span></div>
