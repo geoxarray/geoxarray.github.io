@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Projections &mdash; Geoxarray 0.1.0.post2.dev69+g732ab41 documentation</title>
+  <title>Projections &mdash; Geoxarray 0.1.0.post2.dev71+g4aea6ed documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
@@ -15,7 +15,7 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=3510bf68"></script>
+        <script src="../_static/documentation_options.js?v=1a2fe1ad"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -154,10 +154,10 @@ Technology Body of Knowledge (2nd Quarter 2017 Edition), John P. Wilson (ed.). D
 <p>There are many different types of projections.
 Geoxarray uses the <a class="reference external" href="https://pyproj4.github.io/pyproj/stable/index.html" title="(in pyproj v3.6.1)"><span class="xref std std-doc">pyproj</span></a> library’s <code class="docutils literal notranslate"><span class="pre">CRS</span></code> object to define
 all of its Coordinate Reference Systems and the transformation of coordinates
-between them. Pyproj depends on the lower-level <a class="reference external" href="https://proj.org/en/latest/index.html" title="(in PROJ v9.4)"><span class="xref std std-doc">PROJ</span></a> C++
+between them. Pyproj depends on the lower-level <a class="reference external" href="https://proj.org/en/latest/index.html" title="(in PROJ v9.5)"><span class="xref std std-doc">PROJ</span></a> C++
 library which defines the actual coordinate transformation algorithms and
 maintains definitions for predefined CRSes (ex. EPSG codes). You can find a
-list of the supported PROJ definitions <a class="reference external" href="https://proj.org/en/latest/operations/projections/index.html" title="(in PROJ v9.4)"><span class="xref std std-doc">here</span></a>.</p>
+list of the supported PROJ definitions <a class="reference external" href="https://proj.org/en/latest/operations/projections/index.html" title="(in PROJ v9.5)"><span class="xref std std-doc">here</span></a>.</p>
 <p>Anywhere in Geoxarray that a CRS is needed a <a class="reference external" href="https://pyproj4.github.io/pyproj/stable/api/crs/crs.html#pyproj.crs.CRS" title="(in pyproj v3.6.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">CRS</span></code></a> object
 from <code class="docutils literal notranslate"><span class="pre">pyproj</span></code> will be used. However, these objects aren’t always compatible
 with other libraries that geoxarray uses or they may not serialize well to

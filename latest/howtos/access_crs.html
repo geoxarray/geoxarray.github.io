@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Access CRS information &mdash; Geoxarray 0.1.0.post2.dev69+g732ab41 documentation</title>
+  <title>Access CRS information &mdash; Geoxarray 0.1.0.post2.dev71+g4aea6ed documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
@@ -15,7 +15,7 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=3510bf68"></script>
+        <script src="../_static/documentation_options.js?v=1a2fe1ad"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -211,11 +211,11 @@ attribute) then the CRS will be derived from that.</p>
 </section>
 <section id="satpy-and-pyresample">
 <h2>Satpy and Pyresample<a class="headerlink" href="#satpy-and-pyresample" title="Link to this heading">¶</a></h2>
-<p>The <a class="reference external" href="https://satpy.readthedocs.io/en/stable/index.html" title="(in Satpy v0.45)"><span class="xref std std-doc">Satpy</span></a> library uses
-<a class="reference external" href="https://pyresample.readthedocs.io/en/stable/index.html" title="(in pyresample v1.28.1)"><span class="xref std std-doc">Pyresample</span></a> geometry objects to define the geographic
+<p>The <a class="reference external" href="https://satpy.readthedocs.io/en/stable/index.html" title="(in Satpy v0.47)"><span class="xref std std-doc">Satpy</span></a> library uses
+<a class="reference external" href="https://pyresample.readthedocs.io/en/stable/index.html" title="(in pyresample v1.28.2)"><span class="xref std std-doc">Pyresample</span></a> geometry objects to define the geographic
 region of a dataset. The most common objects are
-<a class="reference external" href="https://pyresample.readthedocs.io/en/stable/api/pyresample.html#pyresample.geometry.AreaDefinition" title="(in pyresample v1.28.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyresample.geometry.AreaDefinition</span></code></a> and
-<a class="reference external" href="https://pyresample.readthedocs.io/en/stable/api/pyresample.html#pyresample.geometry.SwathDefinition" title="(in pyresample v1.28.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyresample.geometry.SwathDefinition</span></code></a> objects and are typically found in
+<a class="reference external" href="https://pyresample.readthedocs.io/en/stable/api/pyresample.html#pyresample.geometry.AreaDefinition" title="(in pyresample v1.28.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyresample.geometry.AreaDefinition</span></code></a> and
+<a class="reference external" href="https://pyresample.readthedocs.io/en/stable/api/pyresample.html#pyresample.geometry.SwathDefinition" title="(in pyresample v1.28.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyresample.geometry.SwathDefinition</span></code></a> objects and are typically found in
 a DataArray in <code class="docutils literal notranslate"><span class="pre">.attrs[&quot;area&quot;]</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">satpy_data_arr</span><span class="p">)</span>
 </pre></div>
