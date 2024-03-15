@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>geoxarray.accessor &mdash; Geoxarray 0.1.0.post2.dev75+g8717208 documentation</title>
+  <title>geoxarray.accessor &mdash; Geoxarray 0.1.0.post2.dev85+g1dbf73c documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
@@ -14,7 +14,7 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/documentation_options.js?v=bdf2ee5f"></script>
+        <script src="../../_static/documentation_options.js?v=8095d7fe"></script>
         <script src="../../_static/doctools.js?v=888ff710"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -372,10 +372,14 @@
         <span class="n">gm_attrs</span><span class="p">[</span><span class="s2">&quot;crs_wkt&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">crs_wkt</span>  <span class="c1"># CF compatibility</span>
         <span class="n">gm_attrs</span><span class="p">[</span><span class="s2">&quot;spatial_ref&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">crs_wkt</span>  <span class="c1"># GDAL support</span>
 
-        <span class="n">obj</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="n">grid_mapping_var_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">Variable</span><span class="p">((),</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_add_empty_grid_mapping</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">grid_mapping_var_name</span><span class="p">)</span>
         <span class="n">obj</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="n">grid_mapping_var_name</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">gm_attrs</span><span class="p">)</span>
         <span class="n">_assign_grid_mapping</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">grid_mapping_var_name</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">obj</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_add_empty_grid_mapping</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="n">XarrayObject</span><span class="p">,</span> <span class="n">grid_mapping_var_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">obj</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="n">grid_mapping_var_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">Variable</span><span class="p">((),</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
 
     <span class="k">def</span> <span class="nf">_optional_crs_from_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_crs_info</span><span class="p">:</span> <span class="n">Any</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">obj</span><span class="p">:</span> <span class="n">XarrayObject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CRS</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">new_crs_info</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -447,6 +451,66 @@
                 <span class="n">x_dim_name</span><span class="p">:</span> <span class="n">coords_dict</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">],</span>
             <span class="p">}</span>
         <span class="p">)</span>
+        <span class="k">return</span> <span class="n">obj</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">gcps</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get GeoJSON-formatted GCPs, if any, from the grid mapping coordinate variable.&quot;&quot;&quot;</span>
+        <span class="n">grid_mapping_var_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid_mapping</span>
+        <span class="k">if</span> <span class="n">grid_mapping_var_name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">grid_mapping_var_name</span> <span class="o">=</span> <span class="n">DEFAULT_GRID_MAPPING_VARIABLE_NAME</span>
+        <span class="k">if</span> <span class="n">grid_mapping_var_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">coords</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="n">grid_mapping_var_name</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;gcps&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">write_gcps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gcps</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">grid_mapping_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">inplace</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Write GeoJSON-formatted GCPs to the spatial ref.</span>
+
+<span class="sd">        GCPs can be retrieved later from the ``obj.geo.gcps`` property.</span>
+<span class="sd">        The GeoJSON will also be available from the grid mapping coordinate</span>
+<span class="sd">        variable as an attribute named &quot;gcps&quot;.</span>
+
+<span class="sd">        More information on the GeoJSON format and examples can be found here:</span>
+<span class="sd">        https://geojson.org/. GCP GeoJSON is almost always constructed from a</span>
+<span class="sd">        series of &quot;Point&quot; features in a ``FeatureCollection``. A basic example::</span>
+
+<span class="sd">            {&#39;type&#39;: &#39;FeatureCollection&#39;, &#39;features&#39;: [</span>
+<span class="sd">                {&#39;type&#39;: &#39;Feature&#39;, &#39;properties&#39;: {&#39;id&#39;: &#39;1&#39;, &#39;info&#39;: &#39;&#39;, &#39;row&#39;: 0.0, &#39;col&#39;: 0.0},</span>
+<span class="sd">                 &#39;geometry&#39;: {&#39;type&#39;: &#39;Point&#39;, &#39;coordinates&#39;: [33.03, 61.80, 126.43]}},</span>
+<span class="sd">                {&#39;type&#39;: &#39;Feature&#39;, &#39;properties&#39;: {&#39;id&#39;: &#39;2&#39;, &#39;info&#39;: &#39;&#39;, &#39;row&#39;: 0.0, &#39;col&#39;: 530.0},</span>
+<span class="sd">                 &#39;geometry&#39;: {&#39;type&#39;: &#39;Point&#39;, &#39;coordinates&#39;: [32.64, 61.85, 126.43]}},</span>
+<span class="sd">                {&#39;type&#39;: &#39;Feature&#39;, &#39;properties&#39;: {&#39;id&#39;: &#39;3&#39;, &#39;info&#39;: &#39;&#39;, &#39;row&#39;: 0.0, &#39;col&#39;: 1060.0},</span>
+<span class="sd">                 &#39;geometry&#39;: {&#39;type&#39;: &#39;Point&#39;, &#39;coordinates&#39;: [32.25, 61.90, 126.43]}},</span>
+<span class="sd">                {&#39;type&#39;: &#39;Feature&#39;, &#39;properties&#39;: {&#39;id&#39;: &#39;4&#39;, &#39;info&#39;: &#39;&#39;, &#39;row&#39;: 0.0, &#39;col&#39;: 1590.0},</span>
+<span class="sd">                 &#39;geometry&#39;: {&#39;type&#39;: &#39;Point&#39;, &#39;coordinates&#39;: [31.86, 61.95, 126.43]}},</span>
+<span class="sd">                {&#39;type&#39;: &#39;Feature&#39;, &#39;properties&#39;: {&#39;id&#39;: &#39;5&#39;, &#39;info&#39;: &#39;&#39;, &#39;row&#39;: 0.0, &#39;col&#39;: 2120.0},</span>
+<span class="sd">                 &#39;geometry&#39;: {&#39;type&#39;: &#39;Point&#39;, &#39;coordinates&#39;: [31.47, 62.00, 126.43]}},</span>
+<span class="sd">                {&#39;type&#39;: &#39;Feature&#39;, &#39;properties&#39;: {&#39;id&#39;: &#39;6&#39;, &#39;info&#39;: &#39;&#39;, &#39;row&#39;: 0.0, &#39;col&#39;: 2650.0},</span>
+<span class="sd">                 &#39;geometry&#39;: {&#39;type&#39;: &#39;Point&#39;, &#39;coordinates&#39;: [31.08, 62.04, 126.43]}},</span>
+<span class="sd">                {&#39;type&#39;: &#39;Feature&#39;, &#39;properties&#39;: {&#39;id&#39;: &#39;7&#39;, &#39;info&#39;: &#39;&#39;, &#39;row&#39;: 0.0, &#39;col&#39;: 3180.0},</span>
+<span class="sd">                 &#39;geometry&#39;: {&#39;type&#39;: &#39;Point&#39;, &#39;coordinates&#39;: [30.68, 62.09, 126.43]}}]}</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        gcps:</span>
+<span class="sd">            GeoJSON-formatted Ground Control Points (GCPs).</span>
+<span class="sd">        grid_mapping_name:</span>
+<span class="sd">            Name to use for the coordinate variable created and written by this</span>
+<span class="sd">            method. The coordinate variable, also known as the grid mapping</span>
+<span class="sd">            variable, will have this name when written to a NetCDF file.</span>
+<span class="sd">            Defaults to &quot;spatial_ref&quot;.</span>
+<span class="sd">        inplace:</span>
+<span class="sd">            Whether to modify the current Xarray object inplace or to create</span>
+<span class="sd">            a copy first. Default (``False``) is to make a copy.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_obj</span><span class="p">(</span><span class="n">inplace</span><span class="p">)</span>
+        <span class="n">grid_mapping_var_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid_mapping</span> <span class="k">if</span> <span class="n">grid_mapping_name</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">grid_mapping_name</span>
+        <span class="k">if</span> <span class="n">grid_mapping_var_name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">grid_mapping_var_name</span> <span class="o">=</span> <span class="n">DEFAULT_GRID_MAPPING_VARIABLE_NAME</span>
+        <span class="k">if</span> <span class="n">grid_mapping_var_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">obj</span><span class="o">.</span><span class="n">coords</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_add_empty_grid_mapping</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">grid_mapping_var_name</span><span class="p">)</span>
+        <span class="n">obj</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="n">grid_mapping_var_name</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;gcps&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gcps</span>
         <span class="k">return</span> <span class="n">obj</span>
 
 

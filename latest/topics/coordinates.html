@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Coordinates &mdash; Geoxarray 0.1.0.post2.dev75+g8717208 documentation</title>
+  <title>Coordinates &mdash; Geoxarray 0.1.0.post2.dev85+g1dbf73c documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
@@ -15,7 +15,7 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=bdf2ee5f"></script>
+        <script src="../_static/documentation_options.js?v=8095d7fe"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -57,6 +57,7 @@
 <li class="toctree-l1"><a class="reference internal" href="projections.html">Projections</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Coordinates</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#spatial-coordinates">Spatial Coordinates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ground-control-points">Ground Control Points</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
@@ -131,6 +132,28 @@ Points (GCPs).</p>
 2-dimensional coordinate arrays. Due to their size it may also be helpful
 to define 2D coordinate arrays as a dask array or other Xarray-compatible lazy
 array.</p>
+</section>
+<section id="ground-control-points">
+<h2>Ground Control Points<a class="headerlink" href="#ground-control-points" title="Link to this heading">¶</a></h2>
+<p>An alternative to the 1D or 2D spatial coordinates is the idea of storing a
+specific subset of the geolocation coordinates and then interpolating or
+extrapolating to get the coordinates for all other points. If possible, when
+uniformly-spaced/gridded data is involved, 1D coordinates should be preferred
+when using geoxarray as they allow for indexing on those coordinates.
+Using GCPs has the
+benefit of not storing two large 2D arrays for each element and with good
+interpolation can get very accurate results with a much smaller storage
+requirement. However, it also comes with a few important downsides:</p>
+<ol class="arabic simple">
+<li><p>The preferred interpolation method must be known to get the most accurate
+2D coordinate arrays back.</p></li>
+<li><p>Standard ways of storing tiepoint arrays are not widely used (yet). The
+CF NetCDF convention 1.11 has
+<a class="reference external" href="https://cfconventions.org/Data/cf-conventions/cf-conventions-1.11/cf-conventions.html#compression-by-coordinate-subsampling-tie-points-and-interpolation-subareas">this information</a>
+about tiepoint and tiepoint interpolation. Geoxarray does not currently
+follow, use, or recognize this standard.</p></li>
+<li><p>GCP to 2D array calculations take time and memory</p></li>
+</ol>
 </section>
 </section>
 

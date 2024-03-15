@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>geoxarray package &mdash; Geoxarray 0.1.0.post2.dev75+g8717208 documentation</title>
+  <title>geoxarray package &mdash; Geoxarray 0.1.0.post2.dev85+g1dbf73c documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
@@ -15,7 +15,7 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=bdf2ee5f"></script>
+        <script src="../_static/documentation_options.js?v=8095d7fe"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -146,6 +146,7 @@
 <li class="toctree-l2"><a class="reference internal" href="geoxarray.accessor.html#geoxarray.accessor.GeoDataArrayAccessor"><code class="docutils literal notranslate"><span class="pre">GeoDataArrayAccessor</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="geoxarray.accessor.html#geoxarray.accessor.GeoDataArrayAccessor.dim_map"><code class="docutils literal notranslate"><span class="pre">GeoDataArrayAccessor.dim_map</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="geoxarray.accessor.html#geoxarray.accessor.GeoDataArrayAccessor.dims"><code class="docutils literal notranslate"><span class="pre">GeoDataArrayAccessor.dims</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="geoxarray.accessor.html#geoxarray.accessor.GeoDataArrayAccessor.gcps"><code class="docutils literal notranslate"><span class="pre">GeoDataArrayAccessor.gcps</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="geoxarray.accessor.html#geoxarray.accessor.GeoDataArrayAccessor.get_lonlats"><code class="docutils literal notranslate"><span class="pre">GeoDataArrayAccessor.get_lonlats()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="geoxarray.accessor.html#geoxarray.accessor.GeoDataArrayAccessor.grid_mapping"><code class="docutils literal notranslate"><span class="pre">GeoDataArrayAccessor.grid_mapping</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="geoxarray.accessor.html#geoxarray.accessor.GeoDataArrayAccessor.plot"><code class="docutils literal notranslate"><span class="pre">GeoDataArrayAccessor.plot()</span></code></a></li>
@@ -153,17 +154,20 @@
 <li class="toctree-l3"><a class="reference internal" href="geoxarray.accessor.html#geoxarray.accessor.GeoDataArrayAccessor.sizes"><code class="docutils literal notranslate"><span class="pre">GeoDataArrayAccessor.sizes</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="geoxarray.accessor.html#geoxarray.accessor.GeoDataArrayAccessor.write_crs"><code class="docutils literal notranslate"><span class="pre">GeoDataArrayAccessor.write_crs()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="geoxarray.accessor.html#geoxarray.accessor.GeoDataArrayAccessor.write_dims"><code class="docutils literal notranslate"><span class="pre">GeoDataArrayAccessor.write_dims()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="geoxarray.accessor.html#geoxarray.accessor.GeoDataArrayAccessor.write_gcps"><code class="docutils literal notranslate"><span class="pre">GeoDataArrayAccessor.write_gcps()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="geoxarray.accessor.html#geoxarray.accessor.GeoDataArrayAccessor.write_spatial_coords"><code class="docutils literal notranslate"><span class="pre">GeoDataArrayAccessor.write_spatial_coords()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="geoxarray.accessor.html#geoxarray.accessor.GeoDatasetAccessor"><code class="docutils literal notranslate"><span class="pre">GeoDatasetAccessor</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="geoxarray.accessor.html#geoxarray.accessor.GeoDatasetAccessor.dim_map"><code class="docutils literal notranslate"><span class="pre">GeoDatasetAccessor.dim_map</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="geoxarray.accessor.html#geoxarray.accessor.GeoDatasetAccessor.dims"><code class="docutils literal notranslate"><span class="pre">GeoDatasetAccessor.dims</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="geoxarray.accessor.html#geoxarray.accessor.GeoDatasetAccessor.gcps"><code class="docutils literal notranslate"><span class="pre">GeoDatasetAccessor.gcps</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="geoxarray.accessor.html#geoxarray.accessor.GeoDatasetAccessor.grid_mapping"><code class="docutils literal notranslate"><span class="pre">GeoDatasetAccessor.grid_mapping</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="geoxarray.accessor.html#geoxarray.accessor.GeoDatasetAccessor.set_dims"><code class="docutils literal notranslate"><span class="pre">GeoDatasetAccessor.set_dims()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="geoxarray.accessor.html#geoxarray.accessor.GeoDatasetAccessor.sizes"><code class="docutils literal notranslate"><span class="pre">GeoDatasetAccessor.sizes</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="geoxarray.accessor.html#geoxarray.accessor.GeoDatasetAccessor.write_crs"><code class="docutils literal notranslate"><span class="pre">GeoDatasetAccessor.write_crs()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="geoxarray.accessor.html#geoxarray.accessor.GeoDatasetAccessor.write_dims"><code class="docutils literal notranslate"><span class="pre">GeoDatasetAccessor.write_dims()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="geoxarray.accessor.html#geoxarray.accessor.GeoDatasetAccessor.write_gcps"><code class="docutils literal notranslate"><span class="pre">GeoDatasetAccessor.write_gcps()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="geoxarray.accessor.html#geoxarray.accessor.GeoDatasetAccessor.write_spatial_coords"><code class="docutils literal notranslate"><span class="pre">GeoDatasetAccessor.write_spatial_coords()</span></code></a></li>
 </ul>
 </li>
