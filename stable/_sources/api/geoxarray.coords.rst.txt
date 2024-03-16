@@ -1,0 +1,5 @@
+geoxarray.coords module
+=======================
+
+.. automodule:: geoxarray.coords
+   :inherited-members:

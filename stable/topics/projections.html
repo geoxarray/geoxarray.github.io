@@ -1,19 +1,21 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Projections &mdash; Geoxarray 0.1.0.post1 documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <title>Projections &mdash; Geoxarray 0.2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=a41148a8"></script>
+        <script src="../_static/documentation_options.js?v=938c9ccc"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -21,7 +23,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="FAQ" href="../faq.html" />
+    <link rel="next" title="Coordinates" href="coordinates.html" />
     <link rel="prev" title="Dimensions" href="dimensions.html" /> 
 </head>
 
@@ -37,7 +39,7 @@
             Geoxarray
           </a>
               <div class="version">
-                0.1
+                0.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -56,6 +58,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#projection-definitions">Projection definitions</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="coordinates.html">Coordinates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Code Examples</span></p>
@@ -140,7 +143,7 @@ from a geostationary satellite might be on a geostationary projection with
 coordinates in meters. If you wanted to combine these data you’d need to
 transform the coordinates from one projection to the other.</p>
 <aside class="footnote-list brackets">
-<aside class="footnote brackets" id="id2" role="note">
+<aside class="footnote brackets" id="id2" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
 <p>Battersby, S. (2017). Map Projections. The Geographic Information Science &amp;
 Technology Body of Knowledge (2nd Quarter 2017 Edition), John P. Wilson (ed.). DOI: 10.22224/gistbok/2017.2.7</p>
@@ -149,13 +152,13 @@ Technology Body of Knowledge (2nd Quarter 2017 Edition), John P. Wilson (ed.). D
 <section id="projection-definitions">
 <h2>Projection definitions<a class="headerlink" href="#projection-definitions" title="Link to this heading">¶</a></h2>
 <p>There are many different types of projections.
-Geoxarray uses the <a class="reference external" href="https://pyproj4.github.io/pyproj/stable/index.html" title="(in pyproj v3.6.0)"><span class="xref std std-doc">pyproj</span></a> library’s <code class="docutils literal notranslate"><span class="pre">CRS</span></code> object to define
+Geoxarray uses the <a class="reference external" href="https://pyproj4.github.io/pyproj/stable/index.html" title="(in pyproj v3.6.1)"><span class="xref std std-doc">pyproj</span></a> library’s <code class="docutils literal notranslate"><span class="pre">CRS</span></code> object to define
 all of its Coordinate Reference Systems and the transformation of coordinates
-between them. Pyproj depends on the lower-level <a class="reference external" href="https://proj.org/en/latest/index.html" title="(in PROJ v9.4)"><span class="xref std std-doc">PROJ</span></a> C++
+between them. Pyproj depends on the lower-level <a class="reference external" href="https://proj.org/en/latest/index.html" title="(in PROJ v9.5)"><span class="xref std std-doc">PROJ</span></a> C++
 library which defines the actual coordinate transformation algorithms and
 maintains definitions for predefined CRSes (ex. EPSG codes). You can find a
-list of the supported PROJ definitions <a class="reference external" href="https://proj.org/en/latest/operations/projections/index.html" title="(in PROJ v9.4)"><span class="xref std std-doc">here</span></a>.</p>
-<p>Anywhere in Geoxarray that a CRS is needed a <a class="reference external" href="https://pyproj4.github.io/pyproj/stable/api/crs/crs.html#pyproj.crs.CRS" title="(in pyproj v3.6.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">CRS</span></code></a> object
+list of the supported PROJ definitions <a class="reference external" href="https://proj.org/en/latest/operations/projections/index.html" title="(in PROJ v9.5)"><span class="xref std std-doc">here</span></a>.</p>
+<p>Anywhere in Geoxarray that a CRS is needed a <a class="reference external" href="https://pyproj4.github.io/pyproj/stable/api/crs/crs.html#pyproj.crs.CRS" title="(in pyproj v3.6.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">CRS</span></code></a> object
 from <code class="docutils literal notranslate"><span class="pre">pyproj</span></code> will be used. However, these objects aren’t always compatible
 with other libraries that geoxarray uses or they may not serialize well to
 on-disk formats (ex. NetCDF CF). In these cases geoxarray also uses a
@@ -163,7 +166,7 @@ on-disk formats (ex. NetCDF CF). In these cases geoxarray also uses a
 definition to persist CRS information to an xarray object and that may include
 a <cite>Well-known Text (WKT) &lt;https://proj.org/en/latest/development/reference/cpp/cpp_general.html#general_doc_1WKT2&gt;</cite>
 version of the CRS in a <code class="docutils literal notranslate"><span class="pre">crs_wkt</span></code> attribute. See the pyproj
-<a class="reference external" href="https://pyproj4.github.io/pyproj/stable/examples.html" title="(in pyproj v3.6.0)"><span class="xref std std-doc">Getting Started</span></a> documentation for some examples of
+<a class="reference external" href="https://pyproj4.github.io/pyproj/stable/examples.html" title="(in pyproj v3.6.1)"><span class="xref std std-doc">Getting Started</span></a> documentation for some examples of
 different CRS options.</p>
 <p>Lastly, a projection is not the only thing that is needed to describe where
 your data is on the Earth. Typically there are also x, or y, or other coordinate
@@ -177,7 +180,7 @@ writing Geoxarray does not do anything with these coordinates.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="dimensions.html" class="btn btn-neutral float-left" title="Dimensions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../faq.html" class="btn btn-neutral float-right" title="FAQ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="coordinates.html" class="btn btn-neutral float-right" title="Coordinates" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

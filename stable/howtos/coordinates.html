@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Specify spatial and temporal dimensions &mdash; Geoxarray 0.2.0 documentation</title>
+  <title>Add spatial coordinates &mdash; Geoxarray 0.2.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
@@ -23,8 +23,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Access CRS information" href="access_crs.html" />
-    <link rel="prev" title="How-Tos" href="index.html" /> 
+    <link rel="next" title="Add Ground Control Points" href="write_gcps.html" />
+    <link rel="prev" title="Write CRS information" href="write_crs.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -62,10 +62,10 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">How-Tos</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Specify spatial and temporal dimensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="set_dims.html">Specify spatial and temporal dimensions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="access_crs.html">Access CRS information</a></li>
 <li class="toctree-l2"><a class="reference internal" href="write_crs.html">Write CRS information</a></li>
-<li class="toctree-l2"><a class="reference internal" href="coordinates.html">Add spatial coordinates</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Add spatial coordinates</a></li>
 <li class="toctree-l2"><a class="reference internal" href="write_gcps.html">Add Ground Control Points</a></li>
 </ul>
 </li>
@@ -95,9 +95,9 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="index.html">How-Tos</a></li>
-      <li class="breadcrumb-item active">Specify spatial and temporal dimensions</li>
+      <li class="breadcrumb-item active">Add spatial coordinates</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/howtos/set_dims.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/howtos/coordinates.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -105,73 +105,54 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="specify-spatial-and-temporal-dimensions">
-<h1>Specify spatial and temporal dimensions<a class="headerlink" href="#specify-spatial-and-temporal-dimensions" title="Link to this heading">¶</a></h1>
-<p>Assuming you have an Xarray object that has some atypical or unusual names
-for its dimensions, we can tell geoxarray what these dimensions represent.
-For more information on what dimensions geoxarray understands see the
-<a class="reference internal" href="../topics/dimensions.html"><span class="doc">Dimensions</span></a> documentation.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">data_arr</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>We can see from this output that there are three dimensions in this DataArray:
-<code class="docutils literal notranslate"><span class="pre">(dim_0,</span> <span class="pre">dim_1,</span> <span class="pre">dim_2)</span></code>.</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;xarray.DataArray (dim_0: 5, dim_1: 20, dim_2: 10)&gt; Size: 8kB
-...
-Coordinates:
-  * dim_1    (dim_1) float64 160B 0.0 1.0 2.0 3.0 4.0 ... 16.0 17.0 18.0 19.0
-  * dim_2    (dim_2) float64 80B 0.0 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0
-Dimensions without coordinates: dim_0
-</pre></div>
-</div>
-<p>These don’t fit geoxarray’s usual preferred names for
-<a class="reference internal" href="../topics/dimensions.html"><span class="doc">Dimensions</span></a>, but we can see if geoxarray can guess their
-purpose by using
-<a class="reference internal" href="../api/geoxarray.accessor.html#geoxarray.accessor.GeoDataArrayAccessor.dims" title="geoxarray.accessor.GeoDataArrayAccessor.dims"><code class="xref py py-attr docutils literal notranslate"><span class="pre">.geo.dims</span></code></a>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geoxarray</span>
+  <section id="add-spatial-coordinates">
+<h1>Add spatial coordinates<a class="headerlink" href="#add-spatial-coordinates" title="Link to this heading">¶</a></h1>
+<p>Geoxarray can extract the information from a <code class="docutils literal notranslate"><span class="pre">DataArray</span></code> to generate
+<a class="reference internal" href="../topics/coordinates.html"><span class="doc">spatial coordinates</span></a>. These spatial
+coordinates will be stored in <code class="docutils literal notranslate"><span class="pre">.coords</span></code> of the <code class="docutils literal notranslate"><span class="pre">DataArray</span></code> and can
+be used for labeled indexing. Spatial coordinates are only ever added
+for <a class="reference internal" href="../topics/dimensions.html"><span class="doc">dimensions</span></a> that geoxarray understands.
+See <a class="reference internal" href="set_dims.html"><span class="doc">Specify spatial and temporal dimensions</span></a> for ways to work with non-standard dimension names.</p>
+<p>To get a copy of your <code class="docutils literal notranslate"><span class="pre">DataArray</span></code> with spatial coordinates assigned
+call the <code class="docutils literal notranslate"><span class="pre">.geo.write_spatial_coords()</span></code> method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">geoxarray</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">data_arr</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">dims</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>And note that the names of the dimensions haven’t changed:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(&#39;dim_0&#39;, &#39;dim_1&#39;, &#39;dim_2&#39;)
-</pre></div>
-</div>
-<p>We can tell geoxarray what these mean by using
-<a class="reference internal" href="../api/geoxarray.accessor.html#geoxarray.accessor.GeoDataArrayAccessor.set_dims" title="geoxarray.accessor.GeoDataArrayAccessor.set_dims"><code class="xref py py-meth docutils literal notranslate"><span class="pre">.geo.set_dims()</span></code></a>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data_arr</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">set_dims</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s2">&quot;dim_1&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;dim_2&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">data_arr</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">dims</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>And notice that geoxarray now knows that the second and third dimension
-correspond to the <code class="docutils literal notranslate"><span class="pre">y</span></code> and <code class="docutils literal notranslate"><span class="pre">x</span></code> spatial dimensions.</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(&#39;dim_0&#39;, &#39;y&#39;, &#39;x&#39;)
-</pre></div>
-</div>
-<p>From now on geoxarray should be able to make decisions based on these known
-dimensions. Note that geoxarray hasn’t changed anything about the DataArray
-itself. We can rename the dimensions with geoxarray’s preferred names by
-doing:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">new_data_arr</span> <span class="o">=</span> <span class="n">data_arr</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">write_dims</span><span class="p">()</span>
+<span class="n">my_data_arr</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">)),</span>
+    <span class="n">dims</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">),</span>
+    <span class="n">attrs</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;ModelPixelScale&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1002.008644</span><span class="p">,</span> <span class="mf">1002.008644</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+        <span class="s2">&quot;ModelTiepoint&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">5434894.885056</span><span class="p">,</span> <span class="mf">5434894.885056</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+    <span class="p">},</span>
+<span class="p">)</span>
+<span class="n">new_data_arr</span> <span class="o">=</span> <span class="n">my_data_arr</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">write_spatial_coords</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">new_data_arr</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;xarray.DataArray (dim_0: 5, y: 20, x: 10)&gt; Size: 8kB
+<p>Which will make the DataArray look like:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;xarray.DataArray (y: 20, x: 10)&gt; Size: 2kB
 ...
 Coordinates:
-  * y        (y) float64 160B 0.0 1.0 2.0 3.0 4.0 ... 16.0 17.0 18.0 19.0
-  * x        (x) float64 80B 0.0 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0
-Dimensions without coordinates: dim_0
+  * y        (y) float64 160B 5.434e+06 5.433e+06 ... 5.416e+06 5.415e+06
+  * x        (x) float64 80B -5.434e+06 -5.433e+06 ... -5.426e+06 -5.425e+06
+Attributes:
+    ModelPixelScale:  [1002.008644, 1002.008644, 0.0]
+    ModelTiepoint:    [0.0, 0.0, 0.0, -5434894.885056, 5434894.885056, 0.0]
 </pre></div>
 </div>
+<p>See the <a class="reference internal" href="../api/geoxarray.accessor.html#geoxarray.accessor.GeoDataArrayAccessor.write_spatial_coords" title="geoxarray.accessor.GeoDataArrayAccessor.write_spatial_coords"><code class="xref py py-meth docutils literal notranslate"><span class="pre">write_spatial_coords()</span></code></a>
+API documentation for more information on supported and expected metadata
+structure for this operation.</p>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="index.html" class="btn btn-neutral float-left" title="How-Tos" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="access_crs.html" class="btn btn-neutral float-right" title="Access CRS information" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="write_crs.html" class="btn btn-neutral float-left" title="Write CRS information" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="write_gcps.html" class="btn btn-neutral float-right" title="Add Ground Control Points" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

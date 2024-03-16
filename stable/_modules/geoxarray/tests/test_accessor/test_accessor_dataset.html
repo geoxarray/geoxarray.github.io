@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>geoxarray.tests.test_accessor.test_accessor_dataset &mdash; Geoxarray 0.2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/documentation_options.js?v=938c9ccc"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Geoxarray
+          </a>
+              <div class="version">
+                0.2
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Topics and Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../topics/xarray_accessors.html">Xarray Accessors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../topics/dimensions.html">Dimensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../topics/projections.html">Projections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../topics/coordinates.html">Coordinates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../faq.html">FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../howtos/index.html">How-Tos</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/modules.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/geoxarray/geoxarray/blob/main/CHANGELOG.md">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/geoxarray/geoxarray">GitHub Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../related.html">Related Projects</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Geoxarray</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">geoxarray.tests.test_accessor.test_accessor_dataset</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for geoxarray.tests.test_accessor.test_accessor_dataset</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># Copyright geoxarray Developers</span>
+<span class="c1">#</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="c1"># you may not use this file except in compliance with the License.</span>
+<span class="c1"># You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1"># http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1"># distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1"># See the License for the specific language governing permissions and</span>
+<span class="c1"># limitations under the License.</span>
+<span class="sd">&quot;&quot;&quot;Tests for the xarray Dataset-specific accessor.&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">pytest</span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">from</span> <span class="nn">pyproj</span> <span class="kn">import</span> <span class="n">CRS</span>
+
+<span class="kn">from</span> <span class="nn">...accessor</span> <span class="kn">import</span> <span class="n">DEFAULT_GRID_MAPPING_VARIABLE_NAME</span>
+<span class="kn">from</span> <span class="nn">._data_array_cases</span> <span class="kn">import</span> <span class="n">cf_grid_mapping_geos_no_wkt</span>
+<span class="kn">from</span> <span class="nn">._dataset_cases</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">cf_0gm_no_coords</span><span class="p">,</span>
+    <span class="n">cf_1gm_geos_other_b_a</span><span class="p">,</span>
+    <span class="n">cf_1gm_geos_y_x</span><span class="p">,</span>
+    <span class="n">cf_3gm_geos_y_x</span><span class="p">,</span>
+    <span class="n">cf_3vars_1gm_geos_y_x</span><span class="p">,</span>
+    <span class="n">geotiff_as_read_by_rioxarray</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">._shared</span> <span class="kn">import</span> <span class="n">check_written_crs</span>
+
+
+<span class="k">def</span> <span class="nf">test_set_dims_modifies_data_arrs</span><span class="p">():</span>
+    <span class="n">ds</span> <span class="o">=</span> <span class="n">cf_1gm_geos_other_b_a</span><span class="p">()</span>
+
+    <span class="c1"># the dims are unchanged if we only use the DataArray</span>
+    <span class="k">assert</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;Rad&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">dims</span> <span class="o">!=</span> <span class="p">(</span><span class="s2">&quot;other&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">)</span>
+
+    <span class="n">new_ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">set_dims</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;b&quot;</span><span class="p">)</span>
+    <span class="c1"># original dataset is unchanged</span>
+    <span class="k">assert</span> <span class="s2">&quot;a&quot;</span> <span class="ow">in</span> <span class="n">ds</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">dims</span>
+    <span class="k">assert</span> <span class="s2">&quot;y&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ds</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">dims</span>
+    <span class="c1"># new dataset has new dimension mapping</span>
+    <span class="k">assert</span> <span class="s2">&quot;a&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">new_ds</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">dims</span>
+    <span class="k">assert</span> <span class="s2">&quot;y&quot;</span> <span class="ow">in</span> <span class="n">new_ds</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">dims</span>
+    <span class="c1"># the dims should still not be modified on the DataArray</span>
+    <span class="k">assert</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;Rad&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">dims</span> <span class="o">!=</span> <span class="p">(</span><span class="s2">&quot;other&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">)</span>
+
+    <span class="n">new_ds2</span> <span class="o">=</span> <span class="n">new_ds</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">write_dims</span><span class="p">()</span>
+    <span class="c1"># the basic xarray object itself has the new dimensions</span>
+    <span class="k">assert</span> <span class="s2">&quot;a&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">new_ds2</span><span class="o">.</span><span class="n">dims</span>
+    <span class="k">assert</span> <span class="s2">&quot;y&quot;</span> <span class="ow">in</span> <span class="n">new_ds2</span><span class="o">.</span><span class="n">dims</span>
+    <span class="c1"># original dataset is unchanged</span>
+    <span class="k">assert</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;Rad&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">dims</span> <span class="o">==</span> <span class="p">(</span><span class="s2">&quot;other&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span>
+    <span class="c1"># the underlying DataArrays all have renamed dimensions</span>
+    <span class="k">assert</span> <span class="n">new_ds2</span><span class="p">[</span><span class="s2">&quot;Rad&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">dims</span> <span class="o">==</span> <span class="p">(</span><span class="s2">&quot;other&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">test_crs_no_crs</span><span class="p">():</span>
+    <span class="n">ds</span> <span class="o">=</span> <span class="n">cf_0gm_no_coords</span><span class="p">()</span>
+    <span class="k">assert</span> <span class="n">ds</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">crs</span> <span class="ow">is</span> <span class="kc">None</span>
+
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;data_func&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">cf_1gm_geos_y_x</span><span class="p">,</span> <span class="n">cf_3vars_1gm_geos_y_x</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">test_grid_mapping_single_crs_coord</span><span class="p">(</span><span class="n">data_func</span><span class="p">):</span>
+    <span class="n">ds</span> <span class="o">=</span> <span class="n">data_func</span><span class="p">()</span>
+    <span class="k">assert</span> <span class="n">ds</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">grid_mapping</span> <span class="o">==</span> <span class="s2">&quot;goes_imager_projection&quot;</span>
+
+
+<span class="k">def</span> <span class="nf">test_crs_single_crs_coord</span><span class="p">():</span>
+    <span class="n">ds</span> <span class="o">=</span> <span class="n">cf_1gm_geos_other_b_a</span><span class="p">()</span>
+    <span class="k">assert</span> <span class="n">ds</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">crs</span> <span class="o">==</span> <span class="n">CRS</span><span class="o">.</span><span class="n">from_cf</span><span class="p">(</span><span class="n">cf_grid_mapping_geos_no_wkt</span><span class="p">()</span><span class="o">.</span><span class="n">attrs</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">test_crs_three_crs_coord</span><span class="p">():</span>
+    <span class="n">ds</span> <span class="o">=</span> <span class="n">cf_3gm_geos_y_x</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">RuntimeError</span><span class="p">):</span>
+        <span class="n">_</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">crs</span>
+
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;inplace&quot;</span><span class="p">,</span> <span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">])</span>
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;gmap_var_name&quot;</span><span class="p">,</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;my_gm&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">test_crs_write_crs</span><span class="p">(</span><span class="n">inplace</span><span class="p">,</span> <span class="n">gmap_var_name</span><span class="p">):</span>
+    <span class="n">ds</span> <span class="o">=</span> <span class="n">cf_0gm_no_coords</span><span class="p">()</span>
+    <span class="n">new_crs</span> <span class="o">=</span> <span class="n">CRS</span><span class="o">.</span><span class="n">from_epsg</span><span class="p">(</span><span class="mi">4326</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">ds</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">crs</span> <span class="ow">is</span> <span class="kc">None</span>
+    <span class="n">new_ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">write_crs</span><span class="p">(</span><span class="n">new_crs</span><span class="p">,</span> <span class="n">grid_mapping_name</span><span class="o">=</span><span class="n">gmap_var_name</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="n">inplace</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">inplace</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="n">new_ds</span> <span class="ow">is</span> <span class="n">ds</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="n">new_ds</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">ds</span>
+        <span class="k">assert</span> <span class="n">ds</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">crs</span> <span class="ow">is</span> <span class="kc">None</span>
+    <span class="k">assert</span> <span class="n">new_ds</span> <span class="ow">is</span> <span class="n">ds</span> <span class="k">if</span> <span class="n">inplace</span> <span class="k">else</span> <span class="n">new_ds</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">ds</span>
+    <span class="n">check_written_crs</span><span class="p">(</span><span class="n">new_ds</span><span class="p">,</span> <span class="n">new_crs</span><span class="p">,</span> <span class="n">gmap_var_name</span><span class="p">)</span>
+    <span class="c1"># storing the CRS in the Dataset should have updated encoding information in the spatial DataArrays</span>
+    <span class="n">check_written_crs</span><span class="p">(</span><span class="n">new_ds</span><span class="p">[</span><span class="s2">&quot;Rad&quot;</span><span class="p">],</span> <span class="n">new_crs</span><span class="p">,</span> <span class="n">gmap_var_name</span><span class="p">)</span>
+    <span class="n">check_written_crs</span><span class="p">(</span><span class="n">new_ds</span><span class="p">[</span><span class="s2">&quot;different_spatial&quot;</span><span class="p">],</span> <span class="n">new_crs</span><span class="p">,</span> <span class="n">gmap_var_name</span><span class="p">)</span>
+    <span class="n">exp_gmap_var</span> <span class="o">=</span> <span class="n">gmap_var_name</span> <span class="ow">or</span> <span class="n">DEFAULT_GRID_MAPPING_VARIABLE_NAME</span>
+    <span class="k">for</span> <span class="n">nonspatial_var</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;scalar_var&quot;</span><span class="p">,):</span>
+        <span class="k">assert</span> <span class="n">exp_gmap_var</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">new_ds</span><span class="p">[</span><span class="n">nonspatial_var</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span>
+        <span class="k">assert</span> <span class="n">exp_gmap_var</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">new_ds</span><span class="p">[</span><span class="n">nonspatial_var</span><span class="p">]</span><span class="o">.</span><span class="n">encoding</span>
+        <span class="c1"># coordinates are shared between a Dataset&#39;s DataArrays (this check won&#39;t pass)</span>
+        <span class="c1"># assert exp_gmap_var not in new_ds[nonspatial_var].coords</span>
+
+
+<span class="k">def</span> <span class="nf">test_netcdf_grid_mapping_round_trip</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">):</span>
+    <span class="n">ds</span> <span class="o">=</span> <span class="n">cf_0gm_no_coords</span><span class="p">()</span>
+    <span class="n">new_crs</span> <span class="o">=</span> <span class="n">CRS</span><span class="o">.</span><span class="n">from_epsg</span><span class="p">(</span><span class="mi">4326</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">ds</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">crs</span> <span class="ow">is</span> <span class="kc">None</span>
+    <span class="n">new_ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">write_crs</span><span class="p">(</span><span class="n">new_crs</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">new_ds</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">crs</span> <span class="o">==</span> <span class="n">new_crs</span>
+    <span class="n">nc_out</span> <span class="o">=</span> <span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">&quot;test.nc&quot;</span>
+    <span class="n">new_ds</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="n">nc_out</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">nc_out</span><span class="o">.</span><span class="n">is_file</span><span class="p">()</span>
+    <span class="n">nc_ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">nc_out</span><span class="p">,</span> <span class="n">decode_coords</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">nc_ds</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">crs</span> <span class="o">==</span> <span class="n">new_crs</span>
+    <span class="k">assert</span> <span class="n">nc_ds</span><span class="p">[</span><span class="s2">&quot;Rad&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">crs</span> <span class="o">==</span> <span class="n">new_crs</span>
+    <span class="k">assert</span> <span class="s2">&quot;spatial_ref&quot;</span> <span class="ow">in</span> <span class="n">nc_ds</span><span class="o">.</span><span class="n">coords</span>
+
+
+<div class="viewcode-block" id="test_using_gcps">
+<a class="viewcode-back" href="../../../../api/geoxarray.tests.test_accessor.test_accessor_dataset.html#geoxarray.tests.test_accessor.test_accessor_dataset.test_using_gcps">[docs]</a>
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;inplace&quot;</span><span class="p">,</span> <span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">])</span>
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;has_spatial_ref&quot;</span><span class="p">,</span> <span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">test_using_gcps</span><span class="p">(</span><span class="n">inplace</span><span class="p">,</span> <span class="n">has_spatial_ref</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Test using the GCPs.&quot;&quot;&quot;</span>
+    <span class="n">ds</span> <span class="o">=</span> <span class="n">geotiff_as_read_by_rioxarray</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">has_spatial_ref</span><span class="p">:</span>
+        <span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">drop_vars</span><span class="p">(</span><span class="s2">&quot;spatial_ref&quot;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">ds</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">gcps</span> <span class="ow">is</span> <span class="kc">None</span>
+
+    <span class="n">geojson_gcps</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;{&#39;type&#39;: &#39;FeatureCollection&#39;, &#39;features&#39;: [</span>
+<span class="s2">        {&#39;type&#39;: &#39;Feature&#39;, &#39;properties&#39;: {&#39;id&#39;: &#39;1&#39;, &#39;info&#39;: &#39;&#39;, &#39;row&#39;: 0.0, &#39;col&#39;: 0.0},</span>
+<span class="s2">        &#39;geometry&#39;: {&#39;type&#39;: &#39;Point&#39;, &#39;coordinates&#39;: [33.03476120131667, 61.80752448531045, 126.43436405993998]}},</span>
+<span class="s2">        {&#39;type&#39;: &#39;Feature&#39;, &#39;properties&#39;: {&#39;id&#39;: &#39;2&#39;, &#39;info&#39;: &#39;&#39;, &#39;row&#39;: 0.0, &#39;col&#39;: 530.0},</span>
+<span class="s2">        &#39;geometry&#39;: {&#39;type&#39;: &#39;Point&#39;, &#39;coordinates&#39;: [32.64657656496346, 61.857612278077426, 126.43393892142922]}},</span>
+<span class="s2">        {&#39;type&#39;: &#39;Feature&#39;, &#39;properties&#39;: {&#39;id&#39;: &#39;3&#39;, &#39;info&#39;: &#39;&#39;, &#39;row&#39;: 0.0, &#39;col&#39;: 1060.0},</span>
+<span class="s2">        &#39;geometry&#39;: {&#39;type&#39;: &#39;Point&#39;, &#39;coordinates&#39;: [32.25713800902792, 61.90660152412569, 126.43354075308889]}},</span>
+<span class="s2">        {&#39;type&#39;: &#39;Feature&#39;, &#39;properties&#39;: {&#39;id&#39;: &#39;4&#39;, &#39;info&#39;: &#39;&#39;, &#39;row&#39;: 0.0, &#39;col&#39;: 1590.0},</span>
+<span class="s2">        &#39;geometry&#39;: {&#39;type&#39;: &#39;Point&#39;, &#39;coordinates&#39;: [31.86646667091431, 61.95448651271948, 126.43316515907645]}},</span>
+<span class="s2">        {&#39;type&#39;: &#39;Feature&#39;, &#39;properties&#39;: {&#39;id&#39;: &#39;5&#39;, &#39;info&#39;: &#39;&#39;, &#39;row&#39;: 0.0, &#39;col&#39;: 2120.0},</span>
+<span class="s2">        &#39;geometry&#39;: {&#39;type&#39;: &#39;Point&#39;, &#39;coordinates&#39;: [31.4745844704049, 62.001261591746335, 126.4328089589253]}},</span>
+<span class="s2">        {&#39;type&#39;: &#39;Feature&#39;, &#39;properties&#39;: {&#39;id&#39;: &#39;6&#39;, &#39;info&#39;: &#39;&#39;, &#39;row&#39;: 0.0, &#39;col&#39;: 2650.0},</span>
+<span class="s2">        &#39;geometry&#39;: {&#39;type&#39;: &#39;Point&#39;, &#39;coordinates&#39;: [31.081513897392732, 62.046921198482664, 126.4324697861448]}},</span>
+<span class="s2">        {&#39;type&#39;: &#39;Feature&#39;, &#39;properties&#39;: {&#39;id&#39;: &#39;7&#39;, &#39;info&#39;: &#39;&#39;, &#39;row&#39;: 0.0, &#39;col&#39;: 3180.0},</span>
+<span class="s2">        &#39;geometry&#39;: {&#39;type&#39;: &#39;Point&#39;, &#39;coordinates&#39;: [30.68727795468313, 62.09145986899579, 126.43214585445821]}}]}&quot;&quot;&quot;</span>
+
+    <span class="n">new_ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">write_gcps</span><span class="p">(</span><span class="n">geojson_gcps</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="n">inplace</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">inplace</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="n">ds</span> <span class="ow">is</span> <span class="n">new_ds</span>
+        <span class="k">assert</span> <span class="n">new_ds</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">gcps</span> <span class="o">==</span> <span class="n">geojson_gcps</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="n">ds</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">new_ds</span>
+        <span class="k">assert</span> <span class="n">ds</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">gcps</span> <span class="ow">is</span> <span class="kc">None</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, geoxarray.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,19 +1,21 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Access CRS information &mdash; Geoxarray 0.1.0.post1 documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <title>Access CRS information &mdash; Geoxarray 0.2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=a41148a8"></script>
+        <script src="../_static/documentation_options.js?v=938c9ccc"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -37,7 +39,7 @@
             Geoxarray
           </a>
               <div class="version">
-                0.1
+                0.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -53,6 +55,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../topics/xarray_accessors.html">Xarray Accessors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../topics/dimensions.html">Dimensions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../topics/projections.html">Projections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topics/coordinates.html">Coordinates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Code Examples</span></p>
@@ -69,6 +72,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="write_crs.html">Write CRS information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coordinates.html">Add spatial coordinates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="write_gcps.html">Add Ground Control Points</a></li>
 </ul>
 </li>
 </ul>
@@ -126,7 +131,7 @@ xarray DataArray or Dataset object, is to do:</p>
 <p>To access geoxarray’s <code class="docutils literal notranslate"><span class="pre">.geo</span></code> accessor (the property) we must first import
 geoxarray to register it. Then accessing
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">.geo.crs</span></code> gives us a pyproj
-<a class="reference external" href="https://pyproj4.github.io/pyproj/stable/api/crs/crs.html#pyproj.crs.CRS" title="(in pyproj v3.6.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">CRS</span></code></a> object or <code class="docutils literal notranslate"><span class="pre">None</span></code> if geoxarray is unable to determine
+<a class="reference external" href="https://pyproj4.github.io/pyproj/stable/api/crs/crs.html#pyproj.crs.CRS" title="(in pyproj v3.6.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">CRS</span></code></a> object or <code class="docutils literal notranslate"><span class="pre">None</span></code> if geoxarray is unable to determine
 the CRS.</p>
 <nav class="contents local" id="supported-crs-formats">
 <p class="topic-title">Supported CRS Formats</p>
@@ -151,14 +156,14 @@ be loaded in a way that geoxarray can understand and access.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;xarray.Dataset&gt;
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;xarray.Dataset&gt; Size: 2kB
 Dimensions:                 (y: 20, x: 10)
 Coordinates:
-  * y                       (y) float64 0.0 1.0 2.0 3.0 ... 16.0 17.0 18.0 19.0
-  * x                       (x) float64 0.0 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0
-    goes_imager_projection  float64 0.0
+  * y                       (y) float64 160B 0.0 1.0 2.0 3.0 ... 17.0 18.0 19.0
+  * x                       (x) float64 80B 0.0 1.0 2.0 3.0 ... 6.0 7.0 8.0 9.0
+    goes_imager_projection  float64 8B 0.0
 Data variables:
-    Rad                     (y, x) float64 0.0 0.0 0.0 0.0 ... 0.0 0.0 0.0 0.0
+    Rad                     (y, x) float64 2kB 0.0 0.0 0.0 0.0 ... 0.0 0.0 0.0
 </pre></div>
 </div>
 <p>This Dataset has <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> dimensions and coordinate variables and a
@@ -207,16 +212,16 @@ attribute) then the CRS will be derived from that.</p>
 </section>
 <section id="satpy-and-pyresample">
 <h2>Satpy and Pyresample<a class="headerlink" href="#satpy-and-pyresample" title="Link to this heading">¶</a></h2>
-<p>The <a class="reference external" href="https://satpy.readthedocs.io/en/stable/index.html" title="(in Satpy v0.1)"><span class="xref std std-doc">Satpy</span></a> library uses
-<a class="reference external" href="https://pyresample.readthedocs.io/en/stable/index.html" title="(in pyresample v1.27.1)"><span class="xref std std-doc">Pyresample</span></a> geometry objects to define the geographic
+<p>The <a class="reference external" href="https://satpy.readthedocs.io/en/stable/index.html" title="(in Satpy v0.47)"><span class="xref std std-doc">Satpy</span></a> library uses
+<a class="reference external" href="https://pyresample.readthedocs.io/en/stable/index.html" title="(in pyresample v1.28.2)"><span class="xref std std-doc">Pyresample</span></a> geometry objects to define the geographic
 region of a dataset. The most common objects are
-<a class="reference external" href="https://pyresample.readthedocs.io/en/stable/api/pyresample.html#pyresample.geometry.AreaDefinition" title="(in pyresample v1.27.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyresample.geometry.AreaDefinition</span></code></a> and
-<a class="reference external" href="https://pyresample.readthedocs.io/en/stable/api/pyresample.html#pyresample.geometry.SwathDefinition" title="(in pyresample v1.27.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyresample.geometry.SwathDefinition</span></code></a> objects and are typically found in
+<a class="reference external" href="https://pyresample.readthedocs.io/en/stable/api/pyresample.html#pyresample.geometry.AreaDefinition" title="(in pyresample v1.28.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyresample.geometry.AreaDefinition</span></code></a> and
+<a class="reference external" href="https://pyresample.readthedocs.io/en/stable/api/pyresample.html#pyresample.geometry.SwathDefinition" title="(in pyresample v1.28.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyresample.geometry.SwathDefinition</span></code></a> objects and are typically found in
 a DataArray in <code class="docutils literal notranslate"><span class="pre">.attrs[&quot;area&quot;]</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">satpy_data_arr</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;xarray.DataArray (y: 20, x: 10)&gt;
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;xarray.DataArray (y: 20, x: 10)&gt; Size: 2kB
 ...
 Dimensions without coordinates: y, x
 Attributes:
