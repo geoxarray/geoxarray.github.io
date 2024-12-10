@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>geoxarray.accessor module &mdash; Geoxarray 0.2.1.dev49+gacf5bdd documentation</title>
+  <title>geoxarray.accessor module &mdash; Geoxarray 0.2.1.dev51+g1847a3c documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
@@ -15,7 +15,7 @@
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=7e2a4026"></script>
+      <script src="../_static/documentation_options.js?v=2459c0f4"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -115,14 +115,14 @@
 any xarray DataArray or Dataset object.</p>
 <p>Geolocation cases that these accessors are supposed to be able to handle:</p>
 <ol class="arabic">
-<li><p>CF compliant Dataset: A <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2024.10.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a> object with one or
+<li><p>CF compliant Dataset: A <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2024.11.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a> object with one or
 more data variables and one CRS specification variable. By default
 a ‘grid_mapping’ attribute is used to specify the name of the variable.</p>
 <p><a class="reference external" href="https://cfconventions.org/Data/cf-conventions/cf-conventions-1.7/build/ch05s06.html">https://cfconventions.org/Data/cf-conventions/cf-conventions-1.7/build/ch05s06.html</a></p>
 </li>
-<li><p>Geotiff DataArrays: A <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2024.10.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataArray</span></code></a> object returned by either
+<li><p>Geotiff DataArrays: A <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2024.11.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataArray</span></code></a> object returned by either
 the <code class="docutils literal notranslate"><span class="pre">rioxarray</span></code> library or by <code class="xref py py-func docutils literal notranslate"><span class="pre">xarray.open_rasterio`()</span></code>.</p></li>
-<li><p>Raw lon/lat coordinate arrays: A <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2024.10.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataArray</span></code></a> or <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2024.10.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a>
+<li><p>Raw lon/lat coordinate arrays: A <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2024.11.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataArray</span></code></a> or <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2024.11.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a>
 object that contains 1D or 2D longitude and latitude arrays defining the
 coordinates of the data.</p></li>
 </ol>
@@ -229,7 +229,7 @@ a copy of the object is made first. Default is False.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2024.10.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataArray</span></code></a></span></p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2024.11.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataArray</span></code></a></span></p>
 </dd>
 </dl>
 <div class="admonition seealso">
@@ -275,7 +275,7 @@ a copy first. Default (<code class="docutils literal notranslate"><span class="p
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.TypeVar" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code></a>(<code class="docutils literal notranslate"><span class="pre">XarrayObject</span></code>, <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2024.10.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataArray</span></code></a>, <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2024.10.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a>)</span></p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.TypeVar" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code></a>(<code class="docutils literal notranslate"><span class="pre">XarrayObject</span></code>, <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2024.11.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataArray</span></code></a>, <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2024.11.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a>)</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -284,13 +284,13 @@ a copy first. Default (<code class="docutils literal notranslate"><span class="p
 <dt class="sig sig-object py" id="geoxarray.accessor.GeoDataArrayAccessor.write_dims">
 <span class="sig-name descname"><span class="pre">write_dims</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geoxarray.accessor.GeoDataArrayAccessor.write_dims" title="Link to this definition"></a></dt>
 <dd><p>Rename object’s dimensions to match geoxarray’s preferred dimension names.</p>
-<p>This is a simple wrapper around Xarray’s <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.rename.html#xarray.DataArray.rename" title="(in xarray v2024.10.1.dev0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">xarray.DataArray.rename()</span></code></a>
-or <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.rename.html#xarray.Dataset.rename" title="(in xarray v2024.10.1.dev0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">xarray.Dataset.rename()</span></code></a> methods along with <code class="docutils literal notranslate"><span class="pre">.geo.dim_map</span></code> to
+<p>This is a simple wrapper around Xarray’s <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.rename.html#xarray.DataArray.rename" title="(in xarray v2024.11.1.dev0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">xarray.DataArray.rename()</span></code></a>
+or <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.rename.html#xarray.Dataset.rename" title="(in xarray v2024.11.1.dev0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">xarray.Dataset.rename()</span></code></a> methods along with <code class="docutils literal notranslate"><span class="pre">.geo.dim_map</span></code> to
 rename the dimension names. These methods always produce copies of the
 original object. It is not possible to do this operation “inplace”.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.TypeVar" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code></a>(<code class="docutils literal notranslate"><span class="pre">XarrayObject</span></code>, <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2024.10.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataArray</span></code></a>, <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2024.10.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a>)</span></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.TypeVar" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code></a>(<code class="docutils literal notranslate"><span class="pre">XarrayObject</span></code>, <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2024.11.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataArray</span></code></a>, <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2024.11.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a>)</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -345,15 +345,15 @@ a copy first. Default (<code class="docutils literal notranslate"><span class="p
 <span class="sig-name descname"><span class="pre">write_spatial_coords</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geoxarray.accessor.GeoDataArrayAccessor.write_spatial_coords" title="Link to this definition"></a></dt>
 <dd><p>Write ‘y’ and ‘x’ coordinate arrays to <code class="docutils literal notranslate"><span class="pre">.coords</span></code>.</p>
 <p>This operation always produces a new copy of the xarray object. See
-<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.assign_coords.html#xarray.DataArray.assign_coords" title="(in xarray v2024.10.1.dev0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">xarray.DataArray.assign_coords()</span></code></a> and
-<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.assign_coords.html#xarray.Dataset.assign_coords" title="(in xarray v2024.10.1.dev0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">xarray.Dataset.assign_coords()</span></code></a>.</p>
+<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.assign_coords.html#xarray.DataArray.assign_coords" title="(in xarray v2024.11.1.dev0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">xarray.DataArray.assign_coords()</span></code></a> and
+<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.assign_coords.html#xarray.Dataset.assign_coords" title="(in xarray v2024.11.1.dev0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">xarray.Dataset.assign_coords()</span></code></a>.</p>
 <p>See <a class="reference internal" href="geoxarray.coords.html#geoxarray.coords.spatial_coords" title="geoxarray.coords.spatial_coords"><code class="xref py py-func docutils literal notranslate"><span class="pre">geoxarray.coords.spatial_coords()</span></code></a> for supported metadata
 structures.</p>
 <p>Coordinate arrays are currently always a single point per data pixel
 representing the center of the pixel.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2024.10.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataArray</span></code></a></span></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2024.11.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataArray</span></code></a></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -458,7 +458,7 @@ a copy first. Default (<code class="docutils literal notranslate"><span class="p
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.TypeVar" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code></a>(<code class="docutils literal notranslate"><span class="pre">XarrayObject</span></code>, <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2024.10.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataArray</span></code></a>, <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2024.10.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a>)</span></p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.TypeVar" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code></a>(<code class="docutils literal notranslate"><span class="pre">XarrayObject</span></code>, <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2024.11.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataArray</span></code></a>, <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2024.11.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a>)</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -467,13 +467,13 @@ a copy first. Default (<code class="docutils literal notranslate"><span class="p
 <dt class="sig sig-object py" id="geoxarray.accessor.GeoDatasetAccessor.write_dims">
 <span class="sig-name descname"><span class="pre">write_dims</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geoxarray.accessor.GeoDatasetAccessor.write_dims" title="Link to this definition"></a></dt>
 <dd><p>Rename object’s dimensions to match geoxarray’s preferred dimension names.</p>
-<p>This is a simple wrapper around Xarray’s <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.rename.html#xarray.DataArray.rename" title="(in xarray v2024.10.1.dev0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">xarray.DataArray.rename()</span></code></a>
-or <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.rename.html#xarray.Dataset.rename" title="(in xarray v2024.10.1.dev0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">xarray.Dataset.rename()</span></code></a> methods along with <code class="docutils literal notranslate"><span class="pre">.geo.dim_map</span></code> to
+<p>This is a simple wrapper around Xarray’s <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.rename.html#xarray.DataArray.rename" title="(in xarray v2024.11.1.dev0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">xarray.DataArray.rename()</span></code></a>
+or <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.rename.html#xarray.Dataset.rename" title="(in xarray v2024.11.1.dev0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">xarray.Dataset.rename()</span></code></a> methods along with <code class="docutils literal notranslate"><span class="pre">.geo.dim_map</span></code> to
 rename the dimension names. These methods always produce copies of the
 original object. It is not possible to do this operation “inplace”.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.TypeVar" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code></a>(<code class="docutils literal notranslate"><span class="pre">XarrayObject</span></code>, <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2024.10.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataArray</span></code></a>, <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2024.10.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a>)</span></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.TypeVar" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code></a>(<code class="docutils literal notranslate"><span class="pre">XarrayObject</span></code>, <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2024.11.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataArray</span></code></a>, <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2024.11.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a>)</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -528,15 +528,15 @@ a copy first. Default (<code class="docutils literal notranslate"><span class="p
 <span class="sig-name descname"><span class="pre">write_spatial_coords</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geoxarray.accessor.GeoDatasetAccessor.write_spatial_coords" title="Link to this definition"></a></dt>
 <dd><p>Write ‘y’ and ‘x’ coordinate arrays to <code class="docutils literal notranslate"><span class="pre">.coords</span></code>.</p>
 <p>This operation always produces a new copy of the xarray object. See
-<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.assign_coords.html#xarray.DataArray.assign_coords" title="(in xarray v2024.10.1.dev0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">xarray.DataArray.assign_coords()</span></code></a> and
-<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.assign_coords.html#xarray.Dataset.assign_coords" title="(in xarray v2024.10.1.dev0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">xarray.Dataset.assign_coords()</span></code></a>.</p>
+<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.assign_coords.html#xarray.DataArray.assign_coords" title="(in xarray v2024.11.1.dev0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">xarray.DataArray.assign_coords()</span></code></a> and
+<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.assign_coords.html#xarray.Dataset.assign_coords" title="(in xarray v2024.11.1.dev0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">xarray.Dataset.assign_coords()</span></code></a>.</p>
 <p>See <a class="reference internal" href="geoxarray.coords.html#geoxarray.coords.spatial_coords" title="geoxarray.coords.spatial_coords"><code class="xref py py-func docutils literal notranslate"><span class="pre">geoxarray.coords.spatial_coords()</span></code></a> for supported metadata
 structures.</p>
 <p>Coordinate arrays are currently always a single point per data pixel
 representing the center of the pixel.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2024.10.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataArray</span></code></a></span></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2024.11.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataArray</span></code></a></span></p>
 </dd>
 </dl>
 </dd></dl>
