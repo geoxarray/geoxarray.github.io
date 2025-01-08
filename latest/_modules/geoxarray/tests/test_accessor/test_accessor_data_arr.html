@@ -5,8 +5,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>geoxarray.tests.test_accessor.test_accessor_data_arr &mdash; Geoxarray 0.2.1.dev53+g8670710 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=fa44fd50" />
+  <title>geoxarray.tests.test_accessor.test_accessor_data_arr &mdash; Geoxarray 0.2.1.dev55+g088a29b documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/plot_directive.css" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
   
       <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../../_static/documentation_options.js?v=e51d49e5"></script>
+      <script src="../../../../_static/documentation_options.js?v=41024a49"></script>
       <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -107,11 +107,11 @@
 <span class="c1"># See the License for the specific language governing permissions and</span>
 <span class="c1"># limitations under the License.</span>
 <span class="sd">&quot;&quot;&quot;Tests for the xarray DataArray-specific accessor.&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pytest</span>
-<span class="kn">from</span> <span class="nn">pyproj</span> <span class="kn">import</span> <span class="n">CRS</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyproj</span><span class="w"> </span><span class="kn">import</span> <span class="n">CRS</span>
 
-<span class="kn">from</span> <span class="nn">._data_array_cases</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">._data_array_cases</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">band_as_read_by_rioxarray</span><span class="p">,</span>
     <span class="n">cf_y_x</span><span class="p">,</span>
     <span class="n">cf_y_x_with_bad_crs</span><span class="p">,</span>
@@ -132,7 +132,7 @@
     <span class="n">tifffile_nonyx_with_geometa</span><span class="p">,</span>
     <span class="n">tifffile_with_geometa</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">._shared</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">._shared</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">ALT_DIM_SIZE</span><span class="p">,</span>
     <span class="n">MISSING_PYRESAMPLE</span><span class="p">,</span>
     <span class="n">X_DIM_SIZE</span><span class="p">,</span>
@@ -157,7 +157,7 @@
         <span class="p">(</span><span class="n">raw_coords_lats1d_lons1d</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">)),</span>
     <span class="p">],</span>
 <span class="p">)</span>
-<span class="k">def</span> <span class="nf">test_default_dim_decisions</span><span class="p">(</span><span class="n">get_data_array</span><span class="p">,</span> <span class="n">exp_dims</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_default_dim_decisions</span><span class="p">(</span><span class="n">get_data_array</span><span class="p">,</span> <span class="n">exp_dims</span><span class="p">):</span>
     <span class="n">data_arr</span> <span class="o">=</span> <span class="n">get_data_array</span><span class="p">()</span>
     <span class="k">assert</span> <span class="n">data_arr</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">dims</span> <span class="o">==</span> <span class="n">exp_dims</span>
     <span class="k">assert</span> <span class="n">data_arr</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">Y_DIM_SIZE</span>
@@ -166,7 +166,7 @@
         <span class="k">assert</span> <span class="n">data_arr</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="s2">&quot;vertical&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">ALT_DIM_SIZE</span>
 
 
-<span class="k">def</span> <span class="nf">test_crs_no_crs</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_crs_no_crs</span><span class="p">():</span>
     <span class="n">data_arr</span> <span class="o">=</span> <span class="n">no_crs_no_dims_2d</span><span class="p">()</span>
     <span class="k">assert</span> <span class="n">data_arr</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">_crs</span> <span class="ow">is</span> <span class="kc">None</span>  <span class="c1"># assert we haven&#39;t checked CRS info yet</span>
     <span class="k">assert</span> <span class="n">data_arr</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">crs</span> <span class="ow">is</span> <span class="kc">None</span>
@@ -174,7 +174,7 @@
     <span class="k">assert</span> <span class="n">data_arr</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">crs</span> <span class="ow">is</span> <span class="kc">None</span>
 
 
-<span class="k">def</span> <span class="nf">test_crs_missing_grid_mapping</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_crs_missing_grid_mapping</span><span class="p">():</span>
     <span class="n">data_arr</span> <span class="o">=</span> <span class="n">cf_y_x</span><span class="p">()</span>
     <span class="k">assert</span> <span class="n">data_arr</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">_crs</span> <span class="ow">is</span> <span class="kc">None</span>  <span class="c1"># assert we haven&#39;t checked CRS info yet</span>
     <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">warns</span><span class="p">(</span><span class="ne">UserWarning</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;&#39;grid_mapping&#39; attribute found, but&quot;</span><span class="p">):</span>
@@ -184,20 +184,20 @@
 
 
 <span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;data_func&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">cf_y_x_with_crs_coord</span><span class="p">,</span> <span class="n">cf_y_x_with_crs_wkt_coord</span><span class="p">])</span>
-<span class="k">def</span> <span class="nf">test_crs_from_cf_coordinate</span><span class="p">(</span><span class="n">data_func</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_crs_from_cf_coordinate</span><span class="p">(</span><span class="n">data_func</span><span class="p">):</span>
     <span class="n">data_arr</span> <span class="o">=</span> <span class="n">data_func</span><span class="p">()</span>
     <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data_arr</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">crs</span><span class="p">,</span> <span class="n">CRS</span><span class="p">)</span>
     <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data_arr</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">crs</span><span class="p">,</span> <span class="n">CRS</span><span class="p">)</span>  <span class="c1"># get cached CRS</span>
 
 
-<span class="k">def</span> <span class="nf">test_bad_crs_from_cf_coordinate</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_bad_crs_from_cf_coordinate</span><span class="p">():</span>
     <span class="n">data_arr</span> <span class="o">=</span> <span class="n">cf_y_x_with_bad_crs</span><span class="p">()</span>
     <span class="k">assert</span> <span class="n">data_arr</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">crs</span> <span class="ow">is</span> <span class="kc">None</span>
 
 
 <span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;inplace&quot;</span><span class="p">,</span> <span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">])</span>
 <span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;gmap_var_name&quot;</span><span class="p">,</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;my_gm&quot;</span><span class="p">])</span>
-<span class="k">def</span> <span class="nf">test_no_crs_write_crs</span><span class="p">(</span><span class="n">inplace</span><span class="p">,</span> <span class="n">gmap_var_name</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_no_crs_write_crs</span><span class="p">(</span><span class="n">inplace</span><span class="p">,</span> <span class="n">gmap_var_name</span><span class="p">):</span>
     <span class="n">data_arr</span> <span class="o">=</span> <span class="n">no_crs_no_dims_2d</span><span class="p">()</span>
     <span class="n">new_crs</span> <span class="o">=</span> <span class="n">CRS</span><span class="o">.</span><span class="n">from_epsg</span><span class="p">(</span><span class="mi">4326</span><span class="p">)</span>
 
@@ -209,13 +209,13 @@
 
 
 <span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">skipif</span><span class="p">(</span><span class="n">MISSING_PYRESAMPLE</span><span class="p">,</span> <span class="n">reason</span><span class="o">=</span><span class="s2">&quot;Missing &#39;pyresample&#39; dependency&quot;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">test_pyresample_area_2d_crs</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_pyresample_area_2d_crs</span><span class="p">():</span>
     <span class="n">data_arr</span> <span class="o">=</span> <span class="n">pyr_geos_area_2d</span><span class="p">()</span>
     <span class="k">assert</span> <span class="n">data_arr</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">crs</span> <span class="o">==</span> <span class="n">data_arr</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;area&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">crs</span>
 
 
 <span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">skipif</span><span class="p">(</span><span class="n">MISSING_PYRESAMPLE</span><span class="p">,</span> <span class="n">reason</span><span class="o">=</span><span class="s2">&quot;Test dependency missing: pyresample&quot;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">test_pyresample_write_crs</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_pyresample_write_crs</span><span class="p">():</span>
     <span class="n">data_arr</span> <span class="o">=</span> <span class="n">pyr_geos_area_2d</span><span class="p">()</span>
     <span class="k">assert</span> <span class="s2">&quot;grid_mapping&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data_arr</span><span class="o">.</span><span class="n">encoding</span>
     <span class="k">assert</span> <span class="s2">&quot;grid_mapping&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data_arr</span><span class="o">.</span><span class="n">attrs</span>
@@ -226,7 +226,7 @@
     <span class="k">assert</span> <span class="s2">&quot;spatial_ref&quot;</span> <span class="ow">in</span> <span class="n">new_data_arr</span><span class="o">.</span><span class="n">coords</span>
 
 
-<span class="k">def</span> <span class="nf">test_write_crs_no_crs_found</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_write_crs_no_crs_found</span><span class="p">():</span>
     <span class="n">data_arr</span> <span class="o">=</span> <span class="n">no_crs_no_dims_2d</span><span class="p">()</span>
     <span class="k">assert</span> <span class="s2">&quot;grid_mapping&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data_arr</span><span class="o">.</span><span class="n">encoding</span>
     <span class="k">assert</span> <span class="s2">&quot;grid_mapping&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data_arr</span><span class="o">.</span><span class="n">attrs</span>
@@ -235,7 +235,7 @@
         <span class="n">data_arr</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">write_crs</span><span class="p">()</span>
 
 
-<span class="k">def</span> <span class="nf">test_write_coords_unknown</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_write_coords_unknown</span><span class="p">():</span>
     <span class="n">data_arr</span> <span class="o">=</span> <span class="n">no_crs_no_dims_2d</span><span class="p">()</span>
     <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
         <span class="n">data_arr</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">write_spatial_coords</span><span class="p">()</span>
@@ -288,7 +288,7 @@
         <span class="p">(</span><span class="n">tifffile_nonyx_with_geometa</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">),</span>
     <span class="p">],</span>
 <span class="p">)</span>
-<span class="k">def</span> <span class="nf">test_write_coords_tifffile</span><span class="p">(</span><span class="n">data_func</span><span class="p">,</span> <span class="n">y_dim</span><span class="p">,</span> <span class="n">x_dim</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_write_coords_tifffile</span><span class="p">(</span><span class="n">data_func</span><span class="p">,</span> <span class="n">y_dim</span><span class="p">,</span> <span class="n">x_dim</span><span class="p">):</span>
     <span class="n">data_arr</span> <span class="o">=</span> <span class="n">data_func</span><span class="p">()</span>
     <span class="k">assert</span> <span class="s2">&quot;y&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data_arr</span><span class="o">.</span><span class="n">coords</span>
     <span class="k">assert</span> <span class="s2">&quot;x&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data_arr</span><span class="o">.</span><span class="n">coords</span>
@@ -310,7 +310,7 @@
     <span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">test_write_coords_pyr_area</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_write_coords_pyr_area</span><span class="p">():</span>
     <span class="n">data_arr</span> <span class="o">=</span> <span class="n">pyr_geos_area_2d</span><span class="p">()</span>
     <span class="n">y_dim</span><span class="p">,</span> <span class="n">x_dim</span> <span class="o">=</span> <span class="n">data_arr</span><span class="o">.</span><span class="n">dims</span>
     <span class="k">assert</span> <span class="s2">&quot;x&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data_arr</span><span class="o">.</span><span class="n">coords</span>
@@ -339,7 +339,7 @@
 <a class="viewcode-back" href="../../../../api/geoxarray.tests.test_accessor.test_accessor_data_arr.html#geoxarray.tests.test_accessor.test_accessor_data_arr.test_using_gcps">[docs]</a>
 <span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;inplace&quot;</span><span class="p">,</span> <span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">])</span>
 <span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;has_spatial_ref&quot;</span><span class="p">,</span> <span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">])</span>
-<span class="k">def</span> <span class="nf">test_using_gcps</span><span class="p">(</span><span class="n">inplace</span><span class="p">,</span> <span class="n">has_spatial_ref</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_using_gcps</span><span class="p">(</span><span class="n">inplace</span><span class="p">,</span> <span class="n">has_spatial_ref</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Test using the GCPs.&quot;&quot;&quot;</span>
     <span class="n">data_arr</span> <span class="o">=</span> <span class="n">band_as_read_by_rioxarray</span><span class="p">()</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">has_spatial_ref</span><span class="p">:</span>

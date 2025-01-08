@@ -6,8 +6,8 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Add Ground Control Points &mdash; Geoxarray 0.2.1.dev53+g8670710 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+  <title>Add Ground Control Points &mdash; Geoxarray 0.2.1.dev55+g088a29b documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -15,7 +15,7 @@
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=e51d49e5"></script>
+      <script src="../_static/documentation_options.js?v=41024a49"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -111,9 +111,9 @@ data to be uniformly spaced. For more information on coordinates
 see the <a class="reference internal" href="../topics/coordinates.html"><span class="doc">Coordinates</span></a> documentation.</p>
 <p>GCPs used with Geoxarray must be formatted as GeoJSON in a normal Python
 <code class="docutils literal notranslate"><span class="pre">str</span></code> object.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">geoxarray</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">geoxarray</span>
 
 <span class="n">gcp_data</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;{&#39;type&#39;: &#39;FeatureCollection&#39;, &#39;features&#39;: [</span>
 <span class="s2">    {&#39;type&#39;: &#39;Feature&#39;, &#39;properties&#39;: {&#39;id&#39;: &#39;1&#39;, &#39;info&#39;: &#39;&#39;, &#39;row&#39;: 0.0, &#39;col&#39;: 0.0},</span>

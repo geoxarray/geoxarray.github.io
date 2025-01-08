@@ -6,8 +6,8 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Access CRS information &mdash; Geoxarray 0.2.1.dev53+g8670710 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+  <title>Access CRS information &mdash; Geoxarray 0.2.1.dev55+g088a29b documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -15,7 +15,7 @@
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=e51d49e5"></script>
+      <script src="../_static/documentation_options.js?v=41024a49"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -120,7 +120,7 @@ supports. In all cases, the basic access geoxarray usage is the same. Please
 follow the specific storage format section closest to your use case for
 details on what geoxarray expects. The basic usage, assuming you have an
 xarray DataArray or Dataset object, is to do:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geoxarray</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">geoxarray</span>
 
 <span class="n">the_crs</span> <span class="o">=</span> <span class="n">my_data_arr</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">crs</span>
 </pre></div>
@@ -141,7 +141,7 @@ the CRS.</p>
 <h2>CF Grid Mapping<a class="headerlink" href="#cf-grid-mapping" title="Link to this heading"></a></h2>
 <p>If loading a NetCDF file that has a CF-compatible “grid mapping” variable,
 you can load the file in a geoxarray-friendly way by doing:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
 <span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="s2">&quot;/path/to/file.nc&quot;</span><span class="p">,</span> <span class="n">decode_coords</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -173,7 +173,7 @@ following metadata:</p>
 </pre></div>
 </div>
 <p>To get the CRS information for this <code class="docutils literal notranslate"><span class="pre">Rad</span></code> variable we can do:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geoxarray</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">geoxarray</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">ds</span><span class="p">[</span><span class="s2">&quot;Rad&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">crs</span><span class="p">))</span>
 </pre></div>
