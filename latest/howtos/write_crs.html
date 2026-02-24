@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Write CRS information &mdash; Geoxarray 0.2.1.dev117+g044df1e9b documentation</title>
+  <title>Write CRS information &mdash; Geoxarray 0.2.1.dev119+g7861c066d documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
@@ -15,7 +15,7 @@
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=320db70c"></script>
+      <script src="../_static/documentation_options.js?v=1c6b68ee"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -133,8 +133,8 @@ Dimensions without coordinates: y, x
 <p>The new <code class="docutils literal notranslate"><span class="pre">DataArray</span></code> now has a <code class="docutils literal notranslate"><span class="pre">spatial_ref</span></code> coordinate variable that
 contains NetCDF/CF compatible grid mapping information. There is also a
 <code class="docutils literal notranslate"><span class="pre">grid_mapping</span></code> attribute (stored in <code class="docutils literal notranslate"><span class="pre">.encoding</span></code>) that will be written
-to a NetCDF file if we were to wrap the DataArray in a <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.12.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a>
-object and called <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.to_netcdf.html#xarray.Dataset.to_netcdf" title="(in xarray v2025.12.0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">xarray.Dataset.to_netcdf()</span></code></a>.</p>
+to a NetCDF file if we were to wrap the DataArray in a <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2026.2.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a>
+object and called <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.to_netcdf.html#xarray.Dataset.to_netcdf" title="(in xarray v2026.2.0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">xarray.Dataset.to_netcdf()</span></code></a>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">new_data_arr</span><span class="o">.</span><span class="n">encoding</span><span class="p">[</span><span class="s2">&quot;grid_mapping&quot;</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">new_data_arr</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s2">&quot;spatial_ref&quot;</span><span class="p">])</span>
 </pre></div>
@@ -163,7 +163,7 @@ attribute with a Well-Known Text (WKT) version of the CRS for better
 CF-compatibility. The <code class="docutils literal notranslate"><span class="pre">spatial_ref</span></code> attribute is the same WKT and exists
 for GDAL compatibility.</p>
 <p>This same behavior and workflow can be achieved if starting from a
-<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.12.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a> class.</p>
+<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2026.2.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a> class.</p>
 </section>
 
 
